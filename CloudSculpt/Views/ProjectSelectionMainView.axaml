@@ -1,0 +1,137 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="645" d:DesignHeight="544"
+             x:Class="CloudSculpt.Views.ProjectSelectionMainView"
+             Width="645"
+             Height="544"
+             Background="#023E8A">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <!--Column 1 :: Title, Main Controls-->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".25*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <!--Title-->
+            <Grid Grid.Row="0">
+                <TextBlock Text="Cloud Sculpt"
+                           FontSize="46"
+                           FontFamily="Inter"
+                           FontWeight="SemiBold"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Bottom"/>
+            </Grid>
+            
+            <!--Main Controls-->
+            <Border Grid.Row="1"
+                    BorderThickness="1"
+                    BorderBrush="#0077B6"
+                    Background="#0077B6"
+                    CornerRadius="26"
+                    Margin="15 40 15 15">
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height=".2*"/>
+                        <RowDefinition/>
+                        <RowDefinition Height=".2*"/>
+                        <RowDefinition/>
+                        <RowDefinition Height=".2*"/>
+                        <RowDefinition/>
+                        <RowDefinition Height=".2*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                
+                    <!--New Project Button-->
+                    <Grid Grid.Row="1">
+                        <Button HorizontalAlignment="Center"
+                                Width="256"
+                                Height="44"
+                                Background="#CAF0F8"
+                                Foreground="Black"
+                                CornerRadius="20"
+                                FontFamily="Inter"
+                                FontSize="20"
+                                FontWeight="SemiBold"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="New Project"
+                                x:Name="MainNewProjectButton"/>
+                    </Grid>
+                
+                    <!--Open Project Button-->
+                    <Grid Grid.Row="3">
+                        <Button HorizontalAlignment="Center"
+                                Width="256"
+                                Height="44"
+                                Background="#CAF0F8"
+                                Foreground="Black"
+                                CornerRadius="20"
+                                FontFamily="Inter"
+                                FontSize="20"
+                                FontWeight="SemiBold"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="Open Project"
+                                x:Name="MainOpenProjectButton"/>
+                    </Grid>
+                
+                    <!--Settings Button-->
+                    <Grid Grid.Row="5">
+                        <Button HorizontalAlignment="Center"
+                                Width="256"
+                                Height="44"
+                                Background="#CAF0F8"
+                                Foreground="Black"
+                                CornerRadius="20"
+                                FontFamily="Inter"
+                                FontSize="20"
+                                FontWeight="SemiBold"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="Settings"
+                                x:Name="MainSettingsButton"/>
+                    </Grid>
+                
+                    <!--Exit Button-->
+                    <Grid Grid.Row="7">
+                        <Button HorizontalAlignment="Center"
+                                Width="256"
+                                Height="44"
+                                Background="#CAF0F8"
+                                Foreground="Black"
+                                CornerRadius="20"
+                                FontFamily="Inter"
+                                FontSize="20"
+                                FontWeight="SemiBold"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="Exit"
+                                x:Name="MainExitButton"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+        
+        <!--Column 2 :: Previous Projects-->
+        <Border Grid.Column="1"
+                BorderThickness="1"
+                BorderBrush="#0077B6"
+                Background="#0077B6"
+                CornerRadius="26"
+                Margin="15">
+            
+        </Border>
+    </Grid>
+</UserControl>

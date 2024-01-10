@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="CloudSculpt/App.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/MainMenu.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/MainWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/ProjectSelectionCloudView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/ProjectSelectionMain.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/ProjectSelectionMainView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/ProjectSelectionNetworkView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
