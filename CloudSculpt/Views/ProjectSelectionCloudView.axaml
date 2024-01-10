@@ -7,4 +7,117 @@
              Width="645"
              Height="544"
              Background="#023E8A">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <!--Column 1 :: Project Category-->
+        <Border Grid.Column="0"
+                BorderThickness="1"
+                BorderBrush="#0077B6"
+                Background="#0077B6"
+                CornerRadius="26"
+                HorizontalAlignment="Left"
+                MinWidth="199"
+                MaxWidth="199"
+                Margin="15 20 0 20">
+            
+            <Grid>
+                <Grid.RowDefinitions> <!--Total Height:: 504, Original Ratio:: 30:50:30:50:264:50:30-->
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="132*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="15*"/>
+                </Grid.RowDefinitions>
+                
+                <Button Grid.Row="1" 
+                        HorizontalAlignment="Center"
+                        Width="189"
+                        Height="44"
+                        Background="#CAF0F8"
+                        Foreground="Black"
+                        CornerRadius="13"
+                        FontFamily="Inter"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="Cloud"
+                        x:Name="CloudCloudButton"/>
+                
+                <Button Grid.Row="3" 
+                        HorizontalAlignment="Center"
+                        Width="189"
+                        Height="44"
+                        Background="#CAF0F8"
+                        Foreground="Black"
+                        CornerRadius="13"
+                        FontFamily="Inter"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="Networking"
+                        x:Name="CloudNetworkButton"/>
+                
+                <Button Grid.Row="5" 
+                        HorizontalAlignment="Center"
+                        Width="189"
+                        Height="44"
+                        Background="#CAF0F8"
+                        Foreground="Black"
+                        CornerRadius="13"
+                        FontFamily="Inter"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="Back"
+                        x:Name="CloudBackButton"/>
+            </Grid>
+            
+        </Border>
+        
+        <!--Column 2 :: Project Type-->
+        <Border Grid.Column="1"
+                BorderThickness="1"
+                BorderBrush="#0077B6"
+                Background="#0077B6"
+                CornerRadius="26"
+                HorizontalAlignment="Right"
+                MinWidth="396"
+                MaxWidth="396"
+                Margin="15 20 15 20">
+            
+            <Grid>
+                <Grid.RowDefinitions> <!--Total Height:: 504, Original Ratio:: 30:50:424-->
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="212*"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="1" 
+                        HorizontalAlignment="Center"
+                        Width="368"
+                        Height="44"
+                        Background="#CAF0F8"
+                        Foreground="Black"
+                        CornerRadius="13"
+                        FontFamily="Inter"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="Configure Cloud Infrastructure"
+                        x:Name="CloudConfigCloudButton"/>
+            </Grid>
+            
+        </Border>
+    </Grid>
 </UserControl>

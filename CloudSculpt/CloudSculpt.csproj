@@ -6,6 +6,7 @@
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
     </PropertyGroup>
 
 
@@ -21,5 +22,18 @@
 
     <ItemGroup>
       <Folder Include="Models\" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <None Remove="Assets\icon.ico" />
+      <Content Include="Assets\icon.ico">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\iconv1.png" />
+      <Content Include="Assets\iconv1.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\icon_withoutbg.png" />
     </ItemGroup>
 </Project>
