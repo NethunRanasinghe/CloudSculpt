@@ -35,5 +35,13 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <None Remove="Assets\icon_withoutbg.png" />
+      <None Remove="Assets\05-symbol_off-black-docker-logo.png" />
+      <AvaloniaResource Include="Assets\dockerBlack.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </AvaloniaResource>
+      <None Remove="Assets\kubernetes.1024x994.png" />
+      <AvaloniaResource Include="Assets\kubernetesBlack.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </AvaloniaResource>
     </ItemGroup>
 </Project>

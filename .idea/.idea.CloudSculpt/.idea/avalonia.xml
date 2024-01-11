@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="CloudSculpt/App.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/ConfigureCloudInfraWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/MainMenu.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/MainMenuWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/MainWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
@@ -12,6 +13,8 @@
         <entry key="CloudSculpt/Views/ProjectSelectionMain.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/ProjectSelectionMainView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/ProjectSelectionNetworkView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/ServiceElementTemplateView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/TemplatedControl1.axaml" value="CloudSculpt/CloudSculpt.csproj" />
       </map>
     </option>
   </component>
