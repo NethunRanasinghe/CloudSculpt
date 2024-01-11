@@ -4,14 +4,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views = "clr-namespace:CloudSculpt.Views"
         mc:Ignorable="d" d:DesignWidth="645" d:DesignHeight="544"
-        x:Class="CloudSculpt.MainMenu"
+        x:Class="CloudSculpt.MainMenuWindow"
         Width="645"
         Height="544"
         Background="#023E8A"
         WindowStartupLocation="CenterScreen"
         CanResize="False"
         Icon="C:\MyData\Projects\Y3 Final\Y3 Final Project Files\Project\CloudSculpt\CloudSculpt\Assets\iconv1.png"
-        Title="CloudSculpt">
+        Title="Main Menu">
     
         <!--
         Width   :: Original - 968 || Current - 645

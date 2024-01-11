@@ -1,0 +1,217 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="865" d:DesignHeight="362"
+        x:Class="CloudSculpt.SettingsWindow"
+        Width="865"
+        Height="362"
+        Background="#023E8A"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        Icon="C:\MyData\Projects\Y3 Final\Y3 Final Project Files\Project\CloudSculpt\CloudSculpt\Assets\iconv1.png"
+        Title="Settings">
+    
+        <!--
+        Width   :: Original - 1298 || Current - 865
+        Height  :: Original - 499 || Current - 362 
+        -->
+        
+        <Grid>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height=".3*"/>
+                        <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <!--Title-->
+                <Grid Grid.Row="0">
+                        <TextBlock Text="Configure - Docker"
+                                   FontSize="46"
+                                   FontFamily="Inter"
+                                   FontWeight="SemiBold"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                </Grid>
+                
+                <!--Config Display, Control Buttons-->
+                <Border Grid.Row="1"
+                        Background="#0077B6"
+                        CornerRadius="20"
+                        Margin="15 15">
+                        
+                        <Grid>
+                                <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                
+                                <!--Config Display-->
+                                <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width=".5*"/>
+                                                <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Border Grid.Column="0"
+                                                Background="#CAF0F8"
+                                                CornerRadius="20"
+                                                Margin="10 10">
+                                                
+                                                <Grid Margin="0 10"
+                                                      HorizontalAlignment="Center">
+                                                        <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        
+                                                        <!--OS, Docker Status TextBlocks-->
+                                                        <Grid Grid.Column="0"
+                                                              Margin="10 10">
+                                                                <Grid.RowDefinitions>
+                                                                        <RowDefinition/>
+                                                                        <RowDefinition/>
+                                                                </Grid.RowDefinitions>
+                                                                
+                                                                <!--OS-->
+                                                                <TextBlock Grid.Row="0"
+                                                                           Text="Os : "
+                                                                           FontSize="18"
+                                                                           FontWeight="SemiBold"
+                                                                           Foreground="Black"/>
+                                                                
+                                                                <!--Docker Status-->
+                                                                <TextBlock Grid.Row="1"
+                                                                           Text="Docker Status : "
+                                                                           FontSize="18"
+                                                                           FontWeight="SemiBold"
+                                                                           Foreground="Black"/>
+                                                        </Grid>
+                                                        
+                                                        <!--OS, Docker Status Status-->
+                                                        <Grid Grid.Column="1"
+                                                              Margin="10 10">
+                                                                <Grid.RowDefinitions>
+                                                                        <RowDefinition/>
+                                                                        <RowDefinition/>
+                                                                </Grid.RowDefinitions>
+                                                                
+                                                                <!--OS-->
+                                                                <TextBlock Grid.Row="0"
+                                                                           Text="Default"
+                                                                           FontSize="18"
+                                                                           FontWeight="Normal"
+                                                                           x:Name="SettingsOsTextBlock"
+                                                                           Foreground="Black"/>
+                                                                
+                                                                <!--Docker Status-->
+                                                                <TextBlock Grid.Row="1"
+                                                                           Text="X"
+                                                                           FontSize="18"
+                                                                           FontWeight="Normal"
+                                                                           x:Name="SettingsDockerStatusTextBlock"
+                                                                           Foreground="Black"/>
+                                                        </Grid>
+                                                </Grid>
+                                        </Border>
+                                        
+                                        <Border Grid.Column="1"
+                                                Background="#CAF0F8"
+                                                CornerRadius="20"
+                                                Margin="10 10">
+                                                
+                                                <Grid>
+                                                        <Grid.RowDefinitions>
+                                                                <RowDefinition Height=".3*"/>
+                                                                <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+                                                        
+                                                        <!--Log Label-->
+                                                        <TextBlock Grid.Row="0"
+                                                                   Text="Log"
+                                                                   FontSize="18"
+                                                                   FontWeight="SemiBold"
+                                                                   HorizontalAlignment="Center"
+                                                                   VerticalAlignment="Center"
+                                                                   Foreground="Black"/>
+                                                        
+                                                        <!--Log Content-->
+                                                        <TextBlock Grid.Row="1"
+                                                                   Text=""
+                                                                   TextWrapping="Wrap"
+                                                                   FontSize="15"
+                                                                   FontWeight="Normal"
+                                                                   HorizontalAlignment="Left"
+                                                                   VerticalAlignment="Top"
+                                                                   Margin="5 0"
+                                                                   x:Name="SettingsLogContentTextBlock"
+                                                                   Foreground="Black"/>
+                                                </Grid>
+                                        </Border>
+                                </Grid>
+                                
+                                <!--Config Buttons-->
+                                <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width=".4*"/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width=".4*"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Grid Grid.Column="1">
+                                                <Button HorizontalAlignment="Center"
+                                                        Width="200"
+                                                        Height="44"
+                                                        Background="#CAF0F8"
+                                                        Foreground="Black"
+                                                        CornerRadius="13"
+                                                        FontFamily="Inter"
+                                                        FontSize="20"
+                                                        FontWeight="SemiBold"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        Content="Cancel"
+                                                        x:Name="SettingsCancelButton"/>
+                                        </Grid>
+                                        
+                                        <Grid Grid.Column="3">
+                                                <Button HorizontalAlignment="Center"
+                                                        Width="200"
+                                                        Height="44"
+                                                        Background="#CAF0F8"
+                                                        Foreground="Black"
+                                                        CornerRadius="13"
+                                                        FontFamily="Inter"
+                                                        FontSize="20"
+                                                        FontWeight="SemiBold"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        Content="Uninstall"
+                                                        x:Name="SettingsUninstallButton"/>
+                                        </Grid>
+                                        
+                                        <Grid Grid.Column="5">
+                                                <Button HorizontalAlignment="Center"
+                                                        Width="200"
+                                                        Height="44"
+                                                        Background="#CAF0F8"
+                                                        Foreground="Black"
+                                                        CornerRadius="13"
+                                                        FontFamily="Inter"
+                                                        FontSize="20"
+                                                        FontWeight="SemiBold"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        Content="Install"
+                                                        x:Name="SettingsInstallButton"/>
+                                        </Grid>
+                                </Grid>
+                        </Grid>
+                </Border>
+        </Grid>
+        
+</Window>

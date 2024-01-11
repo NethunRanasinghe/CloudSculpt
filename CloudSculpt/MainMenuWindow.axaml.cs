@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace CloudSculpt;
 
-public partial class MainMenu : Window
+public partial class MainMenuWindow : Window
 {
-    public MainMenu()
+    public MainMenuWindow()
     {
         InitializeComponent();
     }
