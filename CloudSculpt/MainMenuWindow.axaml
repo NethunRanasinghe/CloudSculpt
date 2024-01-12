@@ -10,7 +10,7 @@
         Background="#023E8A"
         WindowStartupLocation="CenterScreen"
         CanResize="False"
-        Icon="C:\MyData\Projects\Y3 Final\Y3 Final Project Files\Project\CloudSculpt\CloudSculpt\Assets\iconv1.png"
+        Icon="Assets/iconv1.png"
         Title="Main Menu">
     
         <!--
