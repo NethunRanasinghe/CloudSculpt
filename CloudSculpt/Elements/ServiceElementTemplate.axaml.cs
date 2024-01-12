@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace CloudSculpt.Views;
 
-public partial class ServiceElementTemplateView : UserControl
+public partial class ServiceElementTemplate : UserControl
 {
-    public ServiceElementTemplateView()
+    public ServiceElementTemplate()
     {
         InitializeComponent();
     }

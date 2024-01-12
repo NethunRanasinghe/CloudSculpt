@@ -18,6 +18,6 @@
         Height  :: Original - 816 || Current - 544 
         -->
         
-        <views:ProjectSelectionMainView/>
+        <ContentControl x:Name="MainMenuWindowContentControl"/>
         
 </Window>

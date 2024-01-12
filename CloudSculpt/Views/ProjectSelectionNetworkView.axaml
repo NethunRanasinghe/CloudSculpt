@@ -49,7 +49,9 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Content="Cloud"
-                        x:Name="NetworkCloudButton"/>
+                        Cursor="Hand"
+                        x:Name="NetworkCloudButton"
+                        Click="NetworkCloudButton_OnClick"/>
                 
                 <Button Grid.Row="3" 
                         HorizontalAlignment="Center"
@@ -58,13 +60,29 @@
                         Background="#CAF0F8"
                         Foreground="Black"
                         CornerRadius="13"
-                        FontFamily="Inter"
-                        FontSize="20"
-                        FontWeight="SemiBold"
                         HorizontalContentAlignment="Center"
-                        VerticalContentAlignment="Center"
-                        Content="Networking"
-                        x:Name="NetworkNetworkButton"/>
+                        VerticalContentAlignment="Center">
+                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height=".1*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Grid.Row="0"
+                                   Text="Networking"
+                                   Foreground="Black"
+                                   FontFamily="Inter"
+                                   FontWeight="SemiBold"
+                                   FontSize="20"/>
+                        
+                        <Grid Grid.Row="1"
+                              Height="5"
+                              Margin="0 5 0 0"
+                              Background="#2A6F97"/>
+                    </Grid>
+                    
+                </Button>
                 
                 <Button Grid.Row="5" 
                         HorizontalAlignment="Center"
@@ -79,7 +97,9 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Content="Back"
-                        x:Name="NetworkBackButton"/>
+                        x:Name="NetworkBackButton"
+                        Cursor="Hand"
+                        Click="NetworkBackButton_OnClick"/>
             </Grid>
             
         </Border>
@@ -115,6 +135,7 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Content="Kubernetes Network Simulator"
+                        Cursor="Hand"
                         x:Name="NetworkKubeNetworkSimButton"/>
             </Grid>
             

@@ -8,6 +8,13 @@
              Height="544"
              Background="#023E8A">
     
+    <!--
+        New Project Button      : MainNewProjectButton
+        Open Project Button     : MainOpenProjectButton
+        Settings Button         : MainSettingsButton
+        Exit Button             : MainExitButton
+    -->
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -67,7 +74,9 @@
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
                                 Content="New Project"
-                                x:Name="MainNewProjectButton"/>
+                                x:Name="MainNewProjectButton"
+                                Cursor="Hand"
+                                Click="MainNewProjectButton_OnClick"/>
                     </Grid>
                 
                     <!--Open Project Button-->
@@ -84,7 +93,9 @@
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
                                 Content="Open Project"
-                                x:Name="MainOpenProjectButton"/>
+                                x:Name="MainOpenProjectButton"
+                                Cursor="Hand"
+                                Click="MainOpenProjectButton_OnClick"/>
                     </Grid>
                 
                     <!--Settings Button-->
@@ -101,7 +112,9 @@
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
                                 Content="Settings"
-                                x:Name="MainSettingsButton"/>
+                                x:Name="MainSettingsButton"
+                                Cursor="Hand"
+                                Click="MainSettingsButton_OnClick"/>
                     </Grid>
                 
                     <!--Exit Button-->
@@ -118,7 +131,9 @@
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
                                 Content="Exit"
-                                x:Name="MainExitButton"/>
+                                x:Name="MainExitButton"
+                                Cursor="Hand"
+                                Click="MainExitButton_OnClick"/>
                     </Grid>
                 </Grid>
             </Border>

@@ -45,4 +45,24 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </AvaloniaResource>
     </ItemGroup>
+
+
+    <ItemGroup>
+      <Compile Update="Elements\ServiceElementTemplate.axaml.cs">
+        <DependentUpon>ServiceElementTemplateView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="MainMenuWindow.axaml.cs">
+        <DependentUpon>MainMenuWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="SettingsWindow.axaml.cs">
+        <DependentUpon>SettingsWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="ConfigureCloudInfraWindow.axaml.cs">
+        <DependentUpon>ConfigureCloudInfraWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>
