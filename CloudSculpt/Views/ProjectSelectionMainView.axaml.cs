@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using CloudSculpt.HelperClasses;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
 
@@ -39,13 +40,10 @@ public partial class ProjectSelectionMainView : UserControl
     }
     #endregion
 
-    #region Actions
+    #region Other Controls
     private void MainExitButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopApp)
-        {
-            desktopApp.Shutdown();
-        }
+        ApplicationControl.ExitApplication();
     }
     #endregion
 }

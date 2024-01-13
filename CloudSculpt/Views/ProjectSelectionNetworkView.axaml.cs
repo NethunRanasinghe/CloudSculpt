@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using CloudSculpt.HelperClasses;
 
 namespace CloudSculpt.Views;
 
@@ -25,8 +26,7 @@ public partial class ProjectSelectionNetworkView : UserControl
     
     private void NetworkBackButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        ProjectSelectionMainView projectSelectionMainView = new(_mainMenuWindow);
-        _mainMenuWindow.CurrentUserControl = projectSelectionMainView;
+        ApplicationControl.ToMainMenuViewFromMainMenuWindow(_mainMenuWindow);
     }
 
     #endregion
