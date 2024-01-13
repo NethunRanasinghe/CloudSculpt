@@ -73,6 +73,7 @@ public static class DockerStatus
             if (File.Exists(fullPath))
             {
                 _status = "Present";
+                return;
             }
         }
 
