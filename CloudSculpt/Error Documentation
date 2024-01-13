@@ -1,0 +1,11 @@
+﻿Error List
+---
+
+--
+Format :- "Error (D001)", "WSL Not Present !, Please Install WSL2 To Continue !",  ButtonEnum.Ok, Icon.Error
+--
+
+1. Docker and WSL Related
+
+D001    - WSL Not Present
+D002    - Invalid Os
