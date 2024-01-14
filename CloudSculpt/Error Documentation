@@ -7,5 +7,12 @@ Format :- "Error (D001)", "WSL Not Present !, Please Install WSL2 To Continue !"
 
 1. Docker and WSL Related
 
-D001    - WSL Not Present
-D002    - Invalid Os
+D001    - WSL Not Present                   (Settings Window)
+D002    - Invalid Os                        (Settings Window)
+D003    - Invalid WSL Version               (Settings Window)
+
+2. Binding Related
+
+B001    - Os Binding Failed                 (Settings Window)
+B002    - Docker Status Binding Failed      (Settings Window)
+B003    - Log Binding Failed                (Settings Window)

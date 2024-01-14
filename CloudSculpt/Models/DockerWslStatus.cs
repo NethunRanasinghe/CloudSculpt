@@ -109,12 +109,6 @@ public static class DockerWslStatus
         }
         else
         {
-            var box = MessageBoxManager
-                .GetMessageBoxStandard("Error (D001)", "WSL Not Present !, Please Install WSL2 To Continue !",
-                    ButtonEnum.Ok, Icon.Error);
-
-            var result = await box.ShowAsync();
-            
             // Set to Null
             _wsl = null;
         }
