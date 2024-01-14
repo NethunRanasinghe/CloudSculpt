@@ -12,10 +12,10 @@ public class DockerInstallCommand (SettingsViewModel settingsViewModel) : Comman
     {
         DockerConfig dockerConfig = new DockerConfig(settingsViewModel);
 
-        if (!DockerWslStatus.Status.Equals("Absent"))
+        if (DockerWslStatus.Status.Equals("Absent"))
         {
             var box = MessageBoxManager
-                .GetMessageBoxStandard("Error (D004)", "Docker Present, Docker Is Already Installed !",
+                .GetMessageBoxStandard("Error (D004)", "Docker Is Already Installed !",
                     ButtonEnum.Ok, Icon.Error);
 
             await box.ShowAsync();

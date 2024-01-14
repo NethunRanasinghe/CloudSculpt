@@ -10,6 +10,7 @@ Format :- "Error (D001)", "WSL Not Present !, Please Install WSL2 To Continue !"
 D001    - WSL Not Present                   (Settings Window)
 D002    - Invalid Os                        (Settings Window)
 D003    - Invalid WSL Version               (Settings Window)
+D004    - Invalid Permissions               (DockerConfig)
 
 2. Binding Related
 
