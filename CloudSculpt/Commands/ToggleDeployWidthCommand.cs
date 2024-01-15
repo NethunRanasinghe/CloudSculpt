@@ -10,10 +10,12 @@ public class ToggleDeployWidthCommand(ConfigureCloudInfraViewModel configViewMod
         if (configViewModel.SecondColumnDefWidth.Value == 0)
         {
             configViewModel.SecondColumnDefWidth = new GridLength(363);
+            configViewModel.DeployButtonText = "<- Deploy";
         }
         else
         {
             configViewModel.SecondColumnDefWidth = new GridLength(0);
+            configViewModel.DeployButtonText = "Deploy ->";
         }
     }
 }
