@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CloudSculpt.ViewModels"
         mc:Ignorable="d" d:DesignWidth="910" d:DesignHeight="512"
         x:Class="CloudSculpt.ConfigureCloudInfraWindow"
         MinWidth="910"
@@ -9,13 +10,18 @@
         Background="#023E8A"
         WindowStartupLocation="CenterScreen"
         CanResize="True"
-        Icon="C:\MyData\Projects\Y3 Final\Y3 Final Project Files\Project\CloudSculpt\CloudSculpt\Assets\iconv1.png"
-        Title="Configure Cloud Infrastructure">
+        Icon="Assets/iconv1.png"
+        Title="Configure Cloud Infrastructure"
+        x:DataType="local:ConfigureCloudInfraViewModel">
         
         <Grid>
                 <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="0" MinWidth="0" MaxWidth="363"/>
+                        <ColumnDefinition Width="{Binding SecondColumnDefWidth, 
+                        FallbackValue=0, 
+                        Mode=TwoWay}" 
+                                          MinWidth="0" 
+                                          MaxWidth="363"/>
                 </Grid.ColumnDefinitions>  
                 
                 <!--Deploy Button, Infra, IaaS and PaaS-->
@@ -31,7 +37,7 @@
                                 Background="#0077B6"
                                 CornerRadius="20"
                                 VerticalAlignment="Top"
-                                Height="27"
+                                Height="40"
                                 Margin="10">
                                 
                                 <Grid>
@@ -40,15 +46,22 @@
                                                 <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
                                         
-                                        <TextBlock Grid.Column="1"
-                                                   Text="Deploy -->"
+                                        <Button Grid.Column="1"
+                                                   Content="Deploy ->"
                                                    FontFamily="Inter"
+                                                   FontSize="15"
+                                                   FontWeight="SemiBold"
+                                                   CornerRadius="20"
+                                                   Background="#2A6F97"
                                                    Foreground="White"
                                                    HorizontalAlignment="Right"
                                                    VerticalAlignment="Center"
-                                                   Margin="10 0"
+                                                   HorizontalContentAlignment="Center"
+                                                   VerticalContentAlignment="Center"
+                                                   Margin="5 0"
                                                    Cursor="Hand"
-                                                   x:Name="DeployTextBlockButton"/>
+                                                   x:Name="ConfigCloudDeployButton"
+                                                   Command="{Binding ToggleWidthCommand}"/>
                                 </Grid>
                         </Border>
                         

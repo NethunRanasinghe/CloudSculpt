@@ -26,5 +26,12 @@ public partial class ProjectSelectionCloudView : UserControl
     {
         ApplicationControl.ToMainMenuViewFromMainMenuWindow(_mainMenuWindow);
     }
+    
+    private void CloudConfigCloudButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        ConfigureCloudInfraWindow configureCloudInfraWindow = new();
+        _mainMenuWindow.Hide();
+        configureCloudInfraWindow.Show();
+    }
     #endregion
 }

@@ -134,7 +134,8 @@
                         VerticalContentAlignment="Center"
                         Content="Configure Cloud Infrastructure"
                         Cursor="Hand"
-                        x:Name="CloudConfigCloudButton"/>
+                        x:Name="CloudConfigCloudButton"
+                        Click="CloudConfigCloudButton_OnClick"/>
             </Grid>
             
         </Border>
