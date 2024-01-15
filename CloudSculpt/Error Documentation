@@ -11,6 +11,7 @@ D001    - WSL Not Present                   (Settings Window)
 D002    - Invalid Os                        (Settings Window)
 D003    - Invalid WSL Version               (Settings Window)
 D004    - Invalid Permissions               (DockerConfig)
+D005    - Null System Path                  (DockerConfig)
 
 2. Binding Related
 

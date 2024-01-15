@@ -2,8 +2,8 @@
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using MsBox.Avalonia;
-using MsBox.Avalonia.Enums;
 
 namespace CloudSculpt.Models;
 
@@ -76,7 +76,7 @@ public static class DockerWslStatus
         }
     }
 
-    private static void SetStatus()
+    private static async Task SetStatus()
     {
         var dockerExecutable = "docker";
 
@@ -87,20 +87,34 @@ public static class DockerWslStatus
         }
         
         // Other
-        foreach (var path in Environment.GetEnvironmentVariable("PATH").Split(Path.PathSeparator))
+        string? localPath = Environment.GetEnvironmentVariable("PATH");
+        if (!string.IsNullOrEmpty(localPath))
         {
-            var fullPath = Path.Combine(path, dockerExecutable);
-            if (File.Exists(fullPath))
+            foreach (var path in localPath.Split(Path.PathSeparator))
             {
-                _status = "Present";
-                return;
+                var fullPath = Path.Combine(path, dockerExecutable);
+                if (File.Exists(fullPath))
+                {
+                    _status = "Present";
+                    return;
+                }
             }
         }
+        else
+        {
+            var box = MessageBoxManager
+                .GetMessageBoxStandard("ERROR (D005)", "Null System Path !",
+                    MsBox.Avalonia.Enums.ButtonEnum.Ok,
+                    MsBox.Avalonia.Enums.Icon.Error);
+
+            await box.ShowAsync();
+        }
+
 
         _status = "Absent";
     }
 
-    private static async void SetWsl()
+    private static void SetWsl()
     {
         const string wslPath = @"C:\Windows\system32\wsl.exe";
         if (File.Exists(wslPath))
