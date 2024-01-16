@@ -1,5 +1,4 @@
-﻿using Avalonia.Controls;
-using CloudSculpt.ViewModels;
+﻿using CloudSculpt.ViewModels;
 
 namespace CloudSculpt.Commands;
 
@@ -7,14 +6,24 @@ public class ToggleDeployWidthCommand(ConfigureCloudInfraViewModel configViewMod
 {
     public override void Execute(object? parameter)
     {
-        if (configViewModel.SecondColumnDefWidth.Value == 0)
+        if (configViewModel.SecondColumnDefWidth == 0)
         {
-            configViewModel.SecondColumnDefWidth = new GridLength(363);
+            configViewModel.IsCollapsed = false;
+            configViewModel.IsNone = false;
+            configViewModel.IsExpand = true;
+            
+            configViewModel.SecondColumnDefWidth = 363;
             configViewModel.DeployButtonText = "<- Deploy";
+
+
         }
         else
         {
-            configViewModel.SecondColumnDefWidth = new GridLength(0);
+            configViewModel.IsExpand = false;
+            configViewModel.IsNone = false;
+            configViewModel.IsCollapsed = true;
+            
+            configViewModel.SecondColumnDefWidth = 0;
             configViewModel.DeployButtonText = "Deploy ->";
         }
     }
