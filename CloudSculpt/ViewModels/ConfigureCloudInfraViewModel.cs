@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Globalization;
 using System.Windows.Input;
+using Avalonia.Data.Converters;
 using CloudSculpt.Commands;
 
 namespace CloudSculpt.ViewModels;
@@ -11,6 +13,7 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     private bool _isExpand;
     private bool _isCollapsed;
     private bool _isNone;
+    private double _serviceTypeButtonWidth;
 
     public int SecondColumnDefWidth
     {
@@ -35,13 +38,18 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         get => _isCollapsed;
         set => SetField(ref _isCollapsed, value);
     }
-    
+
     public bool IsNone
     {
         get => _isNone;
         set => SetField(ref _isNone, value);
     }
-    
+
+    public double ServiceTypeButtonWidth
+    {
+        get => _serviceTypeButtonWidth;
+        set => SetField(ref _serviceTypeButtonWidth, value);
+    }
     public ICommand ToggleWidthCommand { get; }
     
     public ConfigureCloudInfraViewModel()
@@ -50,6 +58,9 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         SecondColumnDefWidth = 0;
         DeployButtonText = "Deploy ->";
         
+        // Initial set service type button length
+        ServiceTypeButtonWidth = 120;
+        
         // Animation State
         IsNone = true;
         IsCollapsed = false;
@@ -57,5 +68,23 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         
         // Commands
         ToggleWidthCommand = new ToggleDeployWidthCommand(this);
+    }
+}
+
+public class HalfConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is double width)
+        {
+            return width / 2;
+        }
+
+        return 100;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
     }
 }
