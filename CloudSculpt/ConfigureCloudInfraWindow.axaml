@@ -160,7 +160,8 @@
                                 <Border Grid.Column="0"
                                         CornerRadius="5"
                                         Background="#0077B6"
-                                        Margin="0 0 10 0">
+                                        Margin="0 0 10 0"
+                                        Padding="5">
                                         
                                         <Grid>
                                                 <Grid.RowDefinitions>
@@ -205,6 +206,7 @@
                                                         Background="#CAF0F8"
                                                         Foreground="Black"
                                                         FontWeight="SemiBold"
+                                                        Cursor="No"
                                                         Width="{Binding ServiceTypeButtonWidth}"
                                                         HorizontalAlignment="Center"
                                                         HorizontalContentAlignment="Center"
