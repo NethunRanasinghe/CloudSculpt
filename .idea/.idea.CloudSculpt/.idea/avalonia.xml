@@ -8,6 +8,7 @@
         <entry key="CloudSculpt/Elements/ProjectSelectionElementCloud.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Elements/ProjectSelectionElementNetwork.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Elements/ProjectSelectionElementTemplate.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Elements/ServiceElementTemplate.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/MainMenu.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/MainMenuWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/MainWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />

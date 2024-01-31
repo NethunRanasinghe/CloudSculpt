@@ -3,6 +3,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CloudSculpt.ViewModels"
+        xmlns:converters="clr-namespace:CloudSculpt.Converters"
+        xmlns:elements="clr-namespace:CloudSculpt.Elements"
         mc:Ignorable="d" d:DesignWidth="910" d:DesignHeight="512"
         x:Class="CloudSculpt.ConfigureCloudInfraWindow"
         MinWidth="910"
@@ -71,7 +73,7 @@
         </Window.Styles>
         
         <Window.Resources>
-                <local:HalfConverter x:Key="HalfConverter"/>
+                <converters:HalfConverter x:Key="HalfConverter"/>
         </Window.Resources>
         <Grid>
                 <Grid.ColumnDefinitions>
@@ -182,7 +184,8 @@
                                                         Width="{Binding ServiceTypeButtonWidth}"
                                                         HorizontalAlignment="Center"
                                                         HorizontalContentAlignment="Center"
-                                                        VerticalContentAlignment="Center"/>
+                                                        VerticalContentAlignment="Center"
+                                                        Command="{Binding IaaSCommand}"/>
                                                 
                                                 <Button Grid.Row="1" 
                                                         Content="PaaS"
@@ -196,7 +199,8 @@
                                                         Width="{Binding ServiceTypeButtonWidth}"
                                                         HorizontalAlignment="Center"
                                                         HorizontalContentAlignment="Center"
-                                                        VerticalContentAlignment="Center"/>
+                                                        VerticalContentAlignment="Center"
+                                                        Command="{Binding PaaSCommand}"/>
                                                 
                                                 <Button Grid.Row="2" 
                                                         Content="SaaS"
@@ -218,8 +222,25 @@
                                 
                                 <Border Grid.Column="1"
                                         CornerRadius="20"
-                                        Background="#0077B6">
+                                        Background="#0077B6"
+                                        Padding="10 0">
                                         
+                                        <ItemsControl ItemsSource="{Binding ServiceElements}">
+                                                
+                                                <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Horizontal"
+                                                                            FlowDirection="LeftToRight"/>
+                                                        </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                
+                                                <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                                <elements:ServiceElementTemplate DataContext="{Binding}" />
+                                                        </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                                
+                                        </ItemsControl>
                                 </Border>
                                 
                         </Grid>

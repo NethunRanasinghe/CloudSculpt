@@ -1,7 +1,5 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Avalonia.Data.Converters;
 using CloudSculpt.Commands;
 
 namespace CloudSculpt.ViewModels;
@@ -14,6 +12,8 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     private bool _isCollapsed;
     private bool _isNone;
     private double _serviceTypeButtonWidth;
+    private ObservableCollection<ServiceElementViewModel> _serviceElements;
+
 
     public int SecondColumnDefWidth
     {
@@ -50,7 +50,16 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         get => _serviceTypeButtonWidth;
         set => SetField(ref _serviceTypeButtonWidth, value);
     }
+    
+    public ObservableCollection<ServiceElementViewModel> ServiceElements
+    {
+        get => _serviceElements;
+        set => SetField(ref _serviceElements, value);
+    }
+    
     public ICommand ToggleWidthCommand { get; }
+    public ICommand IaaSCommand { get; }
+    public ICommand PaaSCommand { get; }
     
     public ConfigureCloudInfraViewModel()
     {
@@ -66,25 +75,12 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         IsCollapsed = false;
         IsExpand = false;
         
+        // Service Elements
+        ServiceElements = [];
+
         // Commands
         ToggleWidthCommand = new ToggleDeployWidthCommand(this);
-    }
-}
-
-public class HalfConverter : IValueConverter
-{
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        if (value is double width)
-        {
-            return width / 2;
-        }
-
-        return 100;
-    }
-
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
+        IaaSCommand = new IaaSCommand(ServiceElements);
+        PaaSCommand = new PaaSCommand(ServiceElements);
     }
 }
