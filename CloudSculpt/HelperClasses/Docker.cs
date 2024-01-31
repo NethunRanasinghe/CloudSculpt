@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Formats.Tar;
 using System.IO;
 using System.Threading.Tasks;
 using Docker.DotNet;
@@ -10,21 +11,21 @@ namespace CloudSculpt.HelperClasses;
 public class Docker
 {
     /*
-     *                              Method  Test
-     * 1. List Images           -   x
-     * 2. List Containers       -   x
-     * 3. Pull Image            -   x
-     * 4. Create Containers     -   x
+     *                              Method  Test    Notes
+     * 1. List Images           -   x       x
+     * 2. List Containers       -   x       x
+     * 3. Pull Image            -   x       x
+     * 4. Create Containers     -   x       x       image should be available locally
      * 5. Build Dockerfile      -   x
-     * 6. Remove Image          -   x
-     * 7. Remove Container      -   x
-     * 8. Start a Container     -   x
-     * 9. Stop a Container      -   x
+     * 6. Remove Image          -   x       x       name:tag
+     * 7. Remove Container      -   x       x
+     * 8. Start a Container     -   x       x
+     * 9. Stop a Container      -   x       x
      */
 
     #region Image Management
 
-    private async Task<IList<ImagesListResponse>> ListImages()
+    public async Task<IList<ImagesListResponse>> ListImages()
     {
         DockerClient client = new DockerClientConfiguration().CreateClient();
         IList<ImagesListResponse> images = await client.Images.ListImagesAsync(
@@ -33,7 +34,7 @@ public class Docker
         return images;
     }
     
-    private async Task PullImage(string imageName, string imageTag)
+    public async Task PullImage(string imageName, string imageTag)
     {
         DockerClient client = new DockerClientConfiguration().CreateClient();
         await client.Images.CreateImageAsync(
@@ -47,7 +48,7 @@ public class Docker
         
     }
     
-    private async Task RemoveImage(string imageName)
+    public async Task RemoveImage(string imageName)
     {
         DockerClient client = new DockerClientConfiguration().CreateClient();
         await client.Images.DeleteImageAsync(imageName, new ImageDeleteParameters());
@@ -57,7 +58,7 @@ public class Docker
 
     #region Container Management
 
-    private async Task<IList<ContainerListResponse>> ListContainers()
+    public async Task<IList<ContainerListResponse>> ListContainers()
     {
         DockerClient client = new DockerClientConfiguration().CreateClient();
         IList<ContainerListResponse> containers = await client.Containers.ListContainersAsync(
@@ -66,7 +67,7 @@ public class Docker
         return containers;
     }
 
-    private async Task CreateContainer(string imageName)
+    public async Task CreateContainer(string imageName)
     {
         DockerClient client = new DockerClientConfiguration().CreateClient();
         await client.Containers.CreateContainerAsync(new CreateContainerParameters()
@@ -74,16 +75,17 @@ public class Docker
             Image = imageName,
             HostConfig = new HostConfig()
             {
-                DNS = new[] { "8.8.8.8", "8.8.4.4" }
+                DNS = new[] { "8.8.8.8", "1.1.1.1" }
             }
         });
     }
     
-    private async Task BuildDockerFile(string dockerFilePath, string imageTag)
+    public async Task BuildDockerFile(string dockerFilePath, string imageTag)
     {
         DockerClient client = new DockerClientConfiguration().CreateClient();
 
         await using var stream = File.OpenRead(Path.Combine(dockerFilePath, "Dockerfile"));
+        
         var imageBuildParameters = new ImageBuildParameters
         {
             Dockerfile = "Dockerfile",
@@ -91,25 +93,33 @@ public class Docker
         };
 
         var progress = new Progress<JSONMessage>(msg => Console.WriteLine(msg.Stream));
+
+        try
+        {
+            await client.Images.BuildImageFromDockerfileAsync(
+                contents: stream,
+                parameters: imageBuildParameters,
+                authConfigs: null,
+                headers: null,
+                progress: progress,
+                cancellationToken: default);
+        }
         
-        await client.Images.BuildImageFromDockerfileAsync(
-            contents: stream,
-            parameters: imageBuildParameters,
-            authConfigs: null,
-            headers: null,
-            progress: progress,
-            cancellationToken: default);
+        catch (DockerApiException ex)
+        {
+            Console.WriteLine($"Docker API Exception: {ex.StatusCode}, {ex.Message}");
+        }
     }
 
 
-    private async Task RemoveContainer(string containerId)
+    public async Task RemoveContainer(string containerId)
     {
         DockerClient client = new DockerClientConfiguration().CreateClient();
         await client.Containers.StopContainerAsync(containerId, new ContainerStopParameters());
         await client.Containers.RemoveContainerAsync(containerId, new ContainerRemoveParameters());
     }
 
-    private async Task StartContainer(string containerId)
+    public async Task StartContainer(string containerId)
     {
         DockerClient client = new DockerClientConfiguration().CreateClient();
         await client.Containers.StartContainerAsync(
@@ -118,7 +128,7 @@ public class Docker
         );
     }
 
-    private async Task StopContainer(string containerId)
+    public async Task StopContainer(string containerId)
     {
         DockerClient client = new DockerClientConfiguration().CreateClient();
         await client.Containers.StopContainerAsync(
@@ -132,6 +142,11 @@ public class Docker
     #region Other
 
     private void VerifyDockerStatus()
+    {
+        
+    }
+
+    private void CreateTarFile(string filePath)
     {
         
     }

@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 using Avalonia.Interactivity;
 using CloudSculpt.HelperClasses;
 
@@ -21,9 +22,13 @@ public partial class ProjectSelectionMainView : UserControl
         _mainMenuWindow.CurrentUserControl = projectSelectionCloudView;
     }
 
-    private void MainOpenProjectButton_OnClick(object? sender, RoutedEventArgs e)
+    private async void MainOpenProjectButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
+        HelperClasses.Docker docker = new HelperClasses.Docker();
+
+        await docker.BuildDockerFile(@"C:\MyData\Projects\Docker\Test\dockerfileTest","v1.0");
+        Console.WriteLine("Done !");
     }
 
     private void MainSettingsButton_OnClick(object? sender, RoutedEventArgs e)
