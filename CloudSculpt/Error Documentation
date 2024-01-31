@@ -12,6 +12,9 @@ D002    - Invalid Os                        (Settings Window)
 D003    - Invalid WSL Version               (Settings Window)
 D004    - Invalid Permissions               (DockerConfig)
 D005    - Null System Path                  (DockerConfig)
+D006    - tar.gz compress error             (Docker)
+D007    - Docker connection error           (Docker)
+D100    - Other Exceptions
 
 2. Binding Related
 
