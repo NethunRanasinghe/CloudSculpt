@@ -185,6 +185,7 @@
                                                         HorizontalAlignment="Center"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
+                                                        Opacity="{Binding IaaSOpacity}"
                                                         Command="{Binding IaaSCommand}"/>
                                                 
                                                 <Button Grid.Row="1" 
@@ -200,6 +201,7 @@
                                                         HorizontalAlignment="Center"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
+                                                        Opacity="{Binding PaaSOpacity}"
                                                         Command="{Binding PaaSCommand}"/>
                                                 
                                                 <Button Grid.Row="2" 

@@ -6,17 +6,21 @@ using CloudSculpt.ViewModels;
 
 namespace CloudSculpt.Commands;
 
-public class IaaSCommand (ICollection<ServiceElementViewModel> serviceElements) : CommandBase
+public class IaaSCommand (ConfigureCloudInfraViewModel configureCloudInfraViewModel) : CommandBase
 {
     public override void Execute(object? parameter)
     {
+        // Set Button Opacity
+        configureCloudInfraViewModel.IaaSOpacity = 0.6;
+        configureCloudInfraViewModel.PaaSOpacity = 1.0;
+        
         Dictionary<string, string> iaaSComponents = new Dictionary<string, string>()
         {
             {"VMs", "avares://CloudSculpt/Assets/vm.png"}
         };
         
         // Clear collection
-        serviceElements.Clear();
+        configureCloudInfraViewModel.ServiceElements.Clear();
         
         foreach (var component in iaaSComponents)
         {
@@ -26,7 +30,7 @@ public class IaaSCommand (ICollection<ServiceElementViewModel> serviceElements) 
                 Image = new Bitmap(AssetLoader.Open(new Uri(component.Value)))
             };
             
-            serviceElements.Add(serviceElementViewModel);
+            configureCloudInfraViewModel.ServiceElements.Add(serviceElementViewModel);
         }
     }
 }

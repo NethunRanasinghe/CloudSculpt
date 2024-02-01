@@ -13,6 +13,8 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     private bool _isNone;
     private double _serviceTypeButtonWidth;
     private ObservableCollection<ServiceElementViewModel> _serviceElements;
+    private double _iaaSOpacity;
+    private double _paaSOpacity;
 
 
     public int SecondColumnDefWidth
@@ -56,6 +58,18 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         get => _serviceElements;
         set => SetField(ref _serviceElements, value);
     }
+
+    public double IaaSOpacity
+    {
+        get => _iaaSOpacity;
+        set => SetField(ref _iaaSOpacity, value);
+    }
+    
+    public double PaaSOpacity
+    {
+        get => _paaSOpacity;
+        set => SetField(ref _paaSOpacity, value);
+    }
     
     public ICommand ToggleWidthCommand { get; }
     public ICommand IaaSCommand { get; }
@@ -77,10 +91,14 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         
         // Service Elements
         ServiceElements = [];
-
+        
+        // Button Opacity
+        IaaSOpacity = 1;
+        PaaSOpacity = 1;
+        
         // Commands
         ToggleWidthCommand = new ToggleDeployWidthCommand(this);
-        IaaSCommand = new IaaSCommand(ServiceElements);
-        PaaSCommand = new PaaSCommand(ServiceElements);
+        IaaSCommand = new IaaSCommand(this);
+        PaaSCommand = new PaaSCommand(this);
     }
 }

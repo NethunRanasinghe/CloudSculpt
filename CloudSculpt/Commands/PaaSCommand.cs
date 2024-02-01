@@ -6,10 +6,14 @@ using CloudSculpt.ViewModels;
 
 namespace CloudSculpt.Commands;
 
-public class PaaSCommand (ICollection<ServiceElementViewModel> serviceElements) : CommandBase
+public class PaaSCommand (ConfigureCloudInfraViewModel configureCloudInfraViewModel) : CommandBase
 {
     public override void Execute(object? parameter)
     {
+        // Set Button Opacity
+        configureCloudInfraViewModel.PaaSOpacity = 0.6;
+        configureCloudInfraViewModel.IaaSOpacity = 1.0;
+        
         Dictionary<string, string> paaSComponents = new Dictionary<string, string>()
         {
             {"Containers", "avares://CloudSculpt/Assets/dockerBlack.png"},
@@ -17,7 +21,7 @@ public class PaaSCommand (ICollection<ServiceElementViewModel> serviceElements) 
         };
         
         // Clear collection
-        serviceElements.Clear();
+        configureCloudInfraViewModel.ServiceElements.Clear();
         
         foreach (var component in paaSComponents)
         {
@@ -27,7 +31,7 @@ public class PaaSCommand (ICollection<ServiceElementViewModel> serviceElements) 
                 Image = new Bitmap(AssetLoader.Open(new Uri(component.Value)))
             };
             
-            serviceElements.Add(serviceElementViewModel);
+            configureCloudInfraViewModel.ServiceElements.Add(serviceElementViewModel);
         }
     }
 }
