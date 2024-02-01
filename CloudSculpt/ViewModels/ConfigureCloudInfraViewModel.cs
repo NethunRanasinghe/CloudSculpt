@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CloudSculpt.Commands;
+using CloudSculpt.Events;
 
 namespace CloudSculpt.ViewModels;
 
@@ -12,11 +13,13 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     private bool _isCollapsed;
     private bool _isNone;
     private double _serviceTypeButtonWidth;
-    private ObservableCollection<ServiceElementViewModel> _serviceElements;
     private double _iaaSOpacity;
     private double _paaSOpacity;
-
-
+    private ObservableCollection<ServiceElementViewModel> _serviceElements;
+    private ObservableCollection<ServiceElementViewModel> _infraCanvasCollection;
+    private double _canvasLeft;
+    private double _canvasRight;
+    
     public int SecondColumnDefWidth
     {
         get => _secondColumnDefWidth;
@@ -52,12 +55,6 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         get => _serviceTypeButtonWidth;
         set => SetField(ref _serviceTypeButtonWidth, value);
     }
-    
-    public ObservableCollection<ServiceElementViewModel> ServiceElements
-    {
-        get => _serviceElements;
-        set => SetField(ref _serviceElements, value);
-    }
 
     public double IaaSOpacity
     {
@@ -70,6 +67,31 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         get => _paaSOpacity;
         set => SetField(ref _paaSOpacity, value);
     }
+    
+    public ObservableCollection<ServiceElementViewModel> ServiceElements
+    {
+        get => _serviceElements;
+        set => SetField(ref _serviceElements, value);
+    }
+    
+    public ObservableCollection<ServiceElementViewModel> InfraCanvasCollection
+    {
+        get => _infraCanvasCollection;
+        set => SetField(ref _infraCanvasCollection, value);
+    }
+    
+    public double CanvasLeft
+    {
+        get => _canvasLeft;
+        set => SetField(ref _canvasLeft, value);
+    }
+    
+    public double CanvasRight
+    {
+        get => _canvasRight;
+        set => SetField(ref _canvasRight, value);
+    }
+    
     
     public ICommand ToggleWidthCommand { get; }
     public ICommand IaaSCommand { get; }
@@ -92,6 +114,9 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         // Service Elements
         ServiceElements = [];
         
+        // Infra collection
+        InfraCanvasCollection = [];
+        
         // Button Opacity
         IaaSOpacity = 1;
         PaaSOpacity = 1;
@@ -100,5 +125,17 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         ToggleWidthCommand = new ToggleDeployWidthCommand(this);
         IaaSCommand = new IaaSCommand(this);
         PaaSCommand = new PaaSCommand(this);
+        
+        // Canvas Coordinates
+        CanvasLeft = 0;
+        CanvasRight = 0;
+        
+        // Events
+        EventAggregator.Instance.Subscribe<AddServiceElementEvent>(OnAddServiceElement);
+    }
+
+    private void OnAddServiceElement(AddServiceElementEvent obj)
+    {
+        InfraCanvasCollection.Add(obj.ServiceElement);
     }
 }

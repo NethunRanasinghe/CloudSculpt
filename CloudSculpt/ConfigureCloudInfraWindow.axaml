@@ -147,6 +147,26 @@
                                 CornerRadius="20"
                                 Margin="10 0">
                                 
+                                <ItemsControl ItemsSource="{Binding InfraCanvasCollection}">
+                                        <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                        <Canvas />
+                                                </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        
+                                        <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                        <elements:ServiceElementTemplate DataContext="{Binding}" />
+                                                </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                        
+                                        <ItemsControl.Styles>
+                                                <Style Selector="ItemsControl > ContentPresenter">
+                                                        <Setter Property="Canvas.Left" Value="{Binding CanvasLeft}"/>
+                                                        <Setter Property="Canvas.Top" Value="{Binding CanvasRight}"/>
+                                                </Style>
+                                        </ItemsControl.Styles>
+                                </ItemsControl>
                         </Border>
                         
                         <!--IaaS and PaaS-->

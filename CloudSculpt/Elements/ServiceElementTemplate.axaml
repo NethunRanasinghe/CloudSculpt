@@ -13,7 +13,8 @@
                 Height="50"
                 Cursor="Hand"
                 Background="#CAF0F8"
-                CornerRadius="10">
+                CornerRadius="10"
+                Command="{Binding ServiceElementCommand}">
             
             <Grid>
                 <Grid.RowDefinitions>
