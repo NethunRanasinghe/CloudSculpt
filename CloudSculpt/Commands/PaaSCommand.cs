@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using CloudSculpt.ViewModels;
 
 namespace CloudSculpt.Commands;
@@ -9,8 +12,8 @@ public class PaaSCommand (ICollection<ServiceElementViewModel> serviceElements) 
     {
         Dictionary<string, string> paaSComponents = new Dictionary<string, string>()
         {
-            {"Containers", "res:Assets/dockerBlack.png"},
-            {"Kubernetes", "res:Assets/dockerBlack.png"}
+            {"Containers", "avares://CloudSculpt/Assets/dockerBlack.png"},
+            {"Kubernetes", "avares://CloudSculpt/Assets/kubernetesBlack.png"}
         };
         
         // Clear collection
@@ -21,7 +24,7 @@ public class PaaSCommand (ICollection<ServiceElementViewModel> serviceElements) 
             var serviceElementViewModel = new ServiceElementViewModel
             {
                 Text = component.Key,
-                //ImagePath = component.Value
+                Image = new Bitmap(AssetLoader.Open(new Uri(component.Value)))
             };
             
             serviceElements.Add(serviceElementViewModel);

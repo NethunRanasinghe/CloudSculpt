@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using CloudSculpt.ViewModels;
 
 namespace CloudSculpt.Commands;
@@ -9,7 +12,7 @@ public class IaaSCommand (ICollection<ServiceElementViewModel> serviceElements) 
     {
         Dictionary<string, string> iaaSComponents = new Dictionary<string, string>()
         {
-            {"VMs", "res:Assets/dockerBlack.png"}
+            {"VMs", "avares://CloudSculpt/Assets/vm.png"}
         };
         
         // Clear collection
@@ -20,7 +23,7 @@ public class IaaSCommand (ICollection<ServiceElementViewModel> serviceElements) 
             var serviceElementViewModel = new ServiceElementViewModel
             {
                 Text = component.Key,
-                //ImagePath = component.Value
+                Image = new Bitmap(AssetLoader.Open(new Uri(component.Value)))
             };
             
             serviceElements.Add(serviceElementViewModel);

@@ -41,6 +41,10 @@
       <AvaloniaResource Include="Assets\kubernetesBlack.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </AvaloniaResource>
+      <None Remove="Assets\vm.png" />
+      <AvaloniaResource Include="Assets\vm.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </AvaloniaResource>
     </ItemGroup>
 
 

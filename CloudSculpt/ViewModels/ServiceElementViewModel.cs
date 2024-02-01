@@ -1,10 +1,14 @@
 ﻿
+using System;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
+
 namespace CloudSculpt.ViewModels;
 
 public class ServiceElementViewModel : ViewModelBase
 {
     private string _text;
-    private string _imagePath;
+    private Bitmap _image;
     
     public string Text
     {
@@ -12,15 +16,20 @@ public class ServiceElementViewModel : ViewModelBase
         set => SetField(ref _text, value);
     }
     
-    public string ImagePath
+    public Bitmap Image
     {
-        get => _imagePath;
-        set => SetField(ref _imagePath, value);
+        get => _image;
+        set => SetField(ref _image, value);
     }
     
     public ServiceElementViewModel()
     {
         Text = "Default";
-        ImagePath = "avares://CloudSculpt/Assets/dockerBlack.png";
+        
+        // Create a new Bitmap
+        var bitmap = new Bitmap(AssetLoader.Open(new Uri("avares://CloudSculpt/Assets/dockerBlack.png")));
+        
+        // Update the Image property
+        Image = bitmap;
     }
 }
