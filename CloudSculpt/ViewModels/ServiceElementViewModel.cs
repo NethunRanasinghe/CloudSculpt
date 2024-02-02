@@ -13,6 +13,9 @@ public class ServiceElementViewModel : ViewModelBase
     private Bitmap _image;
     private double _canvasLeft;
     private double _canvasRight;
+    private int _elementIndex;
+
+    public static int ElementCounter = 0;
     
     public string Text
     {
@@ -37,6 +40,12 @@ public class ServiceElementViewModel : ViewModelBase
         get => _canvasRight;
         set => SetField(ref _canvasRight, value);
     }
+
+    public int ElementIndex
+    {
+        get => _elementIndex;
+        set => SetField(ref _elementIndex, value);
+    }
     
     public ICommand ServiceElementCommand { get; }
     public ICommand ServiceElementCanvasEditCommand { get; }
@@ -54,12 +63,21 @@ public class ServiceElementViewModel : ViewModelBase
         Image = bitmap;
         
         // Initial Canvas Locations
+        
+        //--- Debug Help
+        /*var r = new Random();
+        const int  range = 400;
+        
+        CanvasLeft = r.NextDouble() * range;
+        CanvasRight = r.NextDouble() * range;*/
+        //---
+        
         CanvasLeft = 0;
         CanvasRight = 0;
         
         // Click Command
-        ServiceElementCommand = new ServiceElementCommand(this);
-        ServiceElementCanvasDeleteCommand = new ServiceElementCanvasDeleteCommand();
+        ServiceElementCommand = new ServiceElementAddCommand(this);
+        ServiceElementCanvasDeleteCommand = new ServiceElementCanvasRemoveCommand(this);
         ServiceElementCanvasEditCommand = new ServiceElementCanvasEditCommand();
     }
 }

@@ -114,11 +114,30 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         
         // Events
         EventAggregator.Instance.Subscribe<AddServiceElementEvent>(OnAddServiceElement);
+        EventAggregator.Instance.Subscribe<RemoveServiceElementEvent>(OnRemoveServiceElement);
+    }
+
+    private void OnRemoveServiceElement(RemoveServiceElementEvent obj)
+    {
+        foreach (var element in InfraCanvasCollection)
+        {
+            if (element.ElementIndex == obj.ElementIndex)
+            {
+                InfraCanvasCollection.Remove(element);
+                return;
+            }
+        }
+        
+        // Decrement Element Count
+        ServiceElementViewModel.ElementCounter -= 1;
     }
 
     private void OnAddServiceElement(AddServiceElementEvent obj)
     {
         InfraCanvasCollection.Add(obj.ServiceElement);
+        
+        // Increment Element Count
+        ServiceElementViewModel.ElementCounter += 1;
     }
     
 }

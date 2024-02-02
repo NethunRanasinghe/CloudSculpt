@@ -10,7 +10,8 @@
     
     <Grid>
         <Border CornerRadius="10"
-                Background="#CAF0F8">
+                Background="#CAF0F8"
+                Cursor="SizeAll">
             
             <Grid ClipToBounds="True">
                 <Grid.RowDefinitions>
