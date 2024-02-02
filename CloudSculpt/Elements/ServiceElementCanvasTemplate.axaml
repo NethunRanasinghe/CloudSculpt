@@ -1,0 +1,80 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="148" d:DesignHeight="90"
+             x:Class="CloudSculpt.Elements.ServiceElementCanvasTemplate"
+             Height="90" Width="148"
+             x:DataType="viewModels:ServiceElementViewModel">
+    
+    <Grid>
+        <Border CornerRadius="10"
+                Background="#CAF0F8">
+            
+            <Grid ClipToBounds="True">
+                <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Button Grid.Column="0" 
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Background="#CAF0F8"
+                                    CornerRadius="10"
+                                    Cursor="Hand"
+                                    Command="{Binding ServiceElementCanvasEditCommand}">
+                                
+                                <Image Source="avares://CloudSculpt/Assets/edit.png"
+                                       Width="25" Height="25" 
+                                       Stretch="UniformToFill"/>
+                            </Button>
+                            
+                            <Button Grid.Column="2" 
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Background="#CAF0F8"
+                                    CornerRadius="10"
+                                    Cursor="Hand"
+                                    Command="{Binding ServiceElementCanvasDeleteCommand}">
+                                
+                                <Image Source="avares://CloudSculpt/Assets/delete.png"
+                                       Width="25" Height="25" 
+                                       Stretch="UniformToFill"/>
+                            </Button>
+                        </Grid>
+                        
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            
+                            <Image Grid.Row="0" 
+                                   Source="{Binding Image}"
+                                   Width="35"
+                                   Height="35"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"/>
+                            
+                            <TextBlock Grid.Row="1" 
+                                       Text="{Binding Text}"
+                                       Foreground="Black"
+                                       FontFamily="Inter"
+                                       FontSize="15"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Bottom"/>
+                        </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

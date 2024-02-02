@@ -17,8 +17,6 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     private double _paaSOpacity;
     private ObservableCollection<ServiceElementViewModel> _serviceElements;
     private ObservableCollection<ServiceElementViewModel> _infraCanvasCollection;
-    private double _canvasLeft;
-    private double _canvasRight;
     
     public int SecondColumnDefWidth
     {
@@ -80,18 +78,6 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         set => SetField(ref _infraCanvasCollection, value);
     }
     
-    public double CanvasLeft
-    {
-        get => _canvasLeft;
-        set => SetField(ref _canvasLeft, value);
-    }
-    
-    public double CanvasRight
-    {
-        get => _canvasRight;
-        set => SetField(ref _canvasRight, value);
-    }
-    
     
     public ICommand ToggleWidthCommand { get; }
     public ICommand IaaSCommand { get; }
@@ -126,10 +112,6 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         IaaSCommand = new IaaSCommand(this);
         PaaSCommand = new PaaSCommand(this);
         
-        // Canvas Coordinates
-        CanvasLeft = 0;
-        CanvasRight = 0;
-        
         // Events
         EventAggregator.Instance.Subscribe<AddServiceElementEvent>(OnAddServiceElement);
     }
@@ -138,4 +120,5 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     {
         InfraCanvasCollection.Add(obj.ServiceElement);
     }
+    
 }

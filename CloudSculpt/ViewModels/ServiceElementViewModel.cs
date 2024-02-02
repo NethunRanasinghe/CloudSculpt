@@ -11,6 +11,8 @@ public class ServiceElementViewModel : ViewModelBase
 {
     private string _text;
     private Bitmap _image;
+    private double _canvasLeft;
+    private double _canvasRight;
     
     public string Text
     {
@@ -23,8 +25,22 @@ public class ServiceElementViewModel : ViewModelBase
         get => _image;
         set => SetField(ref _image, value);
     }
+    
+    public double CanvasLeft
+    {
+        get => _canvasLeft;
+        set => SetField(ref _canvasLeft, value);
+    }
 
+    public double CanvasRight
+    {
+        get => _canvasRight;
+        set => SetField(ref _canvasRight, value);
+    }
+    
     public ICommand ServiceElementCommand { get; }
+    public ICommand ServiceElementCanvasEditCommand { get; }
+    public ICommand ServiceElementCanvasDeleteCommand { get; }
 
     public ServiceElementViewModel()
     {
@@ -37,7 +53,13 @@ public class ServiceElementViewModel : ViewModelBase
         // Update the Image property
         Image = bitmap;
         
+        // Initial Canvas Locations
+        CanvasLeft = 0;
+        CanvasRight = 0;
+        
         // Click Command
         ServiceElementCommand = new ServiceElementCommand(this);
+        ServiceElementCanvasDeleteCommand = new ServiceElementCanvasDeleteCommand();
+        ServiceElementCanvasEditCommand = new ServiceElementCanvasEditCommand();
     }
 }

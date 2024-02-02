@@ -150,20 +150,20 @@
                                 <ItemsControl ItemsSource="{Binding InfraCanvasCollection}">
                                         <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
-                                                        <Canvas />
+                                                        <Canvas/>
                                                 </ItemsPanelTemplate>
                                         </ItemsControl.ItemsPanel>
                                         
                                         <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
-                                                        <elements:ServiceElementTemplate DataContext="{Binding}" />
+                                                        <elements:ServiceElementCanvasTemplate DataContext="{Binding}" />
                                                 </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                         
                                         <ItemsControl.Styles>
                                                 <Style Selector="ItemsControl > ContentPresenter">
-                                                        <Setter Property="Canvas.Left" Value="{Binding CanvasLeft}"/>
-                                                        <Setter Property="Canvas.Top" Value="{Binding CanvasRight}"/>
+                                                        <Setter Property="Canvas.Left" Value="{Binding (local:ServiceElementViewModel).CanvasLeft}"/>
+                                                        <Setter Property="Canvas.Top" Value="{Binding (local:ServiceElementViewModel).CanvasRight}"/>
                                                 </Style>
                                         </ItemsControl.Styles>
                                 </ItemsControl>

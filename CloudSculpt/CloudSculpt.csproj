@@ -45,6 +45,14 @@
       <AvaloniaResource Include="Assets\vm.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </AvaloniaResource>
+      <None Remove="Assets\edit.png" />
+      <AvaloniaResource Include="Assets\edit.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </AvaloniaResource>
+      <None Remove="Assets\delete.png" />
+      <AvaloniaResource Include="Assets\delete.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </AvaloniaResource>
     </ItemGroup>
 
 
