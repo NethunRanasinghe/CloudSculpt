@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+             xmlns:behaviors="clr-namespace:CloudSculpt.Behaviors"
              mc:Ignorable="d" d:DesignWidth="148" d:DesignHeight="90"
              x:Class="CloudSculpt.Elements.ServiceElementCanvasTemplate"
              Height="90" Width="148"
@@ -12,6 +13,20 @@
         <Border CornerRadius="10"
                 Background="#CAF0F8"
                 Cursor="SizeAll">
+            
+            <Interaction.Behaviors>
+                <EventTriggerBehavior EventName="PointerPressed">
+                    <behaviors:PointerPressedCommandBehavior Command="{Binding ServiceElementCanvasPointerPressed}"/>
+                </EventTriggerBehavior>
+                
+                <EventTriggerBehavior EventName="PointerReleased">
+                    <behaviors:PointerReleasedCommandBehavior Command="{Binding ServiceElementCanvasPointerReleased}"/>
+                </EventTriggerBehavior>
+                
+                <EventTriggerBehavior EventName="PointerMoved">
+                    <behaviors:PointerMovedCommandBehavior Command="{Binding ServiceElementCanvasPointerMoved}"/>
+                </EventTriggerBehavior>
+            </Interaction.Behaviors>
             
             <Grid ClipToBounds="True">
                 <Grid.RowDefinitions>

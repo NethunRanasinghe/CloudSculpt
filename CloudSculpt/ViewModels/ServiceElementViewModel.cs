@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Windows.Input;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
@@ -12,8 +11,11 @@ public class ServiceElementViewModel : ViewModelBase
     private string _text;
     private Bitmap _image;
     private double _canvasLeft;
-    private double _canvasRight;
+    private double _canvasTop;
     private int _elementIndex;
+    private bool _isPressed;
+    private double _elementClickedLeft;
+    private double _elementClickedTop;
 
     public static int ElementCounter = 0;
     
@@ -35,10 +37,10 @@ public class ServiceElementViewModel : ViewModelBase
         set => SetField(ref _canvasLeft, value);
     }
 
-    public double CanvasRight
+    public double CanvasTop
     {
-        get => _canvasRight;
-        set => SetField(ref _canvasRight, value);
+        get => _canvasTop;
+        set => SetField(ref _canvasTop, value);
     }
 
     public int ElementIndex
@@ -46,10 +48,31 @@ public class ServiceElementViewModel : ViewModelBase
         get => _elementIndex;
         set => SetField(ref _elementIndex, value);
     }
+
+    public bool IsPressed
+    {
+        get => _isPressed;
+        set => SetField(ref _isPressed, value);
+    }
+    
+    public double ElementClickedLeft
+    {
+        get => _elementClickedLeft;
+        set => SetField(ref _elementClickedLeft, value);
+    }
+
+    public double ElementClickedTop
+    {
+        get => _elementClickedTop;
+        set => SetField(ref _elementClickedTop, value);
+    }
     
     public ICommand ServiceElementCommand { get; }
     public ICommand ServiceElementCanvasEditCommand { get; }
     public ICommand ServiceElementCanvasDeleteCommand { get; }
+    public ICommand ServiceElementCanvasPointerPressed { get; }
+    public ICommand ServiceElementCanvasPointerReleased { get; }
+    public ICommand ServiceElementCanvasPointerMoved { get; }
 
     public ServiceElementViewModel()
     {
@@ -63,21 +86,15 @@ public class ServiceElementViewModel : ViewModelBase
         Image = bitmap;
         
         // Initial Canvas Locations
-        
-        //--- Debug Help
-        /*var r = new Random();
-        const int  range = 400;
-        
-        CanvasLeft = r.NextDouble() * range;
-        CanvasRight = r.NextDouble() * range;*/
-        //---
-        
         CanvasLeft = 0;
-        CanvasRight = 0;
+        CanvasTop = 0;
         
         // Click Command
         ServiceElementCommand = new ServiceElementAddCommand(this);
         ServiceElementCanvasDeleteCommand = new ServiceElementCanvasRemoveCommand(this);
         ServiceElementCanvasEditCommand = new ServiceElementCanvasEditCommand();
+        ServiceElementCanvasPointerPressed = new ServiceElementCanvasPointerPressed(this);
+        ServiceElementCanvasPointerReleased = new ServiceElementCanvasPointerReleased(this);
+        ServiceElementCanvasPointerMoved = new ServiceElementCanvasPointerMoved(this);
     }
 }

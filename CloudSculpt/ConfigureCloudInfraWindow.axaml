@@ -163,7 +163,7 @@
                                         <ItemsControl.Styles>
                                                 <Style Selector="ItemsControl > ContentPresenter">
                                                         <Setter Property="Canvas.Left" Value="{Binding (local:ServiceElementViewModel).CanvasLeft}"/>
-                                                        <Setter Property="Canvas.Top" Value="{Binding (local:ServiceElementViewModel).CanvasRight}"/>
+                                                        <Setter Property="Canvas.Top" Value="{Binding (local:ServiceElementViewModel).CanvasTop}"/>
                                                 </Style>
                                         </ItemsControl.Styles>
                                 </ItemsControl>
