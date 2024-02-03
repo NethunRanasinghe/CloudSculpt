@@ -9,10 +9,11 @@ public class ServiceElementCanvasPointerPressed (ServiceElementViewModel element
     {
         if (parameter is PointerPressedEventArgs e)
         {
-            // Set Mouse Clicked Position
+            // Set Mouse Clicked - Start Position
             var point = e.GetCurrentPoint(null);
             var x = point.Position.X;
             var y = point.Position.Y;
+            
             element.ElementClickedTop = y;
             element.ElementClickedLeft = x;
             

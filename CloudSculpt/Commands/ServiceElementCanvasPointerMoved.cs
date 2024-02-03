@@ -14,8 +14,15 @@ public class ServiceElementCanvasPointerMoved (ServiceElementViewModel element) 
             var x = point.Position.X;
             var y = point.Position.Y;
 
-            element.CanvasLeft = x;
-            element.CanvasTop = y;
+            var offsetX = x - element.ElementClickedLeft;
+            var offsetY = y - element.ElementClickedTop;
+                
+            element.CanvasLeft += offsetX;
+            element.CanvasTop += offsetY;
+
+            // Update the initial click position for the next move event
+            element.ElementClickedLeft = x;
+            element.ElementClickedTop = y;
         }
     }
 }
