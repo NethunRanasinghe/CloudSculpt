@@ -7,7 +7,7 @@
         xmlns:elements="clr-namespace:CloudSculpt.Elements"
         xmlns:behaviors="clr-namespace:CloudSculpt.Behaviors"
         mc:Ignorable="d" d:DesignWidth="910" d:DesignHeight="512"
-        x:Class="CloudSculpt.ConfigureCloudInfraWindow"
+        x:Class="CloudSculpt.Views.Windows.ConfigureCloudInfraWindow"
         MinWidth="910"
         MinHeight="512"
         Background="#023E8A"

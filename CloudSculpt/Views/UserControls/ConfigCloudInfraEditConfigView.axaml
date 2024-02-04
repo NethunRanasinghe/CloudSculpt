@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="492" d:DesignHeight="407"
              Width="492" Height="407"
-             x:Class="CloudSculpt.Views.ConfigCloudInfraEditConfigView">
+             x:Class="CloudSculpt.Views.UserControls.ConfigCloudInfraEditConfigView">
 
     <Grid Background="#0077B6">
         <Grid.RowDefinitions>

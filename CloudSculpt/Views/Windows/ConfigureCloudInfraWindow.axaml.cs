@@ -1,9 +1,9 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Interactivity;
 using CloudSculpt.ViewModels;
-using CloudSculpt.Views;
+using ProjectSelectionCloudView = CloudSculpt.Views.UserControls.ProjectSelectionCloudView;
 
-namespace CloudSculpt;
+namespace CloudSculpt.Views.Windows;
 
 public partial class ConfigureCloudInfraWindow : Window
 {

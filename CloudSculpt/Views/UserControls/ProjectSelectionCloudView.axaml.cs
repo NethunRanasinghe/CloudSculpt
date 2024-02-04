@@ -2,13 +2,13 @@
 using Avalonia.Interactivity;
 using CloudSculpt.HelperClasses;
 
-namespace CloudSculpt.Views;
+namespace CloudSculpt.Views.UserControls;
 
 public partial class ProjectSelectionCloudView : UserControl
 {
-    private readonly MainMenuWindow _mainMenuWindow;
+    private readonly Windows.MainMenuWindow _mainMenuWindow;
     
-    public ProjectSelectionCloudView(MainMenuWindow mainMenuWindow)
+    public ProjectSelectionCloudView(Windows.MainMenuWindow mainMenuWindow)
     {
         InitializeComponent();
         _mainMenuWindow = mainMenuWindow;
@@ -27,7 +27,7 @@ public partial class ProjectSelectionCloudView : UserControl
     
     private void CloudConfigCloudButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        ConfigureCloudInfraWindow configureCloudInfraWindow = new();
+        Windows.ConfigureCloudInfraWindow configureCloudInfraWindow = new();
         _mainMenuWindow.Hide();
         configureCloudInfraWindow.Show();
     }

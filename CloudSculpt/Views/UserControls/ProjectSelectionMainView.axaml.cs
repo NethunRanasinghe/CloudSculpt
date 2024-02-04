@@ -1,15 +1,14 @@
-﻿using System;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Interactivity;
 using CloudSculpt.HelperClasses;
 
-namespace CloudSculpt.Views;
+namespace CloudSculpt.Views.UserControls;
 
 public partial class ProjectSelectionMainView : UserControl
 {
-    private readonly MainMenuWindow _mainMenuWindow;
+    private readonly Windows.MainMenuWindow _mainMenuWindow;
     
-    public ProjectSelectionMainView(MainMenuWindow mainMenuWindow)
+    public ProjectSelectionMainView(Windows.MainMenuWindow mainMenuWindow)
     {
         InitializeComponent();
         _mainMenuWindow = mainMenuWindow;
@@ -18,7 +17,7 @@ public partial class ProjectSelectionMainView : UserControl
     #region Navigation
     private void MainNewProjectButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        ProjectSelectionCloudView projectSelectionCloudView = new(_mainMenuWindow);
+        UserControls.ProjectSelectionCloudView projectSelectionCloudView = new(_mainMenuWindow);
         _mainMenuWindow.CurrentUserControl = projectSelectionCloudView;
     }
 

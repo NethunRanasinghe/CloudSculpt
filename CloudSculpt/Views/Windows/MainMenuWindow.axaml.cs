@@ -1,7 +1,7 @@
 using Avalonia.Controls;
-using CloudSculpt.Views;
+using ProjectSelectionMainView = CloudSculpt.Views.UserControls.ProjectSelectionMainView;
 
-namespace CloudSculpt;
+namespace CloudSculpt.Views.Windows;
 
 public partial class MainMenuWindow : Window
 {

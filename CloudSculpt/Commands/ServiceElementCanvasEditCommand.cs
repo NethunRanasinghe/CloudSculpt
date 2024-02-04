@@ -1,4 +1,4 @@
-﻿using System;
+﻿using CloudSculpt.Views.Windows;
 
 namespace CloudSculpt.Commands;
 
@@ -6,6 +6,7 @@ public class ServiceElementCanvasEditCommand : CommandBase
 {
     public override void Execute(object? parameter)
     {
-        Console.WriteLine("Hello World !");
+        ConfigCloudInfraEditWindow configCloudInfraEditWindow = new ConfigCloudInfraEditWindow();
+        configCloudInfraEditWindow.Show();
     }
 }

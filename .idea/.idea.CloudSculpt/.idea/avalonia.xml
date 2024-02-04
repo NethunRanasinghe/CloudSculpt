@@ -25,6 +25,7 @@
         <entry key="CloudSculpt/Views/ProjectSelectionView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/ServiceElementTemplateView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/TemplatedControl1.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Windows/ConfigCloudInfraEditWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
       </map>
     </option>
   </component>

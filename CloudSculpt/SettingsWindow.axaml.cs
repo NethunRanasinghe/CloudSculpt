@@ -15,7 +15,7 @@ public partial class SettingsWindow : Window
     #region Navigation
     private void SettingsBackButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        MainMenuWindow mainMenuWindow = new();
+        Views.Windows.MainMenuWindow mainMenuWindow = new();
         this.Hide();
         mainMenuWindow.Show();
     }

@@ -1,8 +1,6 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Controls;
 
-namespace CloudSculpt.Views;
+namespace CloudSculpt.Views.UserControls;
 
 public partial class ConfigCloudInfraEditTerminalView : UserControl
 {
