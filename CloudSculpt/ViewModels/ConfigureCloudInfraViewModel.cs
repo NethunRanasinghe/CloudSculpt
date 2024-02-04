@@ -82,7 +82,8 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     public ICommand ToggleWidthCommand { get; }
     public ICommand IaaSCommand { get; }
     public ICommand PaaSCommand { get; }
-    
+    public ICommand InfraCanvasLayoutUpdatedCommand { get; }
+
     public ConfigureCloudInfraViewModel()
     {
         // Initial Second Column Width
@@ -111,6 +112,8 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         ToggleWidthCommand = new ToggleDeployWidthCommand(this);
         IaaSCommand = new IaaSCommand(this);
         PaaSCommand = new PaaSCommand(this);
+        InfraCanvasLayoutUpdatedCommand = new InfraCanvasLayoutUpdatedCommand();
+
         
         // Events
         EventAggregator.Instance.Subscribe<AddServiceElementEvent>(OnAddServiceElement);

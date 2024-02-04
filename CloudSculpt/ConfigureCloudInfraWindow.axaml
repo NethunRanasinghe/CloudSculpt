@@ -5,6 +5,7 @@
         xmlns:local="clr-namespace:CloudSculpt.ViewModels"
         xmlns:converters="clr-namespace:CloudSculpt.Converters"
         xmlns:elements="clr-namespace:CloudSculpt.Elements"
+        xmlns:behaviors="clr-namespace:CloudSculpt.Behaviors"
         mc:Ignorable="d" d:DesignWidth="910" d:DesignHeight="512"
         x:Class="CloudSculpt.ConfigureCloudInfraWindow"
         MinWidth="910"
@@ -150,7 +151,13 @@
                                 <ItemsControl ItemsSource="{Binding InfraCanvasCollection}">
                                         <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
-                                                        <Canvas/>
+                                                        <Canvas>
+                                                                <Interaction.Behaviors>
+                                                                        <EventTriggerBehavior EventName="LayoutUpdated">
+                                                                                <behaviors:CanvasLayoutUpdatedBehavior Command="{Binding InfraCanvasLayoutUpdatedCommand}"/>
+                                                                        </EventTriggerBehavior>
+                                                                </Interaction.Behaviors>
+                                                        </Canvas>
                                                 </ItemsPanelTemplate>
                                         </ItemsControl.ItemsPanel>
                                         

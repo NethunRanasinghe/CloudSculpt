@@ -16,15 +16,15 @@
             
             <Interaction.Behaviors>
                 <EventTriggerBehavior EventName="PointerPressed">
-                    <behaviors:PointerPressedCommandBehavior Command="{Binding ServiceElementCanvasPointerPressed}"/>
+                    <behaviors:PointerPressedCommandBehavior Command="{Binding ServiceElementCanvasPointerPressedCommand}"/>
                 </EventTriggerBehavior>
                 
                 <EventTriggerBehavior EventName="PointerReleased">
-                    <behaviors:PointerReleasedCommandBehavior Command="{Binding ServiceElementCanvasPointerReleased}"/>
+                    <behaviors:PointerReleasedCommandBehavior Command="{Binding ServiceElementCanvasPointerReleasedCommand}"/>
                 </EventTriggerBehavior>
                 
                 <EventTriggerBehavior EventName="PointerMoved">
-                    <behaviors:PointerMovedCommandBehavior Command="{Binding ServiceElementCanvasPointerMoved}"/>
+                    <behaviors:PointerMovedCommandBehavior Command="{Binding ServiceElementCanvasPointerMovedCommand}"/>
                 </EventTriggerBehavior>
             </Interaction.Behaviors>
             

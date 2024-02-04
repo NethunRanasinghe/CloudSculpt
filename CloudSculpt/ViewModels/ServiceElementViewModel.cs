@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Input;
-using Avalonia;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using CloudSculpt.Commands;
@@ -18,8 +17,10 @@ public class ServiceElementViewModel : ViewModelBase
     private double _elementClickedLeft;
     private double _elementClickedTop;
 
-    public static int ElementCounter = 0;
-    
+    public static int ElementCounter { get; set; } = 0;
+    public static double CanvasWidth { get; set; } = 0;
+    public static double CanvasHeight { get; set; } = 0;
+
     public string Text
     {
         get => _text;
@@ -71,9 +72,9 @@ public class ServiceElementViewModel : ViewModelBase
     public ICommand ServiceElementCommand { get; }
     public ICommand ServiceElementCanvasEditCommand { get; }
     public ICommand ServiceElementCanvasDeleteCommand { get; }
-    public ICommand ServiceElementCanvasPointerPressed { get; }
-    public ICommand ServiceElementCanvasPointerReleased { get; }
-    public ICommand ServiceElementCanvasPointerMoved { get; }
+    public ICommand ServiceElementCanvasPointerPressedCommand { get; }
+    public ICommand ServiceElementCanvasPointerReleasedCommand { get; }
+    public ICommand ServiceElementCanvasPointerMovedCommand { get; }
 
     public ServiceElementViewModel()
     {
@@ -90,12 +91,12 @@ public class ServiceElementViewModel : ViewModelBase
         CanvasLeft = 0;
         CanvasTop = 0;
         
-        // Click Command
+        // Commands
         ServiceElementCommand = new ServiceElementAddCommand(this);
         ServiceElementCanvasDeleteCommand = new ServiceElementCanvasRemoveCommand(this);
         ServiceElementCanvasEditCommand = new ServiceElementCanvasEditCommand();
-        ServiceElementCanvasPointerPressed = new ServiceElementCanvasPointerPressed(this);
-        ServiceElementCanvasPointerReleased = new ServiceElementCanvasPointerReleased(this);
-        ServiceElementCanvasPointerMoved = new ServiceElementCanvasPointerMoved(this);
+        ServiceElementCanvasPointerPressedCommand = new ServiceElementCanvasPointerPressed(this);
+        ServiceElementCanvasPointerReleasedCommand = new ServiceElementCanvasPointerReleased(this);
+        ServiceElementCanvasPointerMovedCommand = new ServiceElementCanvasPointerMoved(this);
     }
 }
