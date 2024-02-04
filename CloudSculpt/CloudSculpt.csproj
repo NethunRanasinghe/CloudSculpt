@@ -62,17 +62,44 @@
         <DependentUpon>ServiceElementTemplateView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="MainMenuWindow.axaml.cs">
-        <DependentUpon>MainMenuWindow.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
       <Compile Update="SettingsWindow.axaml.cs">
         <DependentUpon>SettingsWindow.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="ConfigureCloudInfraWindow.axaml.cs">
+      <Compile Update="Windows\MainMenuWindow.axaml.cs">
+        <DependentUpon>MainMenuWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Windows\ConfigureCloudInfraWindow.axaml.cs">
         <DependentUpon>ConfigureCloudInfraWindow.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Folder Include="Views\" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\UserControls\ConfigCloudInfraEditConfigView.axaml" />
+      <AdditionalFiles Include="Views\UserControls\ConfigCloudInfraEditTerminalView.axaml" />
+      <AdditionalFiles Include="Views\UserControls\ConfigCloudInfraEditView.axaml" />
+      <AdditionalFiles Include="Views\UserControls\ProjectSelectionCloudView.axaml" />
+      <AdditionalFiles Include="Views\UserControls\ProjectSelectionMainView.axaml" />
+      <AdditionalFiles Include="Views\UserControls\ProjectSelectionNetworkView.axaml" />
+      <AdditionalFiles Include="Views\Windows\ConfigureCloudInfraWindow.axaml" />
+      <AdditionalFiles Include="Views\Windows\MainMenuWindow.axaml" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="UserControls\ConfigCloudInfraEditConfigView.axaml" />
+      <UpToDateCheckInput Remove="UserControls\ConfigCloudInfraEditTerminalView.axaml" />
+      <UpToDateCheckInput Remove="UserControls\ConfigCloudInfraEditView.axaml" />
+      <UpToDateCheckInput Remove="UserControls\ProjectSelectionCloudView.axaml" />
+      <UpToDateCheckInput Remove="UserControls\ProjectSelectionMainView.axaml" />
+      <UpToDateCheckInput Remove="UserControls\ProjectSelectionNetworkView.axaml" />
     </ItemGroup>
 </Project>

@@ -13,7 +13,7 @@
         Background="#023E8A"
         WindowStartupLocation="CenterScreen"
         CanResize="True"
-        Icon="Assets/iconv1.png"
+        Icon="avares://CloudSculpt/Assets/iconv1.png" 
         Title="Configure Cloud Infrastructure"
         x:DataType="local:ConfigureCloudInfraViewModel">
         
