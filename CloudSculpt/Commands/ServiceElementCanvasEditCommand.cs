@@ -6,6 +6,6 @@ public class ServiceElementCanvasEditCommand : CommandBase
 {
     public override void Execute(object? parameter)
     {
-        Console.WriteLine("Edit");
+        Console.WriteLine("Hello World !");
     }
 }
