@@ -1,5 +1,4 @@
-﻿using System;
-using CloudSculpt.Events;
+﻿using CloudSculpt.Events;
 using CloudSculpt.ViewModels;
 using CloudSculpt.Views.Windows;
 

@@ -8,108 +8,115 @@
              x:Class="CloudSculpt.Views.UserControls.ConfigCloudInfraEditConfigView"
              x:DataType="viewModels:ServiceElementViewModel">
     
-    <Grid Background="#0077B6">
-        <Grid.RowDefinitions>
-            <RowDefinition Height=".4*"/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition Height=".4*"/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <Border CornerRadius="20"
+            Background="#0077B6">
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                    <RowDefinition Height=".4*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height=".4*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+            </Grid.RowDefinitions>
                 
-        <!--Config-->
-        <TextBlock Grid.Row="0"
-                   Text="{Binding ConfigType}"
-                   FontFamily="Inter"
-                   FontSize="20"
-                   Foreground="White"
-                   FontWeight="SemiBold"
-                   HorizontalAlignment="Center"/>
+            <!--Config-->
+            <TextBlock Grid.Row="0"
+                       Text="{Binding ConfigType, FallbackValue=Binding Failed}"
+                       FontFamily="Inter"
+                       FontSize="20"
+                       Foreground="White"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"/>
                 
-        <!--Post Install Script-->
-        <TextBlock Grid.Row="3"
-                   Text="Post Install Scripts"
-                   FontFamily="Inter"
-                   FontSize="20"
-                   Foreground="White"
-                   FontWeight="SemiBold"
-                   HorizontalAlignment="Center"/>
+            <!--Post Install Script-->
+            <TextBlock Grid.Row="3"
+                       Text="Post Install Scripts"
+                       FontFamily="Inter"
+                       FontSize="20"
+                       Foreground="White"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"/>
                 
-        <!--Buttons-->
-        <Grid Grid.Row="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-                    
-            <Button Grid.Column="0"
-                    Content="Cancel"
-                    FontFamily="Inter"
-                    FontWeight="SemiBold"
-                    FontSize="17"
-                    Background="#CAF0F8"
-                    Foreground="Black"
-                    Margin="10"
-                    HorizontalAlignment="Center"
-                    HorizontalContentAlignment="Center"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    Height="40" Width="93"
-                    CornerRadius="10"
-                    Cursor="Hand"
-                    Command="{Binding ConfigCloudInfraEditConfigCancelCommand}"/>
-                    
-            <Button Grid.Column="1"
-                    Content="Reset"
-                    FontFamily="Inter"
-                    FontWeight="SemiBold"
-                    FontSize="17"
-                    Background="#CAF0F8"
-                    Foreground="Black"
-                    Margin="10"
-                    HorizontalAlignment="Center"
-                    HorizontalContentAlignment="Center"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    Height="40" Width="93"
-                    CornerRadius="10"
-                    Cursor="Hand"/>
-                    
-            <Button Grid.Column="2"
-                    Content="Clear"
-                    FontFamily="Inter"
-                    FontWeight="SemiBold"
-                    FontSize="17"
-                    Background="#CAF0F8"
-                    Foreground="Black"
-                    Margin="10"
-                    HorizontalAlignment="Center"
-                    HorizontalContentAlignment="Center"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    Height="40" Width="93"
-                    CornerRadius="10"
-                    Cursor="Hand"/>
-                    
-            <Button Grid.Column="3"
-                    Content="Apply"
-                    FontFamily="Inter"
-                    FontWeight="SemiBold"
-                    FontSize="17"
-                    Background="#CAF0F8"
-                    Foreground="Black"
-                    Margin="10"
-                    HorizontalAlignment="Center"
-                    HorizontalContentAlignment="Center"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    Height="40" Width="93"
-                    CornerRadius="10"
-                    Cursor="Hand"/>
-                    
-                </Grid>
+            <!--Buttons-->
+            <Grid Grid.Row="5">
+                
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                        
+                <Button Grid.Column="0"
+                        Content="Cancel"
+                        FontFamily="Inter"
+                        FontWeight="SemiBold"
+                        FontSize="17"
+                        Background="#CAF0F8"
+                        Foreground="Black"
+                        Margin="10"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Height="40" Width="93"
+                        CornerRadius="10"
+                        Cursor="Hand"
+                        Command="{Binding ConfigCloudInfraEditConfigCancelCommand}"/>
+                        
+                <Button Grid.Column="1"
+                        Content="Reset"
+                        FontFamily="Inter"
+                        FontWeight="SemiBold"
+                        FontSize="17"
+                        Background="#CAF0F8"
+                        Foreground="Black"
+                        Margin="10"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Height="40" Width="93"
+                        CornerRadius="10"
+                        Cursor="Hand"/>
+                        
+                <Button Grid.Column="2"
+                        Content="Clear"
+                        FontFamily="Inter"
+                        FontWeight="SemiBold"
+                        FontSize="17"
+                        Background="#CAF0F8"
+                        Foreground="Black"
+                        Margin="10"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Height="40" Width="93"
+                        CornerRadius="10"
+                        Cursor="Hand"/>
+                        
+                <Button Grid.Column="3"
+                        Content="Apply"
+                        FontFamily="Inter"
+                        FontWeight="SemiBold"
+                        FontSize="17"
+                        Background="#CAF0F8"
+                        Foreground="Black"
+                        Margin="10"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Height="40" Width="93"
+                        CornerRadius="10"
+                        Cursor="Hand"/>
+                        
             </Grid>
+        </Grid>
+    </Border>
+
 </UserControl>

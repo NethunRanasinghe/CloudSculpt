@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:behaviors="clr-namespace:CloudSculpt.Behaviors"
         xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+        xmlns:converters="clr-namespace:CloudSculpt.Converters"
         mc:Ignorable="d" d:DesignWidth="512" d:DesignHeight="512"
         MinWidth="512" MinHeight="512"
         Width="512" Height="512"
@@ -14,7 +15,11 @@
         ExtendClientAreaTitleBarHeightHint="-1"
         SystemDecorations="BorderOnly"
         x:DataType="viewModels:ConfigCloudInfraEditViewModel">
-        
+    
+    <Window.Resources>
+        <converters:ConfigCloudInfraEditButtonOpacity x:Key="ConfigCloudInfraEditButtonOpacity"/>
+    </Window.Resources>
+    
     <Interaction.Behaviors>
         <EventTriggerBehavior EventName="PointerPressed">
             <behaviors:PointerPressedCommandBehavior Command="{Binding ConfigCloudInfraEditWindowPointerPressedCommand}"/>
@@ -51,7 +56,9 @@
                                 HorizontalContentAlignment="Center"
                                 Height="40"
                                 Width="220"
-                                Cursor="Hand"/>
+                                Opacity="{Binding TerminalButtonSelected, Converter={StaticResource ConfigCloudInfraEditButtonOpacity}}"
+                                Cursor="Hand"
+                                Command="{Binding ConfigCloudInfraEditWindowTerminalCommand}"/>
                     
                         <Button Grid.Column="1"
                                 HorizontalAlignment="Center"
@@ -66,7 +73,9 @@
                                 HorizontalContentAlignment="Center"
                                 Height="40"
                                 Width="220"
-                                Cursor="Hand"/>
+                                Opacity="{Binding ConfigButtonSelected, Converter={StaticResource ConfigCloudInfraEditButtonOpacity}}"
+                                Cursor="Hand"
+                                Command="{Binding ConfigCloudInfraEditWindowConfigCommand}"/>
                     </Grid>
                 </Border>
                 

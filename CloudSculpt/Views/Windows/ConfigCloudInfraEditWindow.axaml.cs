@@ -1,7 +1,4 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Input;
-using Avalonia.Markup.Xaml;
+﻿using Avalonia.Controls;
 using CloudSculpt.ViewModels;
 
 namespace CloudSculpt.Views.Windows;
