@@ -85,7 +85,6 @@
     <ItemGroup>
       <AdditionalFiles Include="Views\UserControls\ConfigCloudInfraEditConfigView.axaml" />
       <AdditionalFiles Include="Views\UserControls\ConfigCloudInfraEditTerminalView.axaml" />
-      <AdditionalFiles Include="Views\UserControls\ConfigCloudInfraEditView.axaml" />
       <AdditionalFiles Include="Views\UserControls\ProjectSelectionCloudView.axaml" />
       <AdditionalFiles Include="Views\UserControls\ProjectSelectionMainView.axaml" />
       <AdditionalFiles Include="Views\UserControls\ProjectSelectionNetworkView.axaml" />
