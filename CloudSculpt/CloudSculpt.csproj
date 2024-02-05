@@ -62,16 +62,16 @@
         <DependentUpon>ServiceElementTemplateView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="SettingsWindow.axaml.cs">
-        <DependentUpon>SettingsWindow.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
       <Compile Update="Windows\MainMenuWindow.axaml.cs">
         <DependentUpon>MainMenuWindow.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
       <Compile Update="Windows\ConfigureCloudInfraWindow.axaml.cs">
         <DependentUpon>ConfigureCloudInfraWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Windows\SettingsWindow.axaml.cs">
+        <DependentUpon>SettingsWindow.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
