@@ -75,6 +75,8 @@
                         Margin="10"
                         CornerRadius="20">
                     
+                    <ContentControl Content="{Binding ConfigCloudInfraEditCurrentView}"/>
+                    
                 </Border>
             </Grid>
 </Window>

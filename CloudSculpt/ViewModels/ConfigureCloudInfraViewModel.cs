@@ -42,8 +42,7 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         set => SetField(ref _isCollapsed, value);
     }
 
-    public bool IsNone
-    {
+    public bool IsNone {
         get => _isNone;
         set => SetField(ref _isNone, value);
     }

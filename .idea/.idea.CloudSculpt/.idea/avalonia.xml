@@ -17,6 +17,8 @@
         <entry key="CloudSculpt/Views/ConfigCloudInfraEditConfigView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/ConfigCloudInfraEditTerminalView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/ConfigCloudInfraEditView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Elements/ServiceElementCanvasTemplate.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Elements/ServiceElementTemplate.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/ProjectSelectionCloudView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/ProjectSelectionElementCloudView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/ProjectSelectionMain.axaml" value="CloudSculpt/CloudSculpt.csproj" />
@@ -30,6 +32,7 @@
         <entry key="CloudSculpt/Views/Windows/ConfigCloudInfraEditWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Windows/ConfigureCloudInfraWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Windows/MainMenuWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Windows/SettingsWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
       </map>
     </option>
   </component>

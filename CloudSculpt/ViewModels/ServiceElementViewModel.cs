@@ -16,6 +16,7 @@ public class ServiceElementViewModel : ViewModelBase
     private bool _isPressed;
     private double _elementClickedLeft;
     private double _elementClickedTop;
+    private string _configType;
 
     public static int ElementCounter { get; set; } = 0;
     public static double CanvasWidth { get; set; } = 0;
@@ -68,6 +69,12 @@ public class ServiceElementViewModel : ViewModelBase
         get => _elementClickedTop;
         set => SetField(ref _elementClickedTop, value);
     }
+
+    public string ConfigType
+    {
+        get => _configType;
+        set => SetField(ref _configType, value);
+    }
     
     public ICommand ServiceElementCommand { get; }
     public ICommand ServiceElementCanvasEditCommand { get; }
@@ -75,11 +82,13 @@ public class ServiceElementViewModel : ViewModelBase
     public ICommand ServiceElementCanvasPointerPressedCommand { get; }
     public ICommand ServiceElementCanvasPointerReleasedCommand { get; }
     public ICommand ServiceElementCanvasPointerMovedCommand { get; }
+    public ICommand ConfigCloudInfraEditConfigCancelCommand { get; }
 
     public ServiceElementViewModel()
     {
         // Text
         Text = "Default";
+        ConfigType = "Default";
         
         // Create a new Bitmap
         var bitmap = new Bitmap(AssetLoader.Open(new Uri("avares://CloudSculpt/Assets/dockerBlack.png")));
@@ -94,9 +103,10 @@ public class ServiceElementViewModel : ViewModelBase
         // Commands
         ServiceElementCommand = new ServiceElementAddCommand(this);
         ServiceElementCanvasDeleteCommand = new ServiceElementCanvasRemoveCommand(this);
-        ServiceElementCanvasEditCommand = new ServiceElementCanvasEditCommand();
+        ServiceElementCanvasEditCommand = new ServiceElementCanvasEditCommand(this);
         ServiceElementCanvasPointerPressedCommand = new ServiceElementCanvasPointerPressed(this);
         ServiceElementCanvasPointerReleasedCommand = new ServiceElementCanvasPointerReleased(this);
         ServiceElementCanvasPointerMovedCommand = new ServiceElementCanvasPointerMoved(this);
+        ConfigCloudInfraEditConfigCancelCommand = new ConfigCloudInfraEditConfigCancelCommand();
     }
 }

@@ -2,10 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
              mc:Ignorable="d" d:DesignWidth="492" d:DesignHeight="407"
              Width="492" Height="407"
-             x:Class="CloudSculpt.Views.UserControls.ConfigCloudInfraEditConfigView">
-
+             x:Class="CloudSculpt.Views.UserControls.ConfigCloudInfraEditConfigView"
+             x:DataType="viewModels:ServiceElementViewModel">
+    
     <Grid Background="#0077B6">
         <Grid.RowDefinitions>
             <RowDefinition Height=".4*"/>
@@ -18,7 +20,7 @@
                 
         <!--Config-->
         <TextBlock Grid.Row="0"
-                   Text="VM Config"
+                   Text="{Binding ConfigType}"
                    FontFamily="Inter"
                    FontSize="20"
                    Foreground="White"
@@ -49,6 +51,7 @@
                     FontWeight="SemiBold"
                     FontSize="17"
                     Background="#CAF0F8"
+                    Foreground="Black"
                     Margin="10"
                     HorizontalAlignment="Center"
                     HorizontalContentAlignment="Center"
@@ -56,7 +59,8 @@
                     VerticalContentAlignment="Center"
                     Height="40" Width="93"
                     CornerRadius="10"
-                    Cursor="Hand"/>
+                    Cursor="Hand"
+                    Command="{Binding ConfigCloudInfraEditConfigCancelCommand}"/>
                     
             <Button Grid.Column="1"
                     Content="Reset"
@@ -64,6 +68,7 @@
                     FontWeight="SemiBold"
                     FontSize="17"
                     Background="#CAF0F8"
+                    Foreground="Black"
                     Margin="10"
                     HorizontalAlignment="Center"
                     HorizontalContentAlignment="Center"
@@ -79,6 +84,7 @@
                     FontWeight="SemiBold"
                     FontSize="17"
                     Background="#CAF0F8"
+                    Foreground="Black"
                     Margin="10"
                     HorizontalAlignment="Center"
                     HorizontalContentAlignment="Center"
@@ -94,6 +100,7 @@
                     FontWeight="SemiBold"
                     FontSize="17"
                     Background="#CAF0F8"
+                    Foreground="Black"
                     Margin="10"
                     HorizontalAlignment="Center"
                     HorizontalContentAlignment="Center"

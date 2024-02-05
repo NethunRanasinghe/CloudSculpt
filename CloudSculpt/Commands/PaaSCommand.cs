@@ -14,10 +14,10 @@ public class PaaSCommand (ConfigureCloudInfraViewModel configureCloudInfraViewMo
         configureCloudInfraViewModel.PaaSOpacity = 0.6;
         configureCloudInfraViewModel.IaaSOpacity = 1.0;
         
-        Dictionary<string, string> paaSComponents = new Dictionary<string, string>()
+        Dictionary<string, List<string>> paaSComponents = new Dictionary<string, List<string>>()
         {
-            {"Containers", "avares://CloudSculpt/Assets/dockerBlack.png"},
-            {"Kubernetes", "avares://CloudSculpt/Assets/kubernetesBlack.png"}
+            {"Containers", ["avares://CloudSculpt/Assets/dockerBlack.png","Container Config"]},
+            {"Kubernetes", ["avares://CloudSculpt/Assets/kubernetesBlack.png","Cluster Config"]}
         };
         
         // Clear collection
@@ -28,7 +28,8 @@ public class PaaSCommand (ConfigureCloudInfraViewModel configureCloudInfraViewMo
             var serviceElementViewModel = new ServiceElementViewModel
             {
                 Text = component.Key,
-                Image = new Bitmap(AssetLoader.Open(new Uri(component.Value)))
+                Image = new Bitmap(AssetLoader.Open(new Uri(component.Value[0]))),
+                ConfigType = component.Value[1]
             };
             
             configureCloudInfraViewModel.ServiceElements.Add(serviceElementViewModel);
