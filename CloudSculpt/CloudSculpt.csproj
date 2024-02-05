@@ -58,10 +58,6 @@
 
 
     <ItemGroup>
-      <Compile Update="Elements\ServiceElementTemplate.axaml.cs">
-        <DependentUpon>ServiceElementTemplateView.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
       <Compile Update="Windows\MainMenuWindow.axaml.cs">
         <DependentUpon>MainMenuWindow.axaml</DependentUpon>
         <SubType>Code</SubType>
@@ -83,6 +79,8 @@
 
 
     <ItemGroup>
+      <AdditionalFiles Include="Views\Elements\ServiceElementCanvasTemplate.axaml" />
+      <AdditionalFiles Include="Views\Elements\ServiceElementTemplate.axaml" />
       <AdditionalFiles Include="Views\UserControls\ConfigCloudInfraEditConfigView.axaml" />
       <AdditionalFiles Include="Views\UserControls\ConfigCloudInfraEditTerminalView.axaml" />
       <AdditionalFiles Include="Views\UserControls\ProjectSelectionCloudView.axaml" />
