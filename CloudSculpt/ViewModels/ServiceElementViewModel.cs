@@ -21,6 +21,8 @@ public class ServiceElementViewModel : ViewModelBase
     public static int ElementCounter { get; set; } = 0;
     public static double CanvasWidth { get; set; } = 0;
     public static double CanvasHeight { get; set; } = 0;
+    public static double CanvasScreenX { get; set; } = 0;
+    public static double CanvasScreenY { get; set; } = 0;
 
     public string Text
     {

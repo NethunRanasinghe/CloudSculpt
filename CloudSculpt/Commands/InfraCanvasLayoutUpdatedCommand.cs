@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using CloudSculpt.ViewModels;
 
 namespace CloudSculpt.Commands;
@@ -14,5 +15,9 @@ public class InfraCanvasLayoutUpdatedCommand : CommandBase
 
         ServiceElementViewModel.CanvasWidth = width;
         ServiceElementViewModel.CanvasHeight = height;
+        
+        var screenCoordinates = canvas.PointToScreen(new Avalonia.Point(0, 0));
+        ServiceElementViewModel.CanvasScreenX = screenCoordinates.X;
+        ServiceElementViewModel.CanvasScreenY = screenCoordinates.Y;
     }
 }
