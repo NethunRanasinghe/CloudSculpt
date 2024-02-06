@@ -7,6 +7,90 @@
     
     <Border Background="#0077B6"
             CornerRadius="20">
-        
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height=".2*"/>
+            </Grid.RowDefinitions>
+            
+            <!--Terminal-->
+            <Border Grid.Row="0"
+                    Background="#CAF0F8"
+                    CornerRadius="10"
+                    Margin="10">
+                    
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto">
+                    <TextBlock Foreground="Black"
+                               FontFamily="Inter"
+                               FontWeight="SemiBold"
+                               FontSize="12"
+                               Margin="5"/>
+                </ScrollViewer>
+            </Border>
+            
+            <!--Command Box and Control Buttons-->
+            <Grid Grid.Row="1"
+                  Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width=".5*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!--Command Box-->
+                <Grid Grid.Column="0">
+                    <TextBox HorizontalContentAlignment="Left"
+                             Height="20"
+                             BorderThickness="1"
+                             CornerRadius="8"
+                             Background="#CAF0F8"
+                             Foreground="Black"
+                             CaretBrush="Black"
+                             FontFamily="Inter"
+                             FontWeight="SemiBold"
+                             FontSize="12"
+                             TextWrapping="NoWrap">
+                        
+                        <TextBox.Styles>
+                            <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+                                <Setter Property="Background" Value="#CAF0F8"/>
+                            </Style>
+                        </TextBox.Styles>
+                    </TextBox>
+                </Grid>
+                
+                <!--Buttons-->
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button Grid.Column="0"
+                            Content="Start"
+                            HorizontalAlignment="Right"
+                            HorizontalContentAlignment="Center"
+                            Width="60"
+                            Foreground="Black"
+                            Background="#CAF0F8"
+                            FontFamily="Inter"
+                            FontWeight="SemiBold"
+                            CornerRadius="8"
+                            Cursor="Hand"/>
+                    
+                    <Button Grid.Column="1"
+                            Content="Stop"
+                            HorizontalAlignment="Right"
+                            HorizontalContentAlignment="Center"
+                            Width="60"
+                            Foreground="Black"
+                            Background="#CAF0F8"
+                            FontFamily="Inter"
+                            FontWeight="SemiBold"
+                            CornerRadius="8"
+                            Cursor="Hand"/>
+                </Grid>
+            </Grid>
+        </Grid>
     </Border>
 </UserControl>
