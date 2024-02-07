@@ -125,10 +125,10 @@ public class Docker
         return containers;
     }
 
-    public async Task CreateContainer(string imageName)
+    public async Task<string> CreateContainer(string imageName)
     {
         DockerClient client = new DockerClientConfiguration().CreateClient();
-        await client.Containers.CreateContainerAsync(new CreateContainerParameters()
+        var createdContainer = await client.Containers.CreateContainerAsync(new CreateContainerParameters()
         {
             Image = imageName,
             HostConfig = new HostConfig()
@@ -136,6 +136,9 @@ public class Docker
                 DNS = new[] { "8.8.8.8", "1.1.1.1" }
             }
         });
+
+        var containerId = createdContainer.ID;
+        return containerId;
     }
 
     public async Task RemoveContainer(string containerId)
