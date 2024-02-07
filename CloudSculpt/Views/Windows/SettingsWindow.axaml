@@ -5,9 +5,8 @@
         xmlns:local="clr-namespace:CloudSculpt.ViewModels"
         mc:Ignorable="d" d:DesignWidth="865" d:DesignHeight="362"
         x:Class="CloudSculpt.SettingsWindow"
-        Width="865"
-        Height="362"
-        Background="#023E8A"
+        Width="865" Height="362"
+        Background="{DynamicResource BackgroundFirstLayer}"
         WindowStartupLocation="CenterScreen"
         CanResize="False"
         Icon="avares://CloudSculpt/Assets/iconv1.png"
@@ -38,7 +37,7 @@
                 
                 <!--Config Display, Control Buttons-->
                 <Border Grid.Row="1"
-                        Background="#0077B6"
+                        Background="{DynamicResource BackgroundSecondLayer}"
                         CornerRadius="20"
                         Margin="15 15">
                         
@@ -56,7 +55,7 @@
                                         </Grid.ColumnDefinitions>
                                         
                                         <Border Grid.Column="0"
-                                                Background="#CAF0F8"
+                                                Background="{DynamicResource BackgroundThirdLayer}"
                                                 CornerRadius="20"
                                                 Margin="10 10">
                                                 
@@ -80,14 +79,14 @@
                                                                            Text="Os : "
                                                                            FontSize="18"
                                                                            FontWeight="SemiBold"
-                                                                           Foreground="Black"/>
+                                                                           Foreground="{DynamicResource ForegroundBrush}"/>
                                                                 
                                                                 <!--Docker Status-->
                                                                 <TextBlock Grid.Row="1"
                                                                            Text="Docker Status : "
                                                                            FontSize="18"
                                                                            FontWeight="SemiBold"
-                                                                           Foreground="Black"/>
+                                                                           Foreground="{DynamicResource ForegroundBrush}"/>
                                                         </Grid>
                                                         
                                                         <!--OS, Docker Status Status-->
@@ -104,7 +103,7 @@
                                                                            FontSize="18"
                                                                            FontWeight="Normal"
                                                                            x:Name="SettingsOsTextBlock"
-                                                                           Foreground="Black"/>
+                                                                           Foreground="{DynamicResource ForegroundBrush}"/>
                                                                 
                                                                 <!--Docker Status-->
                                                                 <TextBlock Grid.Row="1"
@@ -112,13 +111,13 @@
                                                                            FontSize="18"
                                                                            FontWeight="Normal"
                                                                            x:Name="SettingsDockerStatusTextBlock"
-                                                                           Foreground="Black"/>
+                                                                           Foreground="{DynamicResource ForegroundBrush}"/>
                                                         </Grid>
                                                 </Grid>
                                         </Border>
                                         
                                         <Border Grid.Column="1"
-                                                Background="#CAF0F8"
+                                                Background="{DynamicResource BackgroundThirdLayer}"
                                                 CornerRadius="20"
                                                 Margin="10 10">
                                                 
@@ -135,7 +134,7 @@
                                                                    FontWeight="SemiBold"
                                                                    HorizontalAlignment="Center"
                                                                    VerticalAlignment="Center"
-                                                                   Foreground="Black"/>
+                                                                   Foreground="{DynamicResource ForegroundBrush}"/>
                                                         
                                                         <!--Log Content-->
                                                         <ScrollViewer Grid.Row="1"
@@ -152,7 +151,7 @@
                                                                            VerticalAlignment="Top"
                                                                            Margin="5 0"
                                                                            x:Name="SettingsLogContentTextBlock"
-                                                                           Foreground="Black"/>
+                                                                           Foreground="{DynamicResource ForegroundBrush}"/>
                                                         </ScrollViewer>
                                                 </Grid>
                                         </Border>
@@ -174,8 +173,8 @@
                                                 <Button HorizontalAlignment="Center"
                                                         Width="200"
                                                         Height="44"
-                                                        Background="#CAF0F8"
-                                                        Foreground="Black"
+                                                        Background="{DynamicResource BackgroundThirdLayer}"
+                                                        Foreground="{DynamicResource ForegroundBrush}"
                                                         CornerRadius="13"
                                                         FontFamily="Inter"
                                                         FontSize="20"
@@ -192,8 +191,8 @@
                                                 <Button HorizontalAlignment="Center"
                                                         Width="200"
                                                         Height="44"
-                                                        Background="#CAF0F8"
-                                                        Foreground="Black"
+                                                        Background="{DynamicResource BackgroundThirdLayer}"
+                                                        Foreground="{DynamicResource ForegroundBrush}"
                                                         CornerRadius="13"
                                                         FontFamily="Inter"
                                                         FontSize="20"
@@ -210,8 +209,8 @@
                                                 <Button HorizontalAlignment="Center"
                                                         Width="200"
                                                         Height="44"
-                                                        Background="#CAF0F8"
-                                                        Foreground="Black"
+                                                        Background="{DynamicResource BackgroundThirdLayer}"
+                                                        Foreground="{DynamicResource ForegroundBrush}"
                                                         CornerRadius="13"
                                                         FontFamily="Inter"
                                                         FontSize="20"

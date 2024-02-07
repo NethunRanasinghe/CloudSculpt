@@ -4,9 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="645" d:DesignHeight="544"
              x:Class="CloudSculpt.Views.UserControls.ProjectSelectionMainView"
-             Width="645"
-             Height="544"
-             Background="#023E8A">
+             Width="645" Height="544">
     
     <!--
         New Project Button      : MainNewProjectButton
@@ -42,8 +40,8 @@
             <!--Main Controls-->
             <Border Grid.Row="1"
                     BorderThickness="1"
-                    BorderBrush="#0077B6"
-                    Background="#0077B6"
+                    BorderBrush="{DynamicResource BackgroundSecondLayer}"
+                    Background="{DynamicResource BackgroundSecondLayer}"
                     CornerRadius="26"
                     Margin="15 40 15 15">
                 
@@ -65,8 +63,8 @@
                         <Button HorizontalAlignment="Center"
                                 Width="256"
                                 Height="44"
-                                Background="#CAF0F8"
-                                Foreground="Black"
+                                Background="{DynamicResource BackgroundThirdLayer}"
+                                Foreground="{DynamicResource ForegroundBrush}"
                                 CornerRadius="13"
                                 FontFamily="Inter"
                                 FontSize="20"
@@ -84,8 +82,8 @@
                         <Button HorizontalAlignment="Center"
                                 Width="256"
                                 Height="44"
-                                Background="#CAF0F8"
-                                Foreground="Black"
+                                Background="{DynamicResource BackgroundThirdLayer}"
+                                Foreground="{DynamicResource ForegroundBrush}"
                                 CornerRadius="13"
                                 FontFamily="Inter"
                                 FontSize="20"
@@ -103,8 +101,8 @@
                         <Button HorizontalAlignment="Center"
                                 Width="256"
                                 Height="44"
-                                Background="#CAF0F8"
-                                Foreground="Black"
+                                Background="{DynamicResource BackgroundThirdLayer}"
+                                Foreground="{DynamicResource ForegroundBrush}"
                                 CornerRadius="13"
                                 FontFamily="Inter"
                                 FontSize="20"
@@ -122,8 +120,8 @@
                         <Button HorizontalAlignment="Center"
                                 Width="256"
                                 Height="44"
-                                Background="#CAF0F8"
-                                Foreground="Black"
+                                Background="{DynamicResource BackgroundThirdLayer}"
+                                Foreground="{DynamicResource ForegroundBrush}"
                                 CornerRadius="13"
                                 FontFamily="Inter"
                                 FontSize="20"
@@ -142,8 +140,8 @@
         <!--Column 2 :: Previous Projects-->
         <Border Grid.Column="1"
                 BorderThickness="1"
-                BorderBrush="#0077B6"
-                Background="#0077B6"
+                BorderBrush="{DynamicResource BackgroundSecondLayer}"
+                Background="{DynamicResource BackgroundSecondLayer}"
                 CornerRadius="26"
                 Margin="15">
             

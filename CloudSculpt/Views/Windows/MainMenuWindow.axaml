@@ -6,7 +6,7 @@
         x:Class="CloudSculpt.Views.Windows.MainMenuWindow"
         Width="645"
         Height="544"
-        Background="#023E8A"
+        Background="{DynamicResource BackgroundFirstLayer}"
         WindowStartupLocation="CenterScreen"
         CanResize="False"
         Icon="avares://CloudSculpt/Assets/iconv1.png"

@@ -5,7 +5,7 @@
              mc:Ignorable="d" d:DesignWidth="492" d:DesignHeight="407"
              x:Class="CloudSculpt.Views.UserControls.ConfigCloudInfraEditTerminalView">
     
-    <Border Background="#0077B6"
+    <Border Background="{DynamicResource BackgroundSecondLayer}"
             CornerRadius="20">
         <Grid Margin="5">
             <Grid.RowDefinitions>
@@ -15,13 +15,13 @@
             
             <!--Terminal-->
             <Border Grid.Row="0"
-                    Background="#CAF0F8"
+                    Background="{DynamicResource BackgroundThirdLayer}"
                     CornerRadius="10"
                     Margin="10">
                     
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Auto">
-                    <TextBlock Foreground="Black"
+                    <TextBlock Foreground="{DynamicResource ForegroundBrush}"
                                FontFamily="Inter"
                                FontWeight="SemiBold"
                                FontSize="12"
@@ -43,9 +43,9 @@
                              Height="20"
                              BorderThickness="1"
                              CornerRadius="8"
-                             Background="#CAF0F8"
-                             Foreground="Black"
-                             CaretBrush="Black"
+                             Background="{DynamicResource BackgroundThirdLayer}"
+                             Foreground="{DynamicResource ForegroundBrush}"
+                             CaretBrush="{DynamicResource ForegroundBrush}"
                              FontFamily="Inter"
                              FontWeight="SemiBold"
                              FontSize="12"
@@ -53,7 +53,7 @@
                         
                         <TextBox.Styles>
                             <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
-                                <Setter Property="Background" Value="#CAF0F8"/>
+                                <Setter Property="Background" Value="{DynamicResource BackgroundThirdLayer}"/>
                             </Style>
                         </TextBox.Styles>
                     </TextBox>
@@ -71,8 +71,8 @@
                             HorizontalAlignment="Right"
                             HorizontalContentAlignment="Center"
                             Width="60"
-                            Foreground="Black"
-                            Background="#CAF0F8"
+                            Foreground="{DynamicResource ForegroundBrush}"
+                            Background="{DynamicResource BackgroundThirdLayer}"
                             FontFamily="Inter"
                             FontWeight="SemiBold"
                             CornerRadius="8"
@@ -83,8 +83,8 @@
                             HorizontalAlignment="Right"
                             HorizontalContentAlignment="Center"
                             Width="60"
-                            Foreground="Black"
-                            Background="#CAF0F8"
+                            Foreground="{DynamicResource ForegroundBrush}"
+                            Background="{DynamicResource BackgroundThirdLayer}"
                             FontFamily="Inter"
                             FontWeight="SemiBold"
                             CornerRadius="8"

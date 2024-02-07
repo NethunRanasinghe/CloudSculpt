@@ -8,7 +8,7 @@
         mc:Ignorable="d" d:DesignWidth="512" d:DesignHeight="512"
         MinWidth="512" MinHeight="512"
         Width="512" Height="512"
-        Background="#023E8A"
+        Background="{DynamicResource BackgroundFirstLayer}"
         x:Class="CloudSculpt.Views.Windows.ConfigCloudInfraEditWindow"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
@@ -33,7 +33,7 @@
                 </Grid.RowDefinitions>
                 
                 <Border Grid.Row="0"
-                        Background="#0077B6"
+                        Background="{DynamicResource BackgroundSecondLayer}"
                         Margin="10"
                         CornerRadius="20">
                     
@@ -48,8 +48,8 @@
                                 Content="Terminal"
                                 FontWeight="SemiBold"
                                 FontFamily="Inter"
-                                Background="#CAF0F8"
-                                Foreground="Black"
+                                Background="{DynamicResource BackgroundThirdLayer}"
+                                Foreground="{DynamicResource ForegroundBrush}"
                                 FontSize="18"
                                 CornerRadius="13"
                                 VerticalContentAlignment="Center"
@@ -65,8 +65,8 @@
                                 Content="Config"
                                 FontWeight="SemiBold"
                                 FontFamily="Inter"
-                                Background="#CAF0F8"
-                                Foreground="Black"
+                                Background="{DynamicResource BackgroundThirdLayer}"
+                                Foreground="{DynamicResource ForegroundBrush}"
                                 FontSize="18"
                                 CornerRadius="13"
                                 VerticalContentAlignment="Center"
@@ -80,7 +80,7 @@
                 </Border>
                 
                 <Border Grid.Row="1"
-                        Background="#0077B6"
+                        Background="{DynamicResource BackgroundSecondLayer}"
                         Margin="10"
                         CornerRadius="20">
                     

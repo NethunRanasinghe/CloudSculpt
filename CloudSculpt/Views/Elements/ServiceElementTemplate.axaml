@@ -12,7 +12,7 @@
         <Button Width="98"
                 Height="50"
                 Cursor="Hand"
-                Background="#CAF0F8"
+                Background="{DynamicResource BackgroundThirdLayer}"
                 CornerRadius="10"
                 Command="{Binding ServiceElementCommand}">
             
@@ -32,7 +32,7 @@
             
                 <Grid Grid.Row="1">
                     <TextBlock Text="{Binding Text}"
-                               Foreground="Black"
+                               Foreground="{DynamicResource ForegroundBrush}"
                                FontFamily="Inter"
                                FontSize="13"
                                FontWeight="SemiBold"

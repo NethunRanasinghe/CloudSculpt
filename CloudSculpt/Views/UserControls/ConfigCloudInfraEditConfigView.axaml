@@ -9,7 +9,7 @@
              x:DataType="viewModels:ServiceElementViewModel">
     
     <Border CornerRadius="20"
-            Background="#0077B6">
+            Background="{DynamicResource BackgroundSecondLayer}">
         
         <Grid Margin="5">
             <Grid.RowDefinitions>
@@ -55,8 +55,8 @@
                         FontFamily="Inter"
                         FontWeight="SemiBold"
                         FontSize="17"
-                        Background="#CAF0F8"
-                        Foreground="Black"
+                        Background="{DynamicResource BackgroundThirdLayer}"
+                        Foreground="{DynamicResource ForegroundBrush}"
                         Margin="10"
                         HorizontalAlignment="Center"
                         HorizontalContentAlignment="Center"
@@ -72,8 +72,8 @@
                         FontFamily="Inter"
                         FontWeight="SemiBold"
                         FontSize="17"
-                        Background="#CAF0F8"
-                        Foreground="Black"
+                        Background="{DynamicResource BackgroundThirdLayer}"
+                        Foreground="{DynamicResource ForegroundBrush}"
                         Margin="10"
                         HorizontalAlignment="Center"
                         HorizontalContentAlignment="Center"
@@ -88,8 +88,8 @@
                         FontFamily="Inter"
                         FontWeight="SemiBold"
                         FontSize="17"
-                        Background="#CAF0F8"
-                        Foreground="Black"
+                        Background="{DynamicResource BackgroundThirdLayer}"
+                        Foreground="{DynamicResource ForegroundBrush}"
                         Margin="10"
                         HorizontalAlignment="Center"
                         HorizontalContentAlignment="Center"
@@ -104,8 +104,8 @@
                         FontFamily="Inter"
                         FontWeight="SemiBold"
                         FontSize="17"
-                        Background="#CAF0F8"
-                        Foreground="Black"
+                        Background="{DynamicResource BackgroundThirdLayer}"
+                        Foreground="{DynamicResource ForegroundBrush}"
                         Margin="10"
                         HorizontalAlignment="Center"
                         HorizontalContentAlignment="Center"
