@@ -19,6 +19,10 @@ public class ServiceElementViewModel : ViewModelBase
     private string _configType;
     private string _configCloudInfraTerminalOutput;
     private bool _hasStarted;
+    private string _containerId;
+    private bool _hasGreeted;
+    private string _distro;
+    private string _tag;
 
 
     public static int ElementCounter { get; set; } = 0;
@@ -92,6 +96,30 @@ public class ServiceElementViewModel : ViewModelBase
         get => _hasStarted;
         set => SetField(ref _hasStarted, value);
     }
+
+    public string ContainerId
+    {
+        get => _containerId;
+        set => SetField(ref _containerId, value);
+    }
+
+    public bool HasGreeted
+    {
+        get => _hasGreeted;
+        set => SetField(ref _hasGreeted, value);
+    }
+    
+    public string Distro
+    {
+        get => _distro;
+        set => SetField(ref _distro, value);
+    }
+    
+    public string Tag
+    {
+        get => _tag;
+        set => SetField(ref _tag, value);
+    }
     
     public ICommand ServiceElementCommand { get; }
     public ICommand ServiceElementCanvasEditCommand { get; }
@@ -125,6 +153,16 @@ public class ServiceElementViewModel : ViewModelBase
         
         // Initial TextBox Enable Status
         HasStarted = false;
+        
+        // Initial Has Greeted Status
+        HasGreeted = false;
+        
+        // Initial Container Id
+        ContainerId = string.Empty;
+        
+        // Default Distro and Tag
+        Distro = "ubuntu";
+        Tag = "latest";
         
         // Commands
         ServiceElementCommand = new ServiceElementAddCommand(this);
