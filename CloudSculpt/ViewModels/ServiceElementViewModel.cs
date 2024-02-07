@@ -17,6 +17,9 @@ public class ServiceElementViewModel : ViewModelBase
     private double _elementClickedLeft;
     private double _elementClickedTop;
     private string _configType;
+    private string _configCloudInfraTerminalOutput;
+    private bool _hasStarted;
+
 
     public static int ElementCounter { get; set; } = 0;
     public static double CanvasWidth { get; set; } = 0;
@@ -78,6 +81,18 @@ public class ServiceElementViewModel : ViewModelBase
         set => SetField(ref _configType, value);
     }
     
+    public string ConfigCloudInfraTerminalOutput
+    {
+        get => _configCloudInfraTerminalOutput;
+        set => SetField(ref _configCloudInfraTerminalOutput, value);
+    }
+    
+    public bool HasStarted
+    {
+        get => _hasStarted;
+        set => SetField(ref _hasStarted, value);
+    }
+    
     public ICommand ServiceElementCommand { get; }
     public ICommand ServiceElementCanvasEditCommand { get; }
     public ICommand ServiceElementCanvasDeleteCommand { get; }
@@ -85,6 +100,9 @@ public class ServiceElementViewModel : ViewModelBase
     public ICommand ServiceElementCanvasPointerReleasedCommand { get; }
     public ICommand ServiceElementCanvasPointerMovedCommand { get; }
     public ICommand ConfigCloudInfraEditConfigCancelCommand { get; }
+    public ICommand ConfigCloudInfraEditTerminalKeyDownCommand { get; }
+    public ICommand ConfigCloudInfraEditWindowTerminalStartCommand { get; }
+    public ICommand ConfigCloudInfraEditWindowTerminalStopCommand { get; }
 
     public ServiceElementViewModel()
     {
@@ -102,6 +120,12 @@ public class ServiceElementViewModel : ViewModelBase
         CanvasLeft = 0;
         CanvasTop = 0;
         
+        // Initial Terminal Output
+        ConfigCloudInfraTerminalOutput = string.Empty;
+        
+        // Initial TextBox Enable Status
+        HasStarted = false;
+        
         // Commands
         ServiceElementCommand = new ServiceElementAddCommand(this);
         ServiceElementCanvasDeleteCommand = new ServiceElementCanvasRemoveCommand(this);
@@ -110,5 +134,8 @@ public class ServiceElementViewModel : ViewModelBase
         ServiceElementCanvasPointerReleasedCommand = new ServiceElementCanvasPointerReleased(this);
         ServiceElementCanvasPointerMovedCommand = new ServiceElementCanvasPointerMoved(this);
         ConfigCloudInfraEditConfigCancelCommand = new ConfigCloudInfraEditConfigCancelCommand();
+        ConfigCloudInfraEditTerminalKeyDownCommand = new ConfigCloudInfraEditTerminalKeyDownCommand();
+        ConfigCloudInfraEditWindowTerminalStartCommand = new ConfigCloudInfraEditWindowTerminalStartCommand(this);
+        ConfigCloudInfraEditWindowTerminalStopCommand = new ConfigCloudInfraEditWindowTerminalStopCommand(this);
     }
 }

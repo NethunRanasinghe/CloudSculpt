@@ -14,7 +14,6 @@ public class ConfigCloudInfraEditViewModel : ViewModelBase
     private ViewModelBase _configCloudInfraEditCurrentViewModel;
     private bool _configButtonSelected;
     private bool _terminalButtonSelected;
-
     public static bool IsOneActive { get; private set; }
 
     public ConfigCloudInfraEditWindow ConfigCloudInfraEditWindow
