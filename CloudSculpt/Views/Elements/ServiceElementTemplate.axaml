@@ -32,7 +32,7 @@
             
                 <Grid Grid.Row="1">
                     <TextBlock Text="{Binding Text}"
-                               Foreground="{DynamicResource ForegroundBrush}"
+                               Foreground="{DynamicResource ForegroundMainBrush}"
                                FontFamily="Inter"
                                FontSize="13"
                                FontWeight="SemiBold"

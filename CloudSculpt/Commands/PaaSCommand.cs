@@ -16,8 +16,8 @@ public class PaaSCommand (ConfigureCloudInfraViewModel configureCloudInfraViewMo
         
         Dictionary<string, List<string>> paaSComponents = new Dictionary<string, List<string>>()
         {
-            {"Containers", ["avares://CloudSculpt/Assets/dockerBlack.png","Container Config"]},
-            {"Kubernetes", ["avares://CloudSculpt/Assets/kubernetesBlack.png","Cluster Config"]}
+            {"Containers", ["avares://CloudSculpt/Assets/dockerBlack.png","Container Config", "d"]},
+            {"Kubernetes", ["avares://CloudSculpt/Assets/kubernetesBlack.png","Cluster Config", "k"]}
         };
         
         // Clear collection
@@ -28,6 +28,7 @@ public class PaaSCommand (ConfigureCloudInfraViewModel configureCloudInfraViewMo
             var serviceElementViewModel = new ServiceElementViewModel
             {
                 Text = component.Key,
+                TempName = component.Key,
                 Image = new Bitmap(AssetLoader.Open(new Uri(component.Value[0]))),
                 ConfigType = component.Value[1]
             };

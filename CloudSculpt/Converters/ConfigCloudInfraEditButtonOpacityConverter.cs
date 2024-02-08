@@ -4,7 +4,7 @@ using Avalonia.Data.Converters;
 
 namespace CloudSculpt.Converters;
 
-public class ConfigCloudInfraEditButtonOpacity : IValueConverter
+public class ConfigCloudInfraEditButtonOpacityConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {

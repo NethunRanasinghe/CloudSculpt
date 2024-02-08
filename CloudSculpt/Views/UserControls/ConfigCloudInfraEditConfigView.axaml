@@ -3,11 +3,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+             xmlns:converters="clr-namespace:CloudSculpt.Converters"
              mc:Ignorable="d" d:DesignWidth="492" d:DesignHeight="407"
              Width="492" Height="407"
              x:Class="CloudSculpt.Views.UserControls.ConfigCloudInfraEditConfigView"
              x:DataType="viewModels:ServiceElementViewModel">
     
+        <UserControl.Resources>
+                <converters:ConfigCloudInfraEditDistroConverter x:Key="ConfigCloudInfraEditDistroConverter"/>
+                <converters:ConfigCloudInfraEditOsTypeConverter x:Key="ConfigCloudInfraEditOsTypeConverter"/>
+        </UserControl.Resources>
+        
     <Border CornerRadius="20"
             Background="{DynamicResource BackgroundSecondLayer}">
         
@@ -15,10 +21,9 @@
             <Grid.RowDefinitions>
                     <RowDefinition Height=".4*"/>
                     <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition Height=".4*"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height=".2*"/>
+                    <RowDefinition Height=".7*"/>
+                    <RowDefinition Height=".5*"/>
             </Grid.RowDefinitions>
                 
             <!--Config-->
@@ -26,21 +31,116 @@
                        Text="{Binding ConfigType, FallbackValue=Binding Failed}"
                        FontFamily="Inter"
                        FontSize="20"
-                       Foreground="White"
+                       Foreground="{DynamicResource ForegroundSecondaryBrush}"
                        FontWeight="SemiBold"
                        HorizontalAlignment="Center"/>
+            
+            <ScrollViewer Grid.Row="1"
+                          Margin="5 0"
+                          VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                            <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            
+                            <!--Name Row-->
+                            <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width=".5*"/>
+                                            <ColumnDefinition Width=".5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Grid.Column="0"
+                                               Text="Name"
+                                               FontFamily="Inter"
+                                               FontSize="15"
+                                               Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                                               FontWeight="SemiBold"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <TextBox Grid.Column="1"
+                                             Text="{Binding TempName, Mode=TwoWay}"
+                                             Width="200"
+                                             FontFamily="Inter"
+                                             FontSize="15"
+                                             HorizontalAlignment="Right"
+                                             CornerRadius="8"
+                                             VerticalAlignment="Center"/>
+                            </Grid>
+                            
+                            <!--OS-->
+                            <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width=".5*"/>
+                                            <ColumnDefinition Width=".5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Grid.Column="0"
+                                               Text="OS Type"
+                                               FontFamily="Inter"
+                                               FontSize="15"
+                                               Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                                               FontWeight="SemiBold"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <ComboBox Grid.Column="1"
+                                              Width="200"
+                                              FontFamily="Inter"
+                                              FontSize="15"
+                                              HorizontalAlignment="Right"
+                                              VerticalAlignment="Center"
+                                              CornerRadius="8"
+                                              Cursor="Hand"
+                                              ToolTip.Tip="Right Click To Open Menu !"
+                                              ItemsSource="{Binding ElementType, Converter={StaticResource ConfigCloudInfraEditOsTypeConverter}}"/>
+                            </Grid>
+                            
+                            <!--Distro-->
+                            <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width=".5*"/>
+                                            <ColumnDefinition Width=".5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Grid.Column="0"
+                                               Text="Distro"
+                                               FontFamily="Inter"
+                                               FontSize="15"
+                                               Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                                               FontWeight="SemiBold"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <ComboBox Grid.Column="1"
+                                              Width="200"
+                                              FontFamily="Inter"
+                                              FontSize="15"
+                                              HorizontalAlignment="Right"
+                                              VerticalAlignment="Center"
+                                              CornerRadius="8"
+                                              Cursor="Hand"
+                                              ToolTip.Tip="Right Click To Open Menu !"
+                                              ItemsSource="{Binding ElementType, Converter={StaticResource ConfigCloudInfraEditDistroConverter}}"/>
+                            </Grid>
+                    </Grid>
+            </ScrollViewer>
                 
             <!--Post Install Script-->
             <TextBlock Grid.Row="3"
                        Text="Post Install Scripts"
                        FontFamily="Inter"
                        FontSize="20"
-                       Foreground="White"
+                       Foreground="{DynamicResource ForegroundSecondaryBrush}"
                        FontWeight="SemiBold"
                        HorizontalAlignment="Center"/>
                 
             <!--Buttons-->
-            <Grid Grid.Row="5">
+            <Grid Grid.Row="4">
                 
                 <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -56,7 +156,7 @@
                         FontWeight="SemiBold"
                         FontSize="17"
                         Background="{DynamicResource BackgroundThirdLayer}"
-                        Foreground="{DynamicResource ForegroundBrush}"
+                        Foreground="{DynamicResource ForegroundMainBrush}"
                         Margin="10"
                         HorizontalAlignment="Center"
                         HorizontalContentAlignment="Center"
@@ -73,7 +173,7 @@
                         FontWeight="SemiBold"
                         FontSize="17"
                         Background="{DynamicResource BackgroundThirdLayer}"
-                        Foreground="{DynamicResource ForegroundBrush}"
+                        Foreground="{DynamicResource ForegroundMainBrush}"
                         Margin="10"
                         HorizontalAlignment="Center"
                         HorizontalContentAlignment="Center"
@@ -89,7 +189,7 @@
                         FontWeight="SemiBold"
                         FontSize="17"
                         Background="{DynamicResource BackgroundThirdLayer}"
-                        Foreground="{DynamicResource ForegroundBrush}"
+                        Foreground="{DynamicResource ForegroundMainBrush}"
                         Margin="10"
                         HorizontalAlignment="Center"
                         HorizontalContentAlignment="Center"
@@ -105,7 +205,7 @@
                         FontWeight="SemiBold"
                         FontSize="17"
                         Background="{DynamicResource BackgroundThirdLayer}"
-                        Foreground="{DynamicResource ForegroundBrush}"
+                        Foreground="{DynamicResource ForegroundMainBrush}"
                         Margin="10"
                         HorizontalAlignment="Center"
                         HorizontalContentAlignment="Center"
@@ -113,7 +213,8 @@
                         VerticalContentAlignment="Center"
                         Height="40" Width="93"
                         CornerRadius="10"
-                        Cursor="Hand"/>
+                        Cursor="Hand"
+                        Command="{Binding ConfigCloudInfraEditConfigApplyCommand}"/>
                         
             </Grid>
         </Grid>

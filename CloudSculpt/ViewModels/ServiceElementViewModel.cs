@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Input;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
@@ -15,6 +14,7 @@ public class ServiceElementViewModel : ViewModelBase
     private double _canvasTop;
     private int _elementIndex;
     private bool _isPressed;
+    private string _elementType;
     private double _elementClickedLeft;
     private double _elementClickedTop;
     private string _configType;
@@ -24,20 +24,16 @@ public class ServiceElementViewModel : ViewModelBase
     private bool _hasGreeted;
     private string _distro;
     private string _tag;
-
-
+    private string _osType;
+    private string _tempName;
+    private string _tempDistro;
+    private string _tempTag;
+    
     public static int ElementCounter { get; set; } = 0;
     public static double CanvasWidth { get; set; } = 0;
     public static double CanvasHeight { get; set; } = 0;
     public static double CanvasScreenX { get; set; } = 0;
     public static double CanvasScreenY { get; set; } = 0;
-
-    public static Dictionary<string, List<string>> VmTypes = new()
-    {
-        {"ubuntu",["22.04","20.04"]},
-        {"debian",["12"]},
-        {"amazonlinux",["2023"]}
-    };
 
     public string Text
     {
@@ -73,6 +69,12 @@ public class ServiceElementViewModel : ViewModelBase
     {
         get => _isPressed;
         set => SetField(ref _isPressed, value);
+    }
+    
+    public string ElementType
+    {
+        get => _elementType;
+        set => SetField(ref _elementType, value);
     }
     
     public double ElementClickedLeft
@@ -129,6 +131,30 @@ public class ServiceElementViewModel : ViewModelBase
         set => SetField(ref _tag, value);
     }
     
+    public string OsType
+    {
+        get => _osType;
+        set => SetField(ref _osType, value);
+    }
+    
+    public string TempName
+    {
+        get => _tempName;
+        set => SetField(ref _tempName, value);
+    }
+    
+    public string TempDistro
+    {
+        get => _tempDistro;
+        set => SetField(ref _tempDistro, value);
+    }
+    
+    public string TempTag
+    {
+        get => _tempTag;
+        set => SetField(ref _tempTag, value);
+    }
+    
     public ICommand ServiceElementCommand { get; }
     public ICommand ServiceElementCanvasEditCommand { get; }
     public ICommand ServiceElementCanvasDeleteCommand { get; }
@@ -139,6 +165,7 @@ public class ServiceElementViewModel : ViewModelBase
     public ICommand ConfigCloudInfraEditTerminalKeyDownCommand { get; }
     public ICommand ConfigCloudInfraEditWindowTerminalStartCommand { get; }
     public ICommand ConfigCloudInfraEditWindowTerminalStopCommand { get; }
+    public ICommand ConfigCloudInfraEditConfigApplyCommand { get; }
 
     public ServiceElementViewModel()
     {
@@ -165,12 +192,21 @@ public class ServiceElementViewModel : ViewModelBase
         // Initial Has Greeted Status
         HasGreeted = false;
         
-        // Initial Container Id
+        // Initial container ID 
         ContainerId = string.Empty;
         
+        // Initial element status
+        ElementType = string.Empty;
+        
         // Default Distro and Tag
+        OsType = "Linux";
         Distro = "ubuntu";
         Tag = "latest";
+        
+        // Set Initial temp values
+        TempDistro = Distro;
+        TempName = Text;
+        TempTag = Tag;
         
         // Commands
         ServiceElementCommand = new ServiceElementAddCommand(this);
@@ -183,5 +219,6 @@ public class ServiceElementViewModel : ViewModelBase
         ConfigCloudInfraEditTerminalKeyDownCommand = new ConfigCloudInfraEditTerminalKeyDownCommand();
         ConfigCloudInfraEditWindowTerminalStartCommand = new ConfigCloudInfraEditWindowTerminalStartCommand(this);
         ConfigCloudInfraEditWindowTerminalStopCommand = new ConfigCloudInfraEditWindowTerminalStopCommand(this);
+        ConfigCloudInfraEditConfigApplyCommand = new ConfigCloudInfraEditConfigApplyCommand(this);
     }
 }

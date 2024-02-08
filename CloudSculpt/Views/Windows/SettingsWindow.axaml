@@ -30,7 +30,7 @@
                                    FontSize="46"
                                    FontFamily="Inter"
                                    FontWeight="SemiBold"
-                                   Foreground="White"
+                                   Foreground="{DynamicResource ForegroundSecondaryBrush}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"/>
                 </Grid>
@@ -79,14 +79,14 @@
                                                                            Text="Os : "
                                                                            FontSize="18"
                                                                            FontWeight="SemiBold"
-                                                                           Foreground="{DynamicResource ForegroundBrush}"/>
+                                                                           Foreground="{DynamicResource ForegroundMainBrush}"/>
                                                                 
                                                                 <!--Docker Status-->
                                                                 <TextBlock Grid.Row="1"
                                                                            Text="Docker Status : "
                                                                            FontSize="18"
                                                                            FontWeight="SemiBold"
-                                                                           Foreground="{DynamicResource ForegroundBrush}"/>
+                                                                           Foreground="{DynamicResource ForegroundMainBrush}"/>
                                                         </Grid>
                                                         
                                                         <!--OS, Docker Status Status-->
@@ -103,7 +103,7 @@
                                                                            FontSize="18"
                                                                            FontWeight="Normal"
                                                                            x:Name="SettingsOsTextBlock"
-                                                                           Foreground="{DynamicResource ForegroundBrush}"/>
+                                                                           Foreground="{DynamicResource ForegroundMainBrush}"/>
                                                                 
                                                                 <!--Docker Status-->
                                                                 <TextBlock Grid.Row="1"
@@ -111,7 +111,7 @@
                                                                            FontSize="18"
                                                                            FontWeight="Normal"
                                                                            x:Name="SettingsDockerStatusTextBlock"
-                                                                           Foreground="{DynamicResource ForegroundBrush}"/>
+                                                                           Foreground="{DynamicResource ForegroundMainBrush}"/>
                                                         </Grid>
                                                 </Grid>
                                         </Border>
@@ -134,7 +134,7 @@
                                                                    FontWeight="SemiBold"
                                                                    HorizontalAlignment="Center"
                                                                    VerticalAlignment="Center"
-                                                                   Foreground="{DynamicResource ForegroundBrush}"/>
+                                                                   Foreground="{DynamicResource ForegroundMainBrush}"/>
                                                         
                                                         <!--Log Content-->
                                                         <ScrollViewer Grid.Row="1"
@@ -151,7 +151,7 @@
                                                                            VerticalAlignment="Top"
                                                                            Margin="5 0"
                                                                            x:Name="SettingsLogContentTextBlock"
-                                                                           Foreground="{DynamicResource ForegroundBrush}"/>
+                                                                           Foreground="{DynamicResource ForegroundMainBrush}"/>
                                                         </ScrollViewer>
                                                 </Grid>
                                         </Border>
@@ -174,7 +174,7 @@
                                                         Width="200"
                                                         Height="44"
                                                         Background="{DynamicResource BackgroundThirdLayer}"
-                                                        Foreground="{DynamicResource ForegroundBrush}"
+                                                        Foreground="{DynamicResource ForegroundMainBrush}"
                                                         CornerRadius="13"
                                                         FontFamily="Inter"
                                                         FontSize="20"
@@ -192,7 +192,7 @@
                                                         Width="200"
                                                         Height="44"
                                                         Background="{DynamicResource BackgroundThirdLayer}"
-                                                        Foreground="{DynamicResource ForegroundBrush}"
+                                                        Foreground="{DynamicResource ForegroundMainBrush}"
                                                         CornerRadius="13"
                                                         FontFamily="Inter"
                                                         FontSize="20"
@@ -210,7 +210,7 @@
                                                         Width="200"
                                                         Height="44"
                                                         Background="{DynamicResource BackgroundThirdLayer}"
-                                                        Foreground="{DynamicResource ForegroundBrush}"
+                                                        Foreground="{DynamicResource ForegroundMainBrush}"
                                                         CornerRadius="13"
                                                         FontFamily="Inter"
                                                         FontSize="20"

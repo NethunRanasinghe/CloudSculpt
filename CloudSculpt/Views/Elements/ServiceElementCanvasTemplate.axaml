@@ -83,7 +83,7 @@
                             
                             <TextBlock Grid.Row="1" 
                                        Text="{Binding Text}"
-                                       Foreground="{DynamicResource ForegroundBrush}"
+                                       Foreground="{DynamicResource ForegroundMainBrush}"
                                        FontFamily="Inter"
                                        FontSize="15"
                                        FontWeight="SemiBold"

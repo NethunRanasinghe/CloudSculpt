@@ -16,7 +16,7 @@ public class IaaSCommand (ConfigureCloudInfraViewModel configureCloudInfraViewMo
         
         Dictionary<string, List<string>> iaaSComponents = new Dictionary<string, List<string>>()
         {
-            {"VMs", ["avares://CloudSculpt/Assets/vm.png", "VM Config"]}
+            {"VMs", ["avares://CloudSculpt/Assets/vm.png", "VM Config", "v"]}
         };
         
         // Clear collection
@@ -27,8 +27,10 @@ public class IaaSCommand (ConfigureCloudInfraViewModel configureCloudInfraViewMo
             var serviceElementViewModel = new ServiceElementViewModel
             {
                 Text = component.Key,
+                TempName = component.Key,
                 Image = new Bitmap(AssetLoader.Open(new Uri(component.Value[0]))),
-                ConfigType = component.Value[1]
+                ConfigType = component.Value[1],
+                ElementType = component.Value[2]
             };
             
             configureCloudInfraViewModel.ServiceElements.Add(serviceElementViewModel);

@@ -17,7 +17,7 @@
         x:DataType="viewModels:ConfigCloudInfraEditViewModel">
     
     <Window.Resources>
-        <converters:ConfigCloudInfraEditButtonOpacity x:Key="ConfigCloudInfraEditButtonOpacity"/>
+        <converters:ConfigCloudInfraEditButtonOpacityConverter x:Key="ConfigCloudInfraEditButtonOpacity"/>
     </Window.Resources>
     
     <Interaction.Behaviors>
@@ -49,7 +49,7 @@
                                 FontWeight="SemiBold"
                                 FontFamily="Inter"
                                 Background="{DynamicResource BackgroundThirdLayer}"
-                                Foreground="{DynamicResource ForegroundBrush}"
+                                Foreground="{DynamicResource ForegroundMainBrush}"
                                 FontSize="18"
                                 CornerRadius="13"
                                 VerticalContentAlignment="Center"
@@ -66,7 +66,7 @@
                                 FontWeight="SemiBold"
                                 FontFamily="Inter"
                                 Background="{DynamicResource BackgroundThirdLayer}"
-                                Foreground="{DynamicResource ForegroundBrush}"
+                                Foreground="{DynamicResource ForegroundMainBrush}"
                                 FontSize="18"
                                 CornerRadius="13"
                                 VerticalContentAlignment="Center"

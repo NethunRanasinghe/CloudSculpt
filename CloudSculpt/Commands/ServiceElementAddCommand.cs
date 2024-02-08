@@ -12,13 +12,16 @@ public class ServiceElementAddCommand (ServiceElementViewModel element) : Comman
         var elementName = element.Text;
         var elementImage = element.Image;
         var configType = element.ConfigType;
+        var elementType = element.ElementType;
         
         var serviceElementViewModel = new ServiceElementViewModel
         {
             Text = elementName,
+            TempName = elementName,
             Image = elementImage,
             ElementIndex = elementIndex,
-            ConfigType = configType
+            ConfigType = configType,
+            ElementType = elementType
         };
         
         EventAggregator.Instance.Publish(new AddServiceElementEvent(serviceElementViewModel));

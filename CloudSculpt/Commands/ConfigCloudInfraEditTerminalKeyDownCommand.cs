@@ -68,7 +68,7 @@ public class ConfigCloudInfraEditTerminalKeyDownCommand: CommandBase
         serviceElementViewModel.HasStarted = true;
     }
 
-    private static async Task<string> ExecuteCommand(ServiceElementViewModel serviceElementViewModel, string inputValue)
+    private async Task<string> ExecuteCommand(ServiceElementViewModel serviceElementViewModel, string inputValue)
     {
         var arguments = $"exec {serviceElementViewModel.ContainerId} {inputValue}";
         var outputValue = await Cli.Wrap("docker")
@@ -78,7 +78,7 @@ public class ConfigCloudInfraEditTerminalKeyDownCommand: CommandBase
         return outputValue.StandardOutput;
     }
     
-    private static async Task<string> StartAndExecuteCommand(ServiceElementViewModel serviceElementViewModel, string inputValue)
+    private async Task<string> StartAndExecuteCommand(ServiceElementViewModel serviceElementViewModel, string inputValue)
     {
         var containerId = serviceElementViewModel.ContainerId;
         var distro = serviceElementViewModel.Distro;
@@ -97,7 +97,7 @@ public class ConfigCloudInfraEditTerminalKeyDownCommand: CommandBase
         return commandOutput;
     }
 
-    private static void PrintToOutput(ServiceElementViewModel serviceElementViewModel, string outputValue)
+    private void PrintToOutput(ServiceElementViewModel serviceElementViewModel, string outputValue)
     {
         serviceElementViewModel.ConfigCloudInfraTerminalOutput += $"Output >> {outputValue}\n";
     }

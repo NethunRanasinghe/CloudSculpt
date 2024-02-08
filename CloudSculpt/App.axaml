@@ -12,14 +12,16 @@
                              <SolidColorBrush x:Key='BackgroundFirstLayer'>#023E8A</SolidColorBrush>
                              <SolidColorBrush x:Key='BackgroundSecondLayer'>#0077B6</SolidColorBrush>
                              <SolidColorBrush x:Key='BackgroundThirdLayer'>#CAF0F8</SolidColorBrush>
-                             <SolidColorBrush x:Key='ForegroundBrush'>Black</SolidColorBrush>
+                             <SolidColorBrush x:Key='ForegroundMainBrush'>Black</SolidColorBrush>
+                             <SolidColorBrush x:Key='ForegroundSecondaryBrush'>White</SolidColorBrush>
                          </ResourceDictionary>
                 
                          <ResourceDictionary x:Key="Dark">
                              <SolidColorBrush x:Key='BackgroundFirstLayer'>Black</SolidColorBrush>
                              <SolidColorBrush x:Key='BackgroundSecondLayer'>#212529</SolidColorBrush>
                              <SolidColorBrush x:Key='BackgroundThirdLayer'>#495057</SolidColorBrush>
-                             <SolidColorBrush x:Key='ForegroundBrush'>White</SolidColorBrush>
+                             <SolidColorBrush x:Key='ForegroundMainBrush'>White</SolidColorBrush>
+                             <SolidColorBrush x:Key='ForegroundSecondaryBrush'>Black</SolidColorBrush>
                          </ResourceDictionary>
                      </ResourceDictionary.ThemeDictionaries>
                  </ResourceDictionary>
