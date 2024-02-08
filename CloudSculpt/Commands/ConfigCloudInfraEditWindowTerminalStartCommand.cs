@@ -1,4 +1,5 @@
-﻿using CloudSculpt.ViewModels;
+﻿using CloudSculpt.HelperClasses;
+using CloudSculpt.ViewModels;
 
 namespace CloudSculpt.Commands;
 
@@ -6,6 +7,9 @@ public class ConfigCloudInfraEditWindowTerminalStartCommand (ServiceElementViewM
 {
     public override async void Execute(object? parameter)
     {
+        var dockerStatus = await DockerManage.VerifyDockerStatus();
+        if (!string.IsNullOrWhiteSpace(dockerStatus)) return;
+        
         // Info
         var distro = serviceElementViewModel.Distro;
         var tag = serviceElementViewModel.Tag;
@@ -26,15 +30,14 @@ public class ConfigCloudInfraEditWindowTerminalStartCommand (ServiceElementViewM
         serviceElementViewModel.ConfigCloudInfraTerminalOutput += "Status: Starting....\n";
         
         // Start the container
-        var dockerHelper = new HelperClasses.Docker();
         if (string.IsNullOrWhiteSpace(serviceElementViewModel.ContainerId))
         {
-            await dockerHelper.PullImage(distro,tag);
-            var containerId = await dockerHelper.CreateContainer($"{distro}:{tag}");
+            await HelperClasses.DockerManage.PullImage(distro,tag);
+            var containerId = await DockerManage.CreateContainer($"{distro}:{tag}");
             serviceElementViewModel.ContainerId = containerId;
         }
         
-        await dockerHelper.StartContainer(serviceElementViewModel.ContainerId);
+        await DockerManage.StartContainer(serviceElementViewModel.ContainerId);
         serviceElementViewModel.ConfigCloudInfraTerminalOutput += "Status: Started !\n";
         
         // Enable the command TextBox

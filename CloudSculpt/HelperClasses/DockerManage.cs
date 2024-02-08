@@ -12,7 +12,7 @@ using MsBox.Avalonia.Enums;
 
 namespace CloudSculpt.HelperClasses;
 
-public class Docker
+public class DockerManage
 {
     /*
      *                              Method  Test    Notes
@@ -30,18 +30,18 @@ public class Docker
 
     #region Image Management
 
-    public async Task<IList<ImagesListResponse>> ListImages()
+    public static async Task<IList<ImagesListResponse>> ListImages()
     {
-        DockerClient client = new DockerClientConfiguration().CreateClient();
+        var client = new DockerClientConfiguration().CreateClient();
         IList<ImagesListResponse> images = await client.Images.ListImagesAsync(
             new ImagesListParameters(){});
 
         return images;
     }
     
-    public async Task PullImage(string imageName, string imageTag)
+    public static async Task PullImage(string imageName, string imageTag)
     {
-        DockerClient client = new DockerClientConfiguration().CreateClient();
+        var client = new DockerClientConfiguration().CreateClient();
         await client.Images.CreateImageAsync(
             new ImagesCreateParameters
             {
@@ -53,22 +53,22 @@ public class Docker
         
     }
     
-    public async Task RemoveImage(string imageName)
+    public static async Task RemoveImage(string imageName)
     {
-        DockerClient client = new DockerClientConfiguration().CreateClient();
+        var client = new DockerClientConfiguration().CreateClient();
         await client.Images.DeleteImageAsync(imageName, new ImageDeleteParameters());
     }
     
-    public async Task BuildDockerFile(string dockerFilePath, string imageTag)
+    public static async Task BuildDockerFile(string dockerFilePath, string imageTag)
     {
-        string inputDockerfile = Path.Combine(dockerFilePath, "Dockerfile");
-        string outputTarGzPath = Path.Combine(dockerFilePath, "dockerfile.tar.gz");
+        var inputDockerfile = Path.Combine(dockerFilePath, "Dockerfile");
+        var outputTarGzPath = Path.Combine(dockerFilePath, "dockerfile.tar.gz");
         
         CreateTarGzFile(inputDockerfile, outputTarGzPath);
 
         if (File.Exists(inputDockerfile))
         {
-            DockerClient client = new DockerClientConfiguration().CreateClient();
+            var client = new DockerClientConfiguration().CreateClient();
 
             await using var stream = File.OpenRead(outputTarGzPath);
         
@@ -116,24 +116,28 @@ public class Docker
 
     #region Container Management
 
-    public async Task<IList<ContainerListResponse>> ListContainers()
+    private static readonly string[] DnsParameters = ["8.8.8.8", "1.1.1.1"];
+    private static readonly string[] CommandParameters = ["/bin/bash", "-c", "tail -f /dev/null"];
+    
+    public static async Task<IList<ContainerListResponse>> ListContainers()
     {
-        DockerClient client = new DockerClientConfiguration().CreateClient();
+        var client = new DockerClientConfiguration().CreateClient();
         IList<ContainerListResponse> containers = await client.Containers.ListContainersAsync(
             new ContainersListParameters(){});
 
         return containers;
     }
 
-    public async Task<string> CreateContainer(string imageName)
+    public static async Task<string> CreateContainer(string imageName)
     {
-        DockerClient client = new DockerClientConfiguration().CreateClient();
+        var client = new DockerClientConfiguration().CreateClient();
         var createdContainer = await client.Containers.CreateContainerAsync(new CreateContainerParameters()
         {
             Image = imageName,
             HostConfig = new HostConfig()
             {
-                DNS = new[] { "8.8.8.8", "1.1.1.1" }
+                DNS = DnsParameters,
+                NetworkMode = "host"
             }
         });
 
@@ -141,25 +145,43 @@ public class Docker
         return containerId;
     }
 
-    public async Task RemoveContainer(string containerId)
+    public static async Task<string> CreateContainerWithCommand(string imageName)
     {
-        DockerClient client = new DockerClientConfiguration().CreateClient();
+        var client = new DockerClientConfiguration().CreateClient();
+        var createdContainer = await client.Containers.CreateContainerAsync(new CreateContainerParameters()
+        {
+            Image = imageName,
+            Cmd = CommandParameters,
+            HostConfig = new HostConfig()
+            {
+                DNS = DnsParameters,
+                NetworkMode = "host"
+            }
+        });
+
+        var containerId = createdContainer.ID;
+        return containerId;
+    }
+
+    public static async Task RemoveContainer(string containerId)
+    {
+        var client = new DockerClientConfiguration().CreateClient();
         await client.Containers.StopContainerAsync(containerId, new ContainerStopParameters());
         await client.Containers.RemoveContainerAsync(containerId, new ContainerRemoveParameters());
     }
 
-    public async Task StartContainer(string containerId)
+    public static async Task StartContainer(string containerId)
     {
-        DockerClient client = new DockerClientConfiguration().CreateClient();
+        var client = new DockerClientConfiguration().CreateClient();
         await client.Containers.StartContainerAsync(
             containerId,
             new ContainerStartParameters()
         );
     }
 
-    public async Task StopContainer(string containerId)
+    public static async Task StopContainer(string containerId)
     {
-        DockerClient client = new DockerClientConfiguration().CreateClient();
+        var client = new DockerClientConfiguration().CreateClient();
         await client.Containers.StopContainerAsync(
             containerId,
             new ContainerStopParameters()
@@ -170,7 +192,7 @@ public class Docker
 
     #region Other
 
-    public async Task<string> VerifyDockerStatus()
+    public static async Task<string> VerifyDockerStatus()
     {
         string dockerStatus;
         
@@ -194,20 +216,20 @@ public class Docker
         return dockerStatus;
     }
 
-    private void CreateTarGzFile(string sourceFilePath, string tarGzFilePath)
+    private static void CreateTarGzFile(string sourceFilePath, string tarGzFilePath)
     {
         Encoding utf8Encoding = new UTF8Encoding(false);
 
-        using FileStream fs = new FileStream(tarGzFilePath, FileMode.Create);
-        using GZipStream gzipStream = new GZipStream(fs, CompressionMode.Compress);
-        using TarOutputStream tarStream = new TarOutputStream(gzipStream, utf8Encoding);
-        string fileName = Path.GetFileName(sourceFilePath);
+        using var fs = new FileStream(tarGzFilePath, FileMode.Create);
+        using var gzipStream = new GZipStream(fs, CompressionMode.Compress);
+        using var tarStream = new TarOutputStream(gzipStream, utf8Encoding);
+        var fileName = Path.GetFileName(sourceFilePath);
             
-        TarEntry tarEntry = TarEntry.CreateEntryFromFile(sourceFilePath);
+        var tarEntry = TarEntry.CreateEntryFromFile(sourceFilePath);
         tarEntry.Name = fileName;
         tarStream.PutNextEntry(tarEntry);
 
-        using (FileStream fileStream = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read))
+        using (var fileStream = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read))
         {
             fileStream.CopyTo(tarStream);
         }

@@ -13,9 +13,9 @@ public class ServiceElementCanvasRemoveCommand (ServiceElementViewModel element)
         // Remove Container
         if (!string.IsNullOrWhiteSpace(containerId))
         {
-            var dockerHelper = new HelperClasses.Docker();
-            await dockerHelper.StopContainer(containerId);
-            await dockerHelper.RemoveContainer(containerId);
+            var dockerHelper = new HelperClasses.DockerManage();
+            await HelperClasses.DockerManage.StopContainer(containerId);
+            await HelperClasses.DockerManage.RemoveContainer(containerId);
         }
         
         EventAggregator.Instance.Publish(new RemoveServiceElementEvent(elementIndex));
