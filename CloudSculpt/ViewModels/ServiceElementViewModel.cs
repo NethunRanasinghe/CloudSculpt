@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
@@ -30,6 +31,13 @@ public class ServiceElementViewModel : ViewModelBase
     public static double CanvasHeight { get; set; } = 0;
     public static double CanvasScreenX { get; set; } = 0;
     public static double CanvasScreenY { get; set; } = 0;
+
+    public static Dictionary<string, List<string>> VmTypes = new()
+    {
+        {"ubuntu",["22.04","20.04"]},
+        {"debian",["12"]},
+        {"amazonlinux",["2023"]}
+    };
 
     public string Text
     {
