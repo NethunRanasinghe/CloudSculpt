@@ -14,6 +14,7 @@
         <UserControl.Resources>
                 <converters:ConfigCloudInfraEditDistroConverter x:Key="ConfigCloudInfraEditDistroConverter"/>
                 <converters:ConfigCloudInfraEditOsTypeConverter x:Key="ConfigCloudInfraEditOsTypeConverter"/>
+                <converters:BooleanAndConverter x:Key="BooleanAndConverter"/>
         </UserControl.Resources>
     
         <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -70,7 +71,7 @@
                                       Cursor="Hand"
                                       ToolTip.Tip="Right Click To Open Menu !"
                                       ItemsSource="{Binding ElementType, Converter={StaticResource ConfigCloudInfraEditOsTypeConverter}}"
-                                      SelectedItem="{Binding OsType}">
+                                      SelectedItem="{Binding OsType, Mode=OneWay}">
                                     
                                     <Interaction.Behaviors>
                                             <EventTriggerBehavior EventName="SelectionChanged">
@@ -104,10 +105,12 @@
                                       VerticalAlignment="Center"
                                       CornerRadius="8"
                                       Cursor="Hand"
-                                      IsEnabled="{Binding IsLinux}"
+                                      IsEnabled="{Binding TempIsLinux}"
                                       ToolTip.Tip="Right Click To Open Menu !"
                                       ItemsSource="{Binding ElementType, Converter={StaticResource ConfigCloudInfraEditDistroConverter}}"
-                                      SelectedItem="{Binding FullImageNameTag}">
+                                      SelectedItem="{Binding FullImageNameTag, Mode=OneWay}">
+                                    
+                                    
                                     
                                     <Interaction.Behaviors>
                                             <EventTriggerBehavior EventName="SelectionChanged">

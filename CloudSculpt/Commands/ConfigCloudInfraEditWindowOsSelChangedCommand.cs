@@ -9,17 +9,20 @@ public class ConfigCloudInfraEditWindowOsSelChangedCommand(ServiceElementViewMod
     {
         if(parameter is not ComboBox c) return;
         if(c.SelectedItem == null) return;
+
+        serviceElementViewModel.TempOsType = c.SelectedItem.ToString()!;
         
         if (!c.SelectedItem.Equals("linux"))
         {
-            serviceElementViewModel.IsLinux = false;
-            serviceElementViewModel.Distro = string.Empty;
-            serviceElementViewModel.Tag = string.Empty;
+            serviceElementViewModel.TempIsLinux = false;
+            serviceElementViewModel.TempDistro = string.Empty;
+            serviceElementViewModel.TempTag = string.Empty;
             return;
         }
         
-        serviceElementViewModel.IsLinux = true;
-        serviceElementViewModel.Distro = ServiceElementViewModel.DefaultDistro;
-        serviceElementViewModel.Tag = ServiceElementViewModel.DefaultTag;
+        serviceElementViewModel.TempIsLinux = true;
+        if (!string.IsNullOrWhiteSpace(serviceElementViewModel.TempDistro)) return;
+        serviceElementViewModel.TempDistro = ServiceElementViewModel.DefaultDistro;
+        serviceElementViewModel.TempTag = ServiceElementViewModel.DefaultTag;
     }
 }

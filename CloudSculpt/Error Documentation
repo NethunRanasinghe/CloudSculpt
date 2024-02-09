@@ -22,3 +22,8 @@ B001    - Os Binding Failed                 (Settings Window)
 B002    - Docker Status Binding Failed      (Settings Window)
 B003    - Log Binding Failed                (Settings Window)
 B004    - Terminal Binding Failed           (ConfigCloudInfraEditTerminalView)
+
+3. Container Related
+
+C001    - Trying To Edit Container Running  (ConfigCloudInfraEditConfigApply)
+C002    - Trying To Edit Container Stopped  (ConfigCloudInfraEditConfigApply)

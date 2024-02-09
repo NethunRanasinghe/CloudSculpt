@@ -25,10 +25,12 @@ public class ServiceElementViewModel : ViewModelBase
     private string _distro;
     private string _tag;
     private string _osType;
+    private string _tempOsType;
     private string _tempName;
     private string _tempDistro;
     private string _tempTag;
     private bool _isLinux;
+    private bool _tempIsLinux;
     
     public static int ElementCounter { get; set; } = 0;
     public static double CanvasWidth { get; set; } = 0;
@@ -154,6 +156,12 @@ public class ServiceElementViewModel : ViewModelBase
         set => SetField(ref _osType, value);
     }
     
+    public string TempOsType
+    {
+        get => _tempOsType;
+        set => SetField(ref _tempOsType, value);
+    }
+    
     public string TempName
     {
         get => _tempName;
@@ -176,6 +184,12 @@ public class ServiceElementViewModel : ViewModelBase
     {
         get => _isLinux;
         set => SetField(ref _isLinux, value);
+    }
+    
+    public bool TempIsLinux
+    {
+        get => _tempIsLinux;
+        set => SetField(ref _tempIsLinux, value);
     }
     
     public string FullImageNameTag
@@ -234,11 +248,11 @@ public class ServiceElementViewModel : ViewModelBase
         Tag = DefaultTag;
         
         // Initial IsLinuxValue
-        IsLinux = false;
+        IsLinux = true;
         
         // Set Initial temp values
-        TempDistro = string.Empty;
-        TempTag = string.Empty;
+        TempDistro = Distro;
+        TempTag = Tag;
         TempName = Text;
         
         // Commands
