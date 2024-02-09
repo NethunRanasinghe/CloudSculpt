@@ -32,7 +32,7 @@
                            FontSize="46"
                            FontFamily="Inter"
                            FontWeight="SemiBold"
-                           Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                           Foreground="{DynamicResource ForegroundTitleBrush}"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Bottom"/>
             </Grid>

@@ -14,6 +14,8 @@
                              <SolidColorBrush x:Key='BackgroundThirdLayer'>#CAF0F8</SolidColorBrush>
                              <SolidColorBrush x:Key='ForegroundMainBrush'>Black</SolidColorBrush>
                              <SolidColorBrush x:Key='ForegroundSecondaryBrush'>White</SolidColorBrush>
+                             <SolidColorBrush x:Key='ForegroundTitleBrush'>White</SolidColorBrush>
+
                          </ResourceDictionary>
                 
                          <ResourceDictionary x:Key="Dark">
@@ -22,6 +24,7 @@
                              <SolidColorBrush x:Key='BackgroundThirdLayer'>#495057</SolidColorBrush>
                              <SolidColorBrush x:Key='ForegroundMainBrush'>White</SolidColorBrush>
                              <SolidColorBrush x:Key='ForegroundSecondaryBrush'>Black</SolidColorBrush>
+                             <SolidColorBrush x:Key='ForegroundTitleBrush'>White</SolidColorBrush>
                          </ResourceDictionary>
                      </ResourceDictionary.ThemeDictionaries>
                  </ResourceDictionary>

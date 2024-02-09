@@ -28,7 +28,7 @@
                        Text="{Binding ConfigType, FallbackValue=Binding Failed}"
                        FontFamily="Inter"
                        FontSize="20"
-                       Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                       Foreground="{DynamicResource ForegroundTitleBrush}"
                        FontWeight="SemiBold"
                        HorizontalAlignment="Center"/>
             

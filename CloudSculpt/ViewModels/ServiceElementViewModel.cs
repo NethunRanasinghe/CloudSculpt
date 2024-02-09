@@ -28,6 +28,7 @@ public class ServiceElementViewModel : ViewModelBase
     private string _tempName;
     private string _tempDistro;
     private string _tempTag;
+    private bool _isLinux;
     
     public static int ElementCounter { get; set; } = 0;
     public static double CanvasWidth { get; set; } = 0;
@@ -35,6 +36,10 @@ public class ServiceElementViewModel : ViewModelBase
     public static double CanvasScreenX { get; set; } = 0;
     public static double CanvasScreenY { get; set; } = 0;
 
+    const string DefaultOs = "linux";
+    const string DefaultDistro = "ubuntu";
+    const string DefaultTag = "22.04";
+    
     public string Text
     {
         get => _text;
@@ -155,6 +160,17 @@ public class ServiceElementViewModel : ViewModelBase
         set => SetField(ref _tempTag, value);
     }
     
+    public bool IsLinux
+    {
+        get => _isLinux;
+        set => SetField(ref _isLinux, value);
+    }
+    
+    public string FullImageNameTag
+    {
+        get => $"{Distro} {Tag}";
+    }
+    
     public ICommand ServiceElementCommand { get; }
     public ICommand ServiceElementCanvasEditCommand { get; }
     public ICommand ServiceElementCanvasDeleteCommand { get; }
@@ -166,6 +182,8 @@ public class ServiceElementViewModel : ViewModelBase
     public ICommand ConfigCloudInfraEditWindowTerminalStartCommand { get; }
     public ICommand ConfigCloudInfraEditWindowTerminalStopCommand { get; }
     public ICommand ConfigCloudInfraEditConfigApplyCommand { get; }
+    public ICommand ConfigCloudInfraEditWindowDistroSelChangedCommand { get; }
+    public ICommand ConfigCloudInfraEditWindowOsSelChangedCommand { get; }
 
     public ServiceElementViewModel()
     {
@@ -199,14 +217,17 @@ public class ServiceElementViewModel : ViewModelBase
         ElementType = string.Empty;
         
         // Default Distro and Tag
-        OsType = "Linux";
-        Distro = "ubuntu";
-        Tag = "latest";
+        OsType = DefaultOs;
+        Distro = DefaultDistro;
+        Tag = DefaultTag;
+        
+        // Initial IsLinuxValue
+        IsLinux = false;
         
         // Set Initial temp values
-        TempDistro = Distro;
+        TempDistro = string.Empty;
+        TempTag = string.Empty;
         TempName = Text;
-        TempTag = Tag;
         
         // Commands
         ServiceElementCommand = new ServiceElementAddCommand(this);
@@ -220,5 +241,7 @@ public class ServiceElementViewModel : ViewModelBase
         ConfigCloudInfraEditWindowTerminalStartCommand = new ConfigCloudInfraEditWindowTerminalStartCommand(this);
         ConfigCloudInfraEditWindowTerminalStopCommand = new ConfigCloudInfraEditWindowTerminalStopCommand(this);
         ConfigCloudInfraEditConfigApplyCommand = new ConfigCloudInfraEditConfigApplyCommand(this);
+        ConfigCloudInfraEditWindowDistroSelChangedCommand = new ConfigCloudInfraEditWindowDistroSelChangedCommand(this);
+        ConfigCloudInfraEditWindowOsSelChangedCommand = new ConfigCloudInfraEditWindowOsSelChangedCommand(this);
     }
 }

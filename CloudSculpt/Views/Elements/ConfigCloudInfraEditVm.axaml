@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
              xmlns:converters="clr-namespace:CloudSculpt.Converters"
+             xmlns:behaviors="clr-namespace:CloudSculpt.Behaviors"
              mc:Ignorable="d" d:DesignWidth="472" d:DesignHeight="265"
              Width="472" Height="265"
              x:Class="CloudSculpt.Views.Elements.ConfigCloudInfraEditVm"
@@ -28,7 +29,7 @@
                                        Text="Name"
                                        FontFamily="Inter"
                                        FontSize="15"
-                                       Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                                       Foreground="{DynamicResource ForegroundMainBrush}"
                                        FontWeight="SemiBold"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"/>
@@ -54,7 +55,7 @@
                                        Text="OS Type"
                                        FontFamily="Inter"
                                        FontSize="15"
-                                       Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                                       Foreground="{DynamicResource ForegroundMainBrush}"
                                        FontWeight="SemiBold"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"/>
@@ -68,7 +69,15 @@
                                       CornerRadius="8"
                                       Cursor="Hand"
                                       ToolTip.Tip="Right Click To Open Menu !"
-                                      ItemsSource="{Binding ElementType, Converter={StaticResource ConfigCloudInfraEditOsTypeConverter}}"/>
+                                      ItemsSource="{Binding ElementType, Converter={StaticResource ConfigCloudInfraEditOsTypeConverter}}"
+                                      SelectedItem="{Binding OsType}">
+                                    
+                                    <Interaction.Behaviors>
+                                            <EventTriggerBehavior EventName="SelectionChanged">
+                                                    <behaviors:SelectionChangedCommandBehavior Command="{Binding ConfigCloudInfraEditWindowOsSelChangedCommand}"/>
+                                            </EventTriggerBehavior>
+                                    </Interaction.Behaviors>
+                            </ComboBox>
                     </Grid>
                             
                     <!--Distro-->
@@ -82,7 +91,7 @@
                                        Text="Distro"
                                        FontFamily="Inter"
                                        FontSize="15"
-                                       Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                                       Foreground="{DynamicResource ForegroundMainBrush}"
                                        FontWeight="SemiBold"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"/>
@@ -95,8 +104,17 @@
                                       VerticalAlignment="Center"
                                       CornerRadius="8"
                                       Cursor="Hand"
+                                      IsEnabled="{Binding IsLinux}"
                                       ToolTip.Tip="Right Click To Open Menu !"
-                                      ItemsSource="{Binding ElementType, Converter={StaticResource ConfigCloudInfraEditDistroConverter}}"/>
+                                      ItemsSource="{Binding ElementType, Converter={StaticResource ConfigCloudInfraEditDistroConverter}}"
+                                      SelectedItem="{Binding FullImageNameTag}">
+                                    
+                                    <Interaction.Behaviors>
+                                            <EventTriggerBehavior EventName="SelectionChanged">
+                                                    <behaviors:SelectionChangedCommandBehavior Command="{Binding ConfigCloudInfraEditWindowDistroSelChangedCommand}"/>
+                                            </EventTriggerBehavior>
+                                    </Interaction.Behaviors>
+                            </ComboBox>
                     </Grid>
             </StackPanel>
         </ScrollViewer>

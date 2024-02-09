@@ -88,6 +88,7 @@
                             FontWeight="SemiBold"
                             CornerRadius="8"
                             Cursor="Hand"
+                            IsEnabled="{Binding IsLinux}"
                             Command="{Binding ConfigCloudInfraEditWindowTerminalStartCommand}"/>
                     
                     <Button Grid.Column="1"
@@ -101,6 +102,7 @@
                             FontWeight="SemiBold"
                             CornerRadius="8"
                             Cursor="Hand"
+                            IsEnabled="{Binding IsLinux}"
                             Command="{Binding ConfigCloudInfraEditWindowTerminalStopCommand}"/>
                 </Grid>
             </Grid>
