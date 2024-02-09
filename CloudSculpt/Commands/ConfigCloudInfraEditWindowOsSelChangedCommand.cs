@@ -13,8 +13,13 @@ public class ConfigCloudInfraEditWindowOsSelChangedCommand(ServiceElementViewMod
         if (!c.SelectedItem.Equals("linux"))
         {
             serviceElementViewModel.IsLinux = false;
+            serviceElementViewModel.Distro = string.Empty;
+            serviceElementViewModel.Tag = string.Empty;
             return;
         }
+        
         serviceElementViewModel.IsLinux = true;
+        serviceElementViewModel.Distro = ServiceElementViewModel.DefaultDistro;
+        serviceElementViewModel.Tag = ServiceElementViewModel.DefaultTag;
     }
 }

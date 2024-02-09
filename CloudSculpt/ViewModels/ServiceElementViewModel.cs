@@ -36,10 +36,10 @@ public class ServiceElementViewModel : ViewModelBase
     public static double CanvasScreenX { get; set; } = 0;
     public static double CanvasScreenY { get; set; } = 0;
 
-    const string DefaultOs = "linux";
-    const string DefaultDistro = "ubuntu";
-    const string DefaultTag = "22.04";
-    
+    private const string DefaultOs = "linux";
+    public const string DefaultDistro = "ubuntu";
+    public const string DefaultTag = "22.04";
+
     public string Text
     {
         get => _text;
@@ -127,13 +127,25 @@ public class ServiceElementViewModel : ViewModelBase
     public string Distro
     {
         get => _distro;
-        set => SetField(ref _distro, value);
+        set
+        {
+            if (SetField(ref _distro, value))
+            {
+                OnPropertyChanged(nameof(FullImageNameTag));
+            }
+        }
     }
     
     public string Tag
     {
         get => _tag;
-        set => SetField(ref _tag, value);
+        set
+        {
+            if (SetField(ref _tag, value))
+            {
+                OnPropertyChanged(nameof(FullImageNameTag));
+            }
+        }
     }
     
     public string OsType
