@@ -10,5 +10,12 @@ public class ConfigCloudInfraEditConfigApplyCommand (ServiceElementViewModel ser
         
         //Name
         serviceElementViewModel.Text = serviceElementViewModel.TempName;
+        
+        // Distro and Tag
+        /*var tempDistro = serviceElementViewModel.TempDistro;
+        tempDistro = tempDistro.Trim();
+        var tempDistroSplit = tempDistro.Split(' ');
+        serviceElementViewModel.Distro = tempDistroSplit[0];
+        serviceElementViewModel.Tag = tempDistroSplit[2];*/
     }
 }

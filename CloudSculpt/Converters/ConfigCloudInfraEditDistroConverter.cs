@@ -22,7 +22,7 @@ public class ConfigCloudInfraEditDistroConverter : IValueConverter
                 "ubuntu 22.04",
                 "ubuntu 20.04",
                 "debian 12",
-                "amazon linux 2023"
+                "amazonlinux 2023"
             };
 
             return distroList;

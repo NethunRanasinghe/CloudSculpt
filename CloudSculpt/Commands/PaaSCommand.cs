@@ -30,7 +30,8 @@ public class PaaSCommand (ConfigureCloudInfraViewModel configureCloudInfraViewMo
                 Text = component.Key,
                 TempName = component.Key,
                 Image = new Bitmap(AssetLoader.Open(new Uri(component.Value[0]))),
-                ConfigType = component.Value[1]
+                ConfigType = component.Value[1],
+                ElementType = component.Value[2]
             };
             
             configureCloudInfraViewModel.ServiceElements.Add(serviceElementViewModel);

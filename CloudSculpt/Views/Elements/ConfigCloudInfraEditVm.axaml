@@ -1,0 +1,103 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+             xmlns:converters="clr-namespace:CloudSculpt.Converters"
+             mc:Ignorable="d" d:DesignWidth="472" d:DesignHeight="265"
+             Width="472" Height="265"
+             x:Class="CloudSculpt.Views.Elements.ConfigCloudInfraEditVm"
+             Background="{DynamicResource BackgroundSecondLayer}"
+             x:DataType="viewModels:ServiceElementViewModel">
+        
+        <UserControl.Resources>
+                <converters:ConfigCloudInfraEditDistroConverter x:Key="ConfigCloudInfraEditDistroConverter"/>
+                <converters:ConfigCloudInfraEditOsTypeConverter x:Key="ConfigCloudInfraEditOsTypeConverter"/>
+        </UserControl.Resources>
+    
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                    <!--Name Row-->
+                    <Grid Margin="0 0 0 5">
+                            <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".5*"/>
+                                    <ColumnDefinition Width=".5*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Column="0"
+                                       Text="Name"
+                                       FontFamily="Inter"
+                                       FontSize="15"
+                                       Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"/>
+                            
+                            <TextBox Grid.Column="1"
+                                     Text="{Binding TempName, Mode=TwoWay}"
+                                     Width="200"
+                                     FontFamily="Inter"
+                                     FontSize="15"
+                                     HorizontalAlignment="Right"
+                                     CornerRadius="8"
+                                     VerticalAlignment="Center"/>
+                    </Grid>
+                            
+                    <!--OS-->
+                    <Grid  Margin="0 0 0 5">
+                            <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".5*"/>
+                                    <ColumnDefinition Width=".5*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Column="0"
+                                       Text="OS Type"
+                                       FontFamily="Inter"
+                                       FontSize="15"
+                                       Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"/>
+                            
+                            <ComboBox Grid.Column="1"
+                                      Width="200"
+                                      FontFamily="Inter"
+                                      FontSize="15"
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Center"
+                                      CornerRadius="8"
+                                      Cursor="Hand"
+                                      ToolTip.Tip="Right Click To Open Menu !"
+                                      ItemsSource="{Binding ElementType, Converter={StaticResource ConfigCloudInfraEditOsTypeConverter}}"/>
+                    </Grid>
+                            
+                    <!--Distro-->
+                    <Grid  Margin="0 0 0 5">
+                            <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".5*"/>
+                                    <ColumnDefinition Width=".5*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Column="0"
+                                       Text="Distro"
+                                       FontFamily="Inter"
+                                       FontSize="15"
+                                       Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"/>
+                            
+                            <ComboBox Grid.Column="1"
+                                      Width="200"
+                                      FontFamily="Inter"
+                                      FontSize="15"
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Center"
+                                      CornerRadius="8"
+                                      Cursor="Hand"
+                                      ToolTip.Tip="Right Click To Open Menu !"
+                                      ItemsSource="{Binding ElementType, Converter={StaticResource ConfigCloudInfraEditDistroConverter}}"/>
+                    </Grid>
+            </StackPanel>
+        </ScrollViewer>
+</UserControl>

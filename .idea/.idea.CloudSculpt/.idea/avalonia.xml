@@ -17,6 +17,12 @@
         <entry key="CloudSculpt/Views/ConfigCloudInfraEditConfigView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/ConfigCloudInfraEditTerminalView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/ConfigCloudInfraEditView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Elements/CloudConfigInfraContainerEdit.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Elements/CloudConfigInfraKubeEdit.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Elements/CloudConfigInfraVmEdit.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Elements/ConfigCloudInfraEditContainer.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Elements/ConfigCloudInfraEditKube.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Elements/ConfigCloudInfraEditVm.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Elements/ServiceElementCanvasTemplate.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Elements/ServiceElementTemplate.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/ProjectSelectionCloudView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
