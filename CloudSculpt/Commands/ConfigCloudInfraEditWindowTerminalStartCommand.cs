@@ -19,6 +19,7 @@ public class ConfigCloudInfraEditWindowTerminalStartCommand (ServiceElementViewM
                            "-----------------\n" +
                            "Os: Linux\n" +
                            $"Distro: {distro}\n" +
+                           $"Version: {tag}\n" +
                            "-----------------\n\n";
 
         if (!serviceElementViewModel.HasGreeted)
@@ -32,7 +33,7 @@ public class ConfigCloudInfraEditWindowTerminalStartCommand (ServiceElementViewM
         // Start the container
         if (string.IsNullOrWhiteSpace(serviceElementViewModel.ContainerId))
         {
-            await HelperClasses.DockerManage.PullImage(distro,tag);
+            await DockerManage.PullImage(distro,tag);
             var containerId = await DockerManage.CreateContainer($"{distro}:{tag}");
             serviceElementViewModel.ContainerId = containerId;
         }
