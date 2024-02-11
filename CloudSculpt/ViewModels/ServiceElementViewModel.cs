@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using CloudSculpt.Commands;
+using CloudSculpt.Interfaces;
 
 namespace CloudSculpt.ViewModels;
 
@@ -210,6 +211,7 @@ public class ServiceElementViewModel : ViewModelBase
     public ICommand ConfigCloudInfraEditConfigApplyCommand { get; }
     public ICommand ConfigCloudInfraEditWindowDistroSelChangedCommand { get; }
     public ICommand ConfigCloudInfraEditWindowOsSelChangedCommand { get; }
+    public ICommand ConfigCloudInfraEditConfigContainerFileSelectCommand { get; }
 
     public ServiceElementViewModel()
     {
@@ -254,7 +256,7 @@ public class ServiceElementViewModel : ViewModelBase
         TempDistro = Distro;
         TempTag = Tag;
         TempName = Text;
-        
+
         // Commands
         ServiceElementCommand = new ServiceElementAddCommand(this);
         ServiceElementCanvasDeleteCommand = new ServiceElementCanvasRemoveCommand(this);
@@ -269,5 +271,6 @@ public class ServiceElementViewModel : ViewModelBase
         ConfigCloudInfraEditConfigApplyCommand = new ConfigCloudInfraEditConfigApplyCommand(this);
         ConfigCloudInfraEditWindowDistroSelChangedCommand = new ConfigCloudInfraEditWindowDistroSelChangedCommand(this);
         ConfigCloudInfraEditWindowOsSelChangedCommand = new ConfigCloudInfraEditWindowOsSelChangedCommand(this);
+        ConfigCloudInfraEditConfigContainerFileSelectCommand = new ConfigCloudInfraEditConfigContainerFileSelectCommand(this);
     }
 }

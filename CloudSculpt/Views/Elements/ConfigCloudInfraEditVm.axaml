@@ -14,7 +14,6 @@
         <UserControl.Resources>
                 <converters:ConfigCloudInfraEditDistroConverter x:Key="ConfigCloudInfraEditDistroConverter"/>
                 <converters:ConfigCloudInfraEditOsTypeConverter x:Key="ConfigCloudInfraEditOsTypeConverter"/>
-                <converters:BooleanAndConverter x:Key="BooleanAndConverter"/>
         </UserControl.Resources>
     
         <ScrollViewer VerticalScrollBarVisibility="Auto">
