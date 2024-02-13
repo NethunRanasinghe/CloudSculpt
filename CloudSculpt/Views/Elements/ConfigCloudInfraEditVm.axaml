@@ -118,6 +118,120 @@
                                     </Interaction.Behaviors>
                             </ComboBox>
                     </Grid>
+                    
+                    <!--Line for arbitrary value section-->
+                        <Line StrokeThickness="0.5"
+                              StartPoint="0,0"
+                              EndPoint="1,0"
+                              Stretch="Fill"
+                              Margin="10 10"
+                              Stroke="{DynamicResource ForegroundMainBrush}"/>
+                        
+                        <!--Ram Row-->
+                        <Grid Margin="0 0 0 5">
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                </Grid.ColumnDefinitions>
+                            
+                                <TextBlock Grid.Column="0"
+                                           Text="RAM (GB)"
+                                           FontFamily="Inter"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource ForegroundMainBrush}"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           ToolTip.Tip="1. These will NOT be reflected in the test environment !
+                                           2. These arbitrary values are only used for cloud deployment configuration !"/>
+                            
+                                <TextBox Grid.Column="1"
+                                         Text="{Binding RamAmount, Mode=OneWay}"
+                                         FontFamily="Inter"
+                                         FontSize="15"
+                                         Width="50"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Center"
+                                         CornerRadius="8">
+                                        
+                                        <Interaction.Behaviors>
+                                                <EventTriggerBehavior EventName="TextChanged">
+                                                        <behaviors:TextChangedCommandBehavior Command="{Binding ConfigCloudInfraEditSetTempRamValueCommand}"/>
+                                                </EventTriggerBehavior>
+                                        </Interaction.Behaviors>
+                                </TextBox>
+                        </Grid>
+                        
+                        <!--CPU Row-->
+                        <Grid Margin="0 0 0 5">
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                </Grid.ColumnDefinitions>
+                            
+                                <TextBlock Grid.Column="0"
+                                           Text="CPU Cores"
+                                           FontFamily="Inter"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource ForegroundMainBrush}"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           ToolTip.Tip="1. These will NOT be reflected in the test environment !
+                                           2. These arbitrary values are only used for cloud deployment configuration !"/>
+                            
+                                <TextBox Grid.Column="1"
+                                         Text="{Binding CoreCount, Mode=OneWay}"
+                                         FontFamily="Inter"
+                                         FontSize="15"
+                                         Width="50"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Center"
+                                         CornerRadius="8">
+                                        
+                                        <Interaction.Behaviors>
+                                                <EventTriggerBehavior EventName="TextChanged">
+                                                        <behaviors:TextChangedCommandBehavior Command="{Binding ConfigCloudInfraEditSetTempCoreValueCommand}"/>
+                                                </EventTriggerBehavior>
+                                        </Interaction.Behaviors>
+                                </TextBox>
+                        </Grid>
+                        
+                        <!--Storage Row-->
+                        <Grid Margin="0 0 0 5">
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                </Grid.ColumnDefinitions>
+                            
+                                <TextBlock Grid.Column="0"
+                                           Text="Storage (GB)"
+                                           FontFamily="Inter"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource ForegroundMainBrush}"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           ToolTip.Tip="1. These will NOT be reflected in the test environment !
+                                           2. These arbitrary values are only used for cloud deployment configuration !"/>
+                            
+                                <TextBox Grid.Column="1"
+                                         Text="{Binding StorageAmount, Mode=OneWay}"
+                                         FontFamily="Inter"
+                                         FontSize="15"
+                                         Width="50"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Center"
+                                         CornerRadius="8">
+                                        
+                                        <Interaction.Behaviors>
+                                                <EventTriggerBehavior EventName="TextChanged">
+                                                        <behaviors:TextChangedCommandBehavior Command="{Binding ConfigCloudInfraEditSetTempStorageValueCommand}"/>
+                                                </EventTriggerBehavior>
+                                        </Interaction.Behaviors>
+                                        
+                                </TextBox>
+                        </Grid>
             </StackPanel>
         </ScrollViewer>
 </UserControl>
