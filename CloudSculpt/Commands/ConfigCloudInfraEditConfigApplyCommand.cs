@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using CloudSculpt.HelperClasses;
 using CloudSculpt.ViewModels;
 using MsBox.Avalonia;
@@ -47,6 +48,22 @@ public class ConfigCloudInfraEditConfigApplyCommand (ServiceElementViewModel ser
     private void ApplyParameters()
     {
         var elementType = serviceElementViewModel.ElementType;
+        
+        // Set Hardware config
+        if (double.TryParse(serviceElementViewModel.TempRamAmount, out var tempRam))
+        {
+            serviceElementViewModel.RamAmount = tempRam;
+        }
+        
+        if (double.TryParse(serviceElementViewModel.TempCoreCount, out var tempCpu))
+        {
+            serviceElementViewModel.CoreCount = tempCpu;
+        }
+        
+        if (double.TryParse(serviceElementViewModel.TempStorageAmount, out var tempStorage))
+        {
+            serviceElementViewModel.StorageAmount = tempStorage;
+        }
 
         if (elementType.Equals("v"))
         {
@@ -76,22 +93,6 @@ public class ConfigCloudInfraEditConfigApplyCommand (ServiceElementViewModel ser
 
             serviceElementViewModel.DockerFilePath = tempFilePath;
             serviceElementViewModel.ButtonState = true;
-        }
-        
-        // Set Hardware config
-        if (double.TryParse(serviceElementViewModel.TempRamAmount, out var tempRam))
-        {
-            serviceElementViewModel.RamAmount = tempRam;
-        }
-        
-        if (double.TryParse(serviceElementViewModel.TempCoreCount, out var tempCpu))
-        {
-            serviceElementViewModel.CoreCount = tempCpu;
-        }
-        
-        if (double.TryParse(serviceElementViewModel.TempStorageAmount, out var tempStorage))
-        {
-            serviceElementViewModel.StorageAmount = tempStorage;
         }
     }
 
