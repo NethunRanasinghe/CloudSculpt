@@ -10,38 +10,63 @@ public class ConfigCloudInfraEditWindowTerminalStartCommand (ServiceElementViewM
         var dockerStatus = await DockerManage.VerifyDockerStatus();
         if (!string.IsNullOrWhiteSpace(dockerStatus)) return;
         
-        // Info
-        var distro = serviceElementViewModel.Distro;
-        var tag = serviceElementViewModel.Tag;
-        
-        // Initial Text
-        var greetingText = "" +
-                           "-----------------\n" +
-                           "Os: Linux\n" +
-                           $"Distro: {distro}\n" +
-                           $"Version: {tag}\n" +
-                           "-----------------\n\n";
+        // Get Element Type
+        var elementType = serviceElementViewModel.ElementType;
 
-        if (!serviceElementViewModel.HasGreeted)
+        if (elementType.Equals("v"))
         {
-            serviceElementViewModel.ConfigCloudInfraTerminalOutput += greetingText;
-            serviceElementViewModel.HasGreeted = true;
+            // Info
+            var distro = serviceElementViewModel.Distro;
+            var tag = serviceElementViewModel.Tag;
+        
+            // Initial Text
+            var greetingText = "" +
+                               "-----------------\n" +
+                               "Os: Linux\n" +
+                               $"Distro: {distro}\n" +
+                               $"Version: {tag}\n" +
+                               "-----------------\n\n";
+
+            if (!serviceElementViewModel.HasGreeted)
+            {
+                serviceElementViewModel.ConfigCloudInfraTerminalOutput += greetingText;
+                serviceElementViewModel.HasGreeted = true;
+            }
+        
+            serviceElementViewModel.ConfigCloudInfraTerminalOutput += "Status: Starting....\n";
+        
+            // Start the container
+            if (string.IsNullOrWhiteSpace(serviceElementViewModel.ContainerId))
+            {
+                await DockerManage.PullImage(distro,tag);
+                var containerId = await DockerManage.CreateContainer($"{distro}:{tag}");
+                serviceElementViewModel.ContainerId = containerId;
+            }
+        
+            await DockerManage.StartContainer(serviceElementViewModel.ContainerId);
+            serviceElementViewModel.ConfigCloudInfraTerminalOutput += "Status: Started !\n";
+        
+            // Enable the command TextBox
+            serviceElementViewModel.HasStarted = true;
         }
-        
-        serviceElementViewModel.ConfigCloudInfraTerminalOutput += "Status: Starting....\n";
-        
-        // Start the container
-        if (string.IsNullOrWhiteSpace(serviceElementViewModel.ContainerId))
+
+        if (elementType.Equals("d"))
         {
-            await DockerManage.PullImage(distro,tag);
-            var containerId = await DockerManage.CreateContainer($"{distro}:{tag}");
+            var filePath = serviceElementViewModel.DockerFilePath;
+            serviceElementViewModel.ConfigCloudInfraTerminalOutput = string.Empty;
+            if(string.IsNullOrWhiteSpace(filePath)) return;
+            
+            var imageName = serviceElementViewModel.ImageName;
+            serviceElementViewModel.HasStarted = false;
+            var builtProgress = await DockerManage.BuildDockerFile(filePath,$"{imageName}:latest");
+            if(string.IsNullOrWhiteSpace(builtProgress)) return;
+            
+            // Create and Start Container
+            var containerId = await DockerManage.CreateContainer($"{imageName}:latest");
             serviceElementViewModel.ContainerId = containerId;
+            await DockerManage.StartContainer(containerId);
+            
+            serviceElementViewModel.HasStarted = true;
         }
-        
-        await DockerManage.StartContainer(serviceElementViewModel.ContainerId);
-        serviceElementViewModel.ConfigCloudInfraTerminalOutput += "Status: Started !\n";
-        
-        // Enable the command TextBox
-        serviceElementViewModel.HasStarted = true;
     }
 }

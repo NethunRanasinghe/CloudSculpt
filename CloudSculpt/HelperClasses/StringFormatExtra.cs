@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CloudSculpt.HelperClasses;
@@ -53,5 +55,23 @@ public static class StringFormatExtra
     {
         byte[] bytes = Encoding.Unicode.GetBytes(new char[] { c });
         return BitConverter.ToString(bytes);
+    }
+
+    private static readonly List<string> GenRandomNumbers = [];
+    
+    public static string GetRandomStringForDocker()
+    {
+        var random = new Random();
+        const string characters = "abcdefghijklmnopqrstuvwxyz";
+        var randomString = new string(Enumerable.Repeat(characters, 5)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+
+        if (GenRandomNumbers.Contains(randomString))
+        {
+            GetRandomStringForDocker();
+        }
+
+        GenRandomNumbers.Add(randomString);
+        return randomString;
     }
 }

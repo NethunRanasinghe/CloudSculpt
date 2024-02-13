@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using CloudSculpt.Commands;
-using CloudSculpt.Interfaces;
+using CloudSculpt.HelperClasses;
 
 namespace CloudSculpt.ViewModels;
 
@@ -32,7 +32,11 @@ public class ServiceElementViewModel : ViewModelBase
     private string _tempTag;
     private bool _isLinux;
     private bool _tempIsLinux;
-    
+    private string _imageName;
+    private string _dockerFilePath;
+    private string _tempDockerFilePath;
+    private bool _buttonState;
+
     public static int ElementCounter { get; set; } = 0;
     public static double CanvasWidth { get; set; } = 0;
     public static double CanvasHeight { get; set; } = 0;
@@ -198,6 +202,30 @@ public class ServiceElementViewModel : ViewModelBase
         get => $"{Distro} {Tag}";
     }
     
+    public string ImageName
+    {
+        get => _imageName;
+        set => SetField(ref _imageName, value);
+    }
+    
+    public string TempDockerFilePath
+    {
+        get => _tempDockerFilePath;
+        set => SetField(ref _tempDockerFilePath, value);
+    }
+    
+    public string DockerFilePath
+    {
+        get => _dockerFilePath;
+        set => SetField(ref _dockerFilePath, value);
+    }
+    
+    public bool ButtonState
+    {
+        get => _buttonState;
+        set => SetField(ref _buttonState, value);
+    }
+    
     public ICommand ServiceElementCommand { get; }
     public ICommand ServiceElementCanvasEditCommand { get; }
     public ICommand ServiceElementCanvasDeleteCommand { get; }
@@ -252,10 +280,18 @@ public class ServiceElementViewModel : ViewModelBase
         // Initial IsLinuxValue
         IsLinux = true;
         
+        // Initial ButtonState
+        ButtonState = false;
+        
         // Set Initial temp values
         TempDistro = Distro;
         TempTag = Tag;
         TempName = Text;
+        
+        // Initial image Name and Dockerfile Path
+        ImageName = StringFormatExtra.GetRandomStringForDocker();
+        TempDockerFilePath = string.Empty;
+        DockerFilePath = string.Empty;
 
         // Commands
         ServiceElementCommand = new ServiceElementAddCommand(this);

@@ -1,8 +1,9 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using CloudSculpt.Interfaces;
 using CloudSculpt.Services;
 using CloudSculpt.ViewModels;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 
 namespace CloudSculpt.Commands;
 
@@ -18,10 +19,29 @@ public class ConfigCloudInfraEditConfigContainerFileSelectCommand(ServiceElement
         await using var stream = await file.OpenReadAsync();
         using var streamReader = new StreamReader(stream);
         var fileContent = await streamReader.ReadToEndAsync();
-        var fileName = file.Path; //file:///C:/Users/nethu/Downloads/Test.txt
+        var fileLoc = file.Path; // file:///C:/Users/nethu/Downloads/Test.txt
+        var filePath = fileLoc.AbsolutePath; // C:/Users/nethu/Downloads/Test.txt
 
-        
-        Console.WriteLine(fileContent);
-        Console.WriteLine(fileName);
+        if (!(fileContent.Contains("FROM") && (fileContent.Contains("CMD") || fileContent.Contains("ENTRYPOINT"))))
+        {
+            var box = MessageBoxManager
+                .GetMessageBoxStandard("C003", "Invalid Dockerfile!",
+                    ButtonEnum.Ok,Icon.Error);
+
+            await box.ShowAsync();
+            return;
+        }
+
+        if (fileContent.Contains("COPY"))
+        {
+            var box = MessageBoxManager
+                .GetMessageBoxStandard("C004", "COPY command in dockerfile is not supported!",
+                    ButtonEnum.Ok,Icon.Error);
+
+            await box.ShowAsync();
+            return;
+        }
+
+        serviceElementViewModel.TempDockerFilePath = filePath;
     }
 }

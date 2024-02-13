@@ -13,7 +13,7 @@ public class FileDialogService(TopLevel window) : IFileDialogService
     {
         IReadOnlyList<IStorageFile?> files = await window.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
         {
-            Title = "Open Text File",
+            Title = "Select Dockerfile",
             AllowMultiple = false
         });
 

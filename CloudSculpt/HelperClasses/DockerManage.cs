@@ -12,7 +12,7 @@ using MsBox.Avalonia.Enums;
 
 namespace CloudSculpt.HelperClasses;
 
-public class DockerManage
+public static class DockerManage
 {
     /*
      *                              Method  Test    Notes
@@ -59,59 +59,68 @@ public class DockerManage
         await client.Images.DeleteImageAsync(imageName, new ImageDeleteParameters());
     }
     
-    public static async Task BuildDockerFile(string dockerFilePath, string imageTag)
+    public static async Task<string> BuildDockerFile(string dockerFilePath, string imageTag)
+{
+    var outputTarGzPath = $"{dockerFilePath}.tar.gz";
+    
+    CreateTarGzFile(dockerFilePath, outputTarGzPath);
+
+    if (File.Exists(dockerFilePath))
     {
-        var inputDockerfile = Path.Combine(dockerFilePath, "Dockerfile");
-        var outputTarGzPath = Path.Combine(dockerFilePath, "dockerfile.tar.gz");
-        
-        CreateTarGzFile(inputDockerfile, outputTarGzPath);
+        var client = new DockerClientConfiguration().CreateClient();
 
-        if (File.Exists(inputDockerfile))
+        await using var stream = File.OpenRead(outputTarGzPath);
+    
+        var imageBuildParameters = new ImageBuildParameters
         {
-            var client = new DockerClientConfiguration().CreateClient();
+            Dockerfile = "Dockerfile",
+            Tags = new List<string> { imageTag },
+        };
 
-            await using var stream = File.OpenRead(outputTarGzPath);
-        
-            var imageBuildParameters = new ImageBuildParameters
-            {
-                Dockerfile = "Dockerfile",
-                Tags = new List<string> { imageTag },
-            };
+        var progressMessages = new StringBuilder();
+        var progress = new Progress<JSONMessage>(msg =>
+        {
+            progressMessages.AppendLine(msg.Stream);
+        });
 
-            var progress = new Progress<JSONMessage>(msg => Console.WriteLine(msg.Stream));
+        try
+        {
+            await client.Images.BuildImageFromDockerfileAsync(
+                contents: stream,
+                parameters: imageBuildParameters,
+                authConfigs: null,
+                headers: null,
+                progress: progress,
+                cancellationToken: default);
 
-            try
-            {
-                await client.Images.BuildImageFromDockerfileAsync(
-                    contents: stream,
-                    parameters: imageBuildParameters,
-                    authConfigs: null,
-                    headers: null,
-                    progress: progress,
-                    cancellationToken: default);
-            }
-        
-            catch (DockerApiException ex)
-            {
-                Console.WriteLine();
-                
-                var box = MessageBoxManager
-                    .GetMessageBoxStandard("Error (D100)",$"Docker API Exception: {ex.StatusCode}, {ex.Message}",
-                        ButtonEnum.Ok, Icon.Error);
-
-                await box.ShowAsync();
-            }   
+            return progressMessages.ToString();
         }
-        else
+    
+        catch (DockerApiException ex)
         {
+            Console.WriteLine();
+            
             var box = MessageBoxManager
-                .GetMessageBoxStandard("Error (D006)",
-                    "tar.gz compress error, Failed to create a tar.gz file !",
+                .GetMessageBoxStandard("Error (D100)",$"Docker API Exception: {ex.StatusCode}, {ex.Message}",
                     ButtonEnum.Ok, Icon.Error);
 
             await box.ShowAsync();
-        }
+            return string.Empty;
+        }   
+        
     }
+
+    {
+        var box = MessageBoxManager
+            .GetMessageBoxStandard("Error (D006)",
+                "tar.gz compress error, Failed to create a tar.gz file !",
+                ButtonEnum.Ok, Icon.Error);
+
+        await box.ShowAsync();
+        return string.Empty;
+    }
+}
+
     #endregion
 
     #region Container Management
@@ -218,6 +227,12 @@ public class DockerManage
 
     private static void CreateTarGzFile(string sourceFilePath, string tarGzFilePath)
     {
+        // Delete tar file if exist
+        if (File.Exists(tarGzFilePath))
+        {
+            File.Delete(tarGzFilePath);
+        }
+        
         Encoding utf8Encoding = new UTF8Encoding(false);
 
         using var fs = new FileStream(tarGzFilePath, FileMode.Create);

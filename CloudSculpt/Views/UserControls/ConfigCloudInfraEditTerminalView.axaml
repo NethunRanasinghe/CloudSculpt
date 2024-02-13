@@ -4,9 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:behaviors="clr-namespace:CloudSculpt.Behaviors"
              xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+             xmlns:converters="clr-namespace:CloudSculpt.Converters"
              mc:Ignorable="d" d:DesignWidth="492" d:DesignHeight="407"
              x:Class="CloudSculpt.Views.UserControls.ConfigCloudInfraEditTerminalView"
              x:DataType="viewModels:ServiceElementViewModel">
+    
+    <UserControl.Resources>
+        <converters:BooleanOrConverter x:Key="BooleanOrConverter"/>
+    </UserControl.Resources>
     
     <Border Background="{DynamicResource BackgroundSecondLayer}"
             CornerRadius="20">
@@ -88,8 +93,16 @@
                             FontWeight="SemiBold"
                             CornerRadius="8"
                             Cursor="Hand"
-                            IsEnabled="{Binding IsLinux}"
-                            Command="{Binding ConfigCloudInfraEditWindowTerminalStartCommand}"/>
+                            Command="{Binding ConfigCloudInfraEditWindowTerminalStartCommand}">
+                        
+                        <Button.IsEnabled>
+                            <MultiBinding Converter="{StaticResource BooleanOrConverter}">
+                                <Binding Path="IsLinux" />
+                                <Binding Path="ButtonState" />
+                            </MultiBinding>
+                        </Button.IsEnabled>
+                        
+                    </Button>
                     
                     <Button Grid.Column="1"
                             Content="Stop"
@@ -102,8 +115,16 @@
                             FontWeight="SemiBold"
                             CornerRadius="8"
                             Cursor="Hand"
-                            IsEnabled="{Binding IsLinux}"
-                            Command="{Binding ConfigCloudInfraEditWindowTerminalStopCommand}"/>
+                            Command="{Binding ConfigCloudInfraEditWindowTerminalStopCommand}">
+                        
+                        <Button.IsEnabled>
+                            <MultiBinding Converter="{StaticResource BooleanOrConverter}">
+                                <Binding Path="IsLinux" />
+                                <Binding Path="ButtonState" />
+                            </MultiBinding>
+                        </Button.IsEnabled>
+                        
+                    </Button>
                 </Grid>
             </Grid>
         </Grid>

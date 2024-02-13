@@ -21,7 +21,8 @@ public class ServiceElementAddCommand (ServiceElementViewModel element) : Comman
             Image = elementImage,
             ElementIndex = elementIndex,
             ConfigType = configType,
-            ElementType = elementType
+            ElementType = elementType,
+            IsLinux = false
         };
         
         EventAggregator.Instance.Publish(new AddServiceElementEvent(serviceElementViewModel));

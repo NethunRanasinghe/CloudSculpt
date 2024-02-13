@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CloudSculpt.HelperClasses;
 using CloudSculpt.ViewModels;
 using MsBox.Avalonia;
@@ -21,7 +20,7 @@ public class ConfigCloudInfraEditConfigApplyCommand (ServiceElementViewModel ser
         {
             var box = MessageBoxManager
                 .GetMessageBoxStandard("Error (C001)", "Can't Change Properties While A Process Is Already Running!\nClick YES to STOP and REMOVE the running process!",
-                    ButtonEnum.YesNo);
+                    ButtonEnum.YesNo, Icon.Error);
 
             var result = await box.ShowAsync();
             if (result != ButtonResult.Yes) return;
@@ -47,23 +46,37 @@ public class ConfigCloudInfraEditConfigApplyCommand (ServiceElementViewModel ser
 
     private void ApplyParameters()
     {
-        serviceElementViewModel.OsType = serviceElementViewModel.TempOsType;
-        
-        if (!serviceElementViewModel.TempIsLinux)
+        var elementType = serviceElementViewModel.ElementType;
+
+        if (elementType.Equals("v"))
         {
-            serviceElementViewModel.Distro = ServiceElementViewModel.DefaultDistro;
-            serviceElementViewModel.Tag = ServiceElementViewModel.DefaultTag;
-            serviceElementViewModel.IsLinux = false;
-            return;
-        }
+            serviceElementViewModel.OsType = serviceElementViewModel.TempOsType;
+
+            if (!serviceElementViewModel.TempIsLinux)
+            {
+                serviceElementViewModel.Distro = ServiceElementViewModel.DefaultDistro;
+                serviceElementViewModel.Tag = ServiceElementViewModel.DefaultTag;
+                serviceElementViewModel.IsLinux = false;
+                return;
+            }
         
-        var tempDistro = serviceElementViewModel.TempDistro;
-        if(string.IsNullOrWhiteSpace(tempDistro)) return;
-        tempDistro = tempDistro.Trim();
-        var tempDistroSplit = tempDistro.Split(' ');
-        serviceElementViewModel.Distro = tempDistroSplit[0];
-        serviceElementViewModel.Tag = tempDistroSplit[1];
-        serviceElementViewModel.IsLinux = true;
+            var tempDistro = serviceElementViewModel.TempDistro;
+            if(string.IsNullOrWhiteSpace(tempDistro)) return;
+            tempDistro = tempDistro.Trim();
+            var tempDistroSplit = tempDistro.Split(' ');
+            serviceElementViewModel.Distro = tempDistroSplit[0];
+            serviceElementViewModel.Tag = tempDistroSplit[1];
+            serviceElementViewModel.IsLinux = true;
+        }
+
+        if (elementType.Equals("d"))
+        {
+            var tempFilePath = serviceElementViewModel.TempDockerFilePath;
+            if(string.IsNullOrWhiteSpace(tempFilePath)) return;
+
+            serviceElementViewModel.DockerFilePath = tempFilePath;
+            serviceElementViewModel.ButtonState = true;
+        }
     }
 
     private async Task RemoveContainer()
