@@ -29,10 +29,9 @@
                             
                             <TextBox Grid.Column="1"
                                      Text="{Binding TempName, Mode=TwoWay}"
-                                     Width="200"
                                      FontFamily="Inter"
                                      FontSize="15"
-                                     HorizontalAlignment="Right"
+                                     HorizontalAlignment="Stretch"
                                      CornerRadius="8"
                                      VerticalAlignment="Center"/>
                     </Grid>
@@ -53,21 +52,38 @@
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"/>
                             
-                            <Button Grid.Column="1"
-                                    Width="90"
-                                    CornerRadius="10"
-                                    HorizontalAlignment="Right"
-                                    HorizontalContentAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    VerticalContentAlignment="Center"
-                                    Background="{DynamicResource BackgroundThirdLayer}"
-                                    Foreground="{DynamicResource ForegroundMainBrush}"
-                                    FontFamily="Inter"
-                                    FontSize="13"
-                                    FontWeight="SemiBold"
-                                    Content="Select File"
-                                    Cursor="Hand"
-                                    Command="{Binding ConfigCloudInfraEditConfigContainerFileSelectCommand}"/>
+                            <Grid Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width=".3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBox Grid.Column="0"
+                                             CornerRadius="8"
+                                             FontFamily="Inter"
+                                             FontWeight="SemiBold"
+                                             HorizontalAlignment="Stretch"
+                                             VerticalAlignment="Center"
+                                             Margin="0 0 5 0"
+                                             IsReadOnly="True"
+                                             Focusable="True"
+                                             Text="{Binding DockerFilePath}"/>
+                                    
+                                    <Button Grid.Column="1"
+                                            CornerRadius="10"
+                                            HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            Background="{DynamicResource BackgroundThirdLayer}"
+                                            Foreground="{DynamicResource ForegroundMainBrush}"
+                                            FontFamily="Inter"
+                                            FontSize="13"
+                                            FontWeight="SemiBold"
+                                            Content="Select"
+                                            Cursor="Hand"
+                                            Command="{Binding ConfigCloudInfraEditConfigContainerFileSelectCommand}"/>
+                            </Grid>
                     </Grid>
             </StackPanel>
         </ScrollViewer>

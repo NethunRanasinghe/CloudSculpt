@@ -58,6 +58,7 @@ public class ConfigCloudInfraEditWindowTerminalStartCommand (ServiceElementViewM
             
             var imageName = serviceElementViewModel.ImageName;
             serviceElementViewModel.HasStarted = false;
+            serviceElementViewModel.ButtonState = false;
             var builtProgress = await DockerManage.BuildDockerFile(filePath,$"{imageName}:latest");
             if(string.IsNullOrWhiteSpace(builtProgress)) return;
             
@@ -66,7 +67,16 @@ public class ConfigCloudInfraEditWindowTerminalStartCommand (ServiceElementViewM
             serviceElementViewModel.ContainerId = containerId;
             await DockerManage.StartContainer(containerId);
             
+            // Initial Text
+            var greetingText = "" +
+                               "--------Build Progress--------\n" +
+                               $"{builtProgress}" +
+                               "------------------------------\n\n";
+
+            serviceElementViewModel.ConfigCloudInfraTerminalOutput += greetingText;
+            serviceElementViewModel.HasGreeted = true;
             serviceElementViewModel.HasStarted = true;
+            serviceElementViewModel.ButtonState = true;
         }
     }
 }
