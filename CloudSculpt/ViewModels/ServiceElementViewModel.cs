@@ -36,6 +36,12 @@ public class ServiceElementViewModel : ViewModelBase
     private string _dockerFilePath;
     private string _tempDockerFilePath;
     private bool _buttonState;
+    private string _tempRamAmount;
+    private double _ramAmount;
+    private string? _tempCoreCount;
+    private double _coreCount;
+    private string? _tempStorageAmount;
+    private double _storageAmount;
 
     public static int ElementCounter { get; set; } = 0;
     public static double CanvasWidth { get; set; } = 0;
@@ -226,6 +232,42 @@ public class ServiceElementViewModel : ViewModelBase
         set => SetField(ref _buttonState, value);
     }
     
+    public double StorageAmount
+    {
+        get => _storageAmount;
+        set => SetField(ref _storageAmount, value);
+    }
+
+    public string? TempStorageAmount
+    {
+        get => _tempStorageAmount;
+        set => SetField(ref _tempStorageAmount, value);
+    }
+
+    public double CoreCount
+    {
+        get => _coreCount;
+        set => SetField(ref _coreCount, value);
+    }
+
+    public string? TempCoreCount
+    {
+        get => _tempCoreCount;
+        set => SetField(ref _tempCoreCount, value);
+    }
+
+    public double RamAmount
+    {
+        get => _ramAmount;
+        set => SetField(ref _ramAmount, value);
+    }
+
+    public string TempRamAmount
+    {
+        get => _tempRamAmount;
+        set => SetField(ref _tempRamAmount, value);
+    }
+    
     public ICommand ServiceElementCommand { get; }
     public ICommand ServiceElementCanvasEditCommand { get; }
     public ICommand ServiceElementCanvasDeleteCommand { get; }
@@ -240,6 +282,9 @@ public class ServiceElementViewModel : ViewModelBase
     public ICommand ConfigCloudInfraEditWindowDistroSelChangedCommand { get; }
     public ICommand ConfigCloudInfraEditWindowOsSelChangedCommand { get; }
     public ICommand ConfigCloudInfraEditConfigContainerFileSelectCommand { get; }
+    public ICommand ConfigCloudInfraEditSetTempRamValueCommand { get; }
+    public ICommand ConfigCloudInfraEditSetTempCoreValueCommand { get; }
+    public ICommand ConfigCloudInfraEditSetTempStorageValueCommand { get; }
 
     public ServiceElementViewModel()
     {
@@ -293,6 +338,14 @@ public class ServiceElementViewModel : ViewModelBase
         TempDockerFilePath = string.Empty;
         DockerFilePath = string.Empty;
 
+        // Initial Hardware Config
+        TempRamAmount = "0";
+        RamAmount = 0;
+        TempCoreCount = "0";
+        CoreCount = 0;
+        TempStorageAmount = "0";
+        StorageAmount = 0;
+        
         // Commands
         ServiceElementCommand = new ServiceElementAddCommand(this);
         ServiceElementCanvasDeleteCommand = new ServiceElementCanvasRemoveCommand(this);
@@ -308,5 +361,8 @@ public class ServiceElementViewModel : ViewModelBase
         ConfigCloudInfraEditWindowDistroSelChangedCommand = new ConfigCloudInfraEditWindowDistroSelChangedCommand(this);
         ConfigCloudInfraEditWindowOsSelChangedCommand = new ConfigCloudInfraEditWindowOsSelChangedCommand(this);
         ConfigCloudInfraEditConfigContainerFileSelectCommand = new ConfigCloudInfraEditConfigContainerFileSelectCommand(this);
+        ConfigCloudInfraEditSetTempRamValueCommand = new ConfigCloudInfraEditSetTempRamValueCommand(this);
+        ConfigCloudInfraEditSetTempCoreValueCommand = new ConfigCloudInfraEditSetTempCoreValueCommand(this);
+        ConfigCloudInfraEditSetTempStorageValueCommand = new ConfigCloudInfraEditSetTempStorageValueCommand(this);
     }
 }

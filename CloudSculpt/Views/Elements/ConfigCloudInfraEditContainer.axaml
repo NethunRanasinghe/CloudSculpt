@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+             xmlns:behaviors="clr-namespace:CloudSculpt.Behaviors"
              mc:Ignorable="d" d:DesignWidth="472" d:DesignHeight="265"
              Width="472" Height="265"
              x:Class="CloudSculpt.Views.Elements.ConfigCloudInfraEditContainer"
@@ -11,80 +12,195 @@
         
         <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <!--Name Row-->
-                    <Grid Margin="0 0 0 5">
-                            <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width=".5*"/>
-                                    <ColumnDefinition Width=".5*"/>
-                            </Grid.ColumnDefinitions>
-                            
-                            <TextBlock Grid.Column="0"
-                                       Text="Name"
-                                       FontFamily="Inter"
-                                       FontSize="15"
-                                       Foreground="{DynamicResource ForegroundMainBrush}"
-                                       FontWeight="SemiBold"
-                                       HorizontalAlignment="Left"
-                                       VerticalAlignment="Center"/>
-                            
-                            <TextBox Grid.Column="1"
-                                     Text="{Binding TempName, Mode=TwoWay}"
-                                     FontFamily="Inter"
-                                     FontSize="15"
-                                     HorizontalAlignment="Stretch"
-                                     CornerRadius="8"
-                                     VerticalAlignment="Center"/>
-                    </Grid>
+                        <!--Name Row-->
+                        <Grid Margin="0 0 0 5">
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Grid.Column="0"
+                                           Text="Name"
+                                           FontFamily="Inter"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource ForegroundMainBrush}"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"/>
+                                
+                                <TextBox Grid.Column="1"
+                                         Text="{Binding TempName, Mode=TwoWay}"
+                                         FontFamily="Inter"
+                                         FontSize="15"
+                                         HorizontalAlignment="Stretch"
+                                         CornerRadius="8"
+                                         VerticalAlignment="Center"/>
+                        </Grid>
                     
-                    <!--Docker/Make File-->
-                    <Grid Margin="0 0 0 5">
-                            <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width=".5*"/>
-                                    <ColumnDefinition Width=".5*"/>
-                            </Grid.ColumnDefinitions>
+                    
+                        <!--Docker/Make File-->
+                        <Grid Margin="0 0 0 5">
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Grid.Column="0"
+                                           Text="Dockerfile"
+                                           FontFamily="Inter"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource ForegroundMainBrush}"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"/>
+                                
+                                <Grid Grid.Column="1">
+                                        <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width=".3*"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <TextBox Grid.Column="0"
+                                                 CornerRadius="8"
+                                                 FontFamily="Inter"
+                                                 FontWeight="SemiBold"
+                                                 HorizontalAlignment="Stretch"
+                                                 VerticalAlignment="Center"
+                                                 Margin="0 0 5 0"
+                                                 IsReadOnly="True"
+                                                 Focusable="True"
+                                                 Text="{Binding DockerFilePath}"/>
+                                        
+                                        <Button Grid.Column="1"
+                                                CornerRadius="10"
+                                                HorizontalAlignment="Stretch"
+                                                HorizontalContentAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                VerticalContentAlignment="Center"
+                                                Background="{DynamicResource BackgroundThirdLayer}"
+                                                Foreground="{DynamicResource ForegroundMainBrush}"
+                                                FontFamily="Inter"
+                                                FontSize="13"
+                                                FontWeight="SemiBold"
+                                                Content="Select"
+                                                Cursor="Hand"
+                                                Command="{Binding ConfigCloudInfraEditConfigContainerFileSelectCommand}"/>
+                                </Grid>
+                        </Grid>
+                    
+                        <!--Line for arbitrary value section-->
+                        <Line StrokeThickness="0.5"
+                              StartPoint="0,0"
+                              EndPoint="1,0"
+                              Stretch="Fill"
+                              Margin="10 10"
+                              Stroke="{DynamicResource ForegroundMainBrush}"/>
+                        
+                        <!--Ram Row-->
+                        <Grid Margin="0 0 0 5">
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                </Grid.ColumnDefinitions>
                             
-                            <TextBlock Grid.Column="0"
-                                       Text="Dockerfile"
-                                       FontFamily="Inter"
-                                       FontSize="15"
-                                       Foreground="{DynamicResource ForegroundMainBrush}"
-                                       FontWeight="SemiBold"
-                                       HorizontalAlignment="Left"
-                                       VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="0"
+                                           Text="RAM (GB)"
+                                           FontFamily="Inter"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource ForegroundMainBrush}"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           ToolTip.Tip="1. These will NOT be reflected in the test environment !
+                                           2. These arbitrary values are only used for cloud deployment configuration !"/>
                             
-                            <Grid Grid.Column="1">
-                                    <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width=".3*"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <TextBox Grid.Column="0"
-                                             CornerRadius="8"
-                                             FontFamily="Inter"
-                                             FontWeight="SemiBold"
-                                             HorizontalAlignment="Stretch"
-                                             VerticalAlignment="Center"
-                                             Margin="0 0 5 0"
-                                             IsReadOnly="True"
-                                             Focusable="True"
-                                             Text="{Binding DockerFilePath}"/>
-                                    
-                                    <Button Grid.Column="1"
-                                            CornerRadius="10"
-                                            HorizontalAlignment="Stretch"
-                                            HorizontalContentAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            VerticalContentAlignment="Center"
-                                            Background="{DynamicResource BackgroundThirdLayer}"
-                                            Foreground="{DynamicResource ForegroundMainBrush}"
-                                            FontFamily="Inter"
-                                            FontSize="13"
-                                            FontWeight="SemiBold"
-                                            Content="Select"
-                                            Cursor="Hand"
-                                            Command="{Binding ConfigCloudInfraEditConfigContainerFileSelectCommand}"/>
-                            </Grid>
-                    </Grid>
-            </StackPanel>
+                                <TextBox Grid.Column="1"
+                                         Text="{Binding RamAmount, Mode=OneWay}"
+                                         FontFamily="Inter"
+                                         FontSize="15"
+                                         Width="50"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Center"
+                                         CornerRadius="8">
+                                        
+                                        <Interaction.Behaviors>
+                                                <EventTriggerBehavior EventName="TextChanged">
+                                                        <behaviors:TextChangedCommandBehavior Command="{Binding ConfigCloudInfraEditSetTempRamValueCommand}"/>
+                                                </EventTriggerBehavior>
+                                        </Interaction.Behaviors>
+                                </TextBox>
+                        </Grid>
+                        
+                        <!--CPU Row-->
+                        <Grid Margin="0 0 0 5">
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                </Grid.ColumnDefinitions>
+                            
+                                <TextBlock Grid.Column="0"
+                                           Text="CPU Cores"
+                                           FontFamily="Inter"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource ForegroundMainBrush}"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           ToolTip.Tip="1. These will NOT be reflected in the test environment !
+                                           2. These arbitrary values are only used for cloud deployment configuration !"/>
+                            
+                                <TextBox Grid.Column="1"
+                                         Text="{Binding CoreCount, Mode=OneWay}"
+                                         FontFamily="Inter"
+                                         FontSize="15"
+                                         Width="50"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Center"
+                                         CornerRadius="8">
+                                        
+                                        <Interaction.Behaviors>
+                                                <EventTriggerBehavior EventName="TextChanged">
+                                                        <behaviors:TextChangedCommandBehavior Command="{Binding ConfigCloudInfraEditSetTempCoreValueCommand}"/>
+                                                </EventTriggerBehavior>
+                                        </Interaction.Behaviors>
+                                </TextBox>
+                        </Grid>
+                        
+                        <!--Storage Row-->
+                        <Grid Margin="0 0 0 5">
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".5*"/>
+                                        <ColumnDefinition Width=".5*"/>
+                                </Grid.ColumnDefinitions>
+                            
+                                <TextBlock Grid.Column="0"
+                                           Text="Storage (GB)"
+                                           FontFamily="Inter"
+                                           FontSize="15"
+                                           Foreground="{DynamicResource ForegroundMainBrush}"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           ToolTip.Tip="1. These will NOT be reflected in the test environment !
+                                           2. These arbitrary values are only used for cloud deployment configuration !"/>
+                            
+                                <TextBox Grid.Column="1"
+                                         Text="{Binding StorageAmount, Mode=OneWay}"
+                                         FontFamily="Inter"
+                                         FontSize="15"
+                                         Width="50"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Center"
+                                         CornerRadius="8">
+                                        
+                                        <Interaction.Behaviors>
+                                                <EventTriggerBehavior EventName="TextChanged">
+                                                        <behaviors:TextChangedCommandBehavior Command="{Binding ConfigCloudInfraEditSetTempStorageValueCommand}"/>
+                                                </EventTriggerBehavior>
+                                        </Interaction.Behaviors>
+                                        
+                                </TextBox>
+                        </Grid>
+                </StackPanel>
         </ScrollViewer>
 </UserControl>
