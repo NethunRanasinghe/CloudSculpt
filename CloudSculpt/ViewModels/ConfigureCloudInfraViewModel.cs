@@ -17,6 +17,7 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     private double _paaSOpacity;
     private ObservableCollection<ServiceElementViewModel> _serviceElements;
     private ObservableCollection<ServiceElementViewModel> _infraCanvasCollection;
+    private bool _isBillingSelected;
     
     public int SecondColumnDefWidth
     {
@@ -77,11 +78,18 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         set => SetField(ref _infraCanvasCollection, value);
     }
     
+    public bool IsBillingSelected
+    {
+        get => _isBillingSelected;
+        set => SetField(ref _isBillingSelected, value);
+    }
     
     public ICommand ToggleWidthCommand { get; }
     public ICommand IaaSCommand { get; }
     public ICommand PaaSCommand { get; }
     public ICommand InfraCanvasLayoutUpdatedCommand { get; }
+    public ICommand ConfigureCloudInfraWindowCalculatorButton { get; }
+    public ICommand ConfigureCloudInfraWindowBillingButton { get; }
 
     public ConfigureCloudInfraViewModel()
     {
@@ -112,7 +120,11 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         IaaSCommand = new IaaSCommand(this);
         PaaSCommand = new PaaSCommand(this);
         InfraCanvasLayoutUpdatedCommand = new InfraCanvasLayoutUpdatedCommand();
+        ConfigureCloudInfraWindowBillingButton = new ConfigureCloudInfraWindowBillingButton(this);
+        ConfigureCloudInfraWindowCalculatorButton = new ConfigureCloudInfraWindowCalculatorButton(this);
 
+        // Initial Billing Selected State
+        IsBillingSelected = true;
         
         // Events
         EventAggregator.Instance.Subscribe<AddServiceElementEvent>(OnAddServiceElement);

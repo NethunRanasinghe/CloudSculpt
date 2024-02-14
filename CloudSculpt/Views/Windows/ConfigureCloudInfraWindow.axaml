@@ -74,6 +74,7 @@
         
         <Window.Resources>
                 <converters:HalfConverter x:Key="HalfConverter"/>
+                <converters:ConfigCloudInfraEditButtonOpacityConverter x:Key="ButtonOpacityConverter"/>
         </Window.Resources>
         <Grid>
                 <Grid.ColumnDefinitions>
@@ -318,8 +319,10 @@
                                                 HorizontalAlignment="Left"
                                                 HorizontalContentAlignment="Center"
                                                 Cursor="Hand"
+                                                Opacity="{Binding IsBillingSelected, Converter={StaticResource ButtonOpacityConverter}}"
                                                 Width="{Binding ElementName=DeployBillingCalculatorBorder, Path=Width, Converter={StaticResource HalfConverter}}"
-                                                CornerRadius="15 0 0 0 "/>
+                                                CornerRadius="15 0 0 0 "
+                                                Command="{Binding ConfigureCloudInfraWindowCalculatorButton}"/>
                                 </Grid>
                                 
                                 <Grid Grid.Column="1">
@@ -340,8 +343,10 @@
                                                 HorizontalAlignment="Right"
                                                 HorizontalContentAlignment="Center"
                                                 Cursor="Hand"
+                                                Opacity="{Binding !IsBillingSelected, Converter={StaticResource ButtonOpacityConverter}}"
                                                 Width="{Binding ElementName=DeployBillingCalculatorBorder, Path=Width, Converter={StaticResource HalfConverter}}"
-                                                CornerRadius="0 15 0 0"/>
+                                                CornerRadius="0 15 0 0"
+                                                Command="{Binding ConfigureCloudInfraWindowBillingButton}"/>
                                 </Grid>
                         </Grid>
                 </Border>
