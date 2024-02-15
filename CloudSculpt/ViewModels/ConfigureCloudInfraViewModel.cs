@@ -88,8 +88,8 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     public ICommand IaaSCommand { get; }
     public ICommand PaaSCommand { get; }
     public ICommand InfraCanvasLayoutUpdatedCommand { get; }
-    public ICommand ConfigureCloudInfraWindowCalculatorButton { get; }
     public ICommand ConfigureCloudInfraWindowBillingButton { get; }
+    public ICommand ConfigureCloudInfraWindowDeployButton { get; }
 
     public ConfigureCloudInfraViewModel()
     {
@@ -121,7 +121,7 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         PaaSCommand = new PaaSCommand(this);
         InfraCanvasLayoutUpdatedCommand = new InfraCanvasLayoutUpdatedCommand();
         ConfigureCloudInfraWindowBillingButton = new ConfigureCloudInfraWindowBillingButton(this);
-        ConfigureCloudInfraWindowCalculatorButton = new ConfigureCloudInfraWindowCalculatorButton(this);
+        ConfigureCloudInfraWindowDeployButton = new ConfigureCloudInfraWindowDeployListButton(this);
 
         // Initial Billing Selected State
         IsBillingSelected = true;

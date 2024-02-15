@@ -6,6 +6,6 @@ public class ConfigureCloudInfraWindowBillingButton (ConfigureCloudInfraViewMode
 {
     public override void Execute(object? parameter)
     {
-        configureCloudInfraViewModel.IsBillingSelected = false;
+        configureCloudInfraViewModel.IsBillingSelected = true;
     }
 }

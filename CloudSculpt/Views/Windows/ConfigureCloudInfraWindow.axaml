@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CloudSculpt.ViewModels"
         xmlns:converters="clr-namespace:CloudSculpt.Converters"
-        xmlns:elements="clr-namespace:CloudSculpt.Elements"
+        xmlns:elements="clr-namespace:CloudSculpt.Views.Elements"
         xmlns:behaviors="clr-namespace:CloudSculpt.Behaviors"
         mc:Ignorable="d" d:DesignWidth="910" d:DesignHeight="512"
         x:Class="CloudSculpt.Views.Windows.ConfigureCloudInfraWindow"
@@ -276,7 +276,7 @@
 
                 </Grid>
                 
-                <!--Deploy and Billing Calculator-->
+                <!--Deploy List and Billing-->
                 <Border Grid.Column="1"
                         Background="{DynamicResource BackgroundSecondLayer}"
                         CornerRadius="20"
@@ -284,7 +284,7 @@
                         MinWidth="0"
                         MaxWidth="363"
                         Width="{Binding SecondColumnDefWidth}"
-                        x:Name="DeployBillingCalculatorBorder"
+                        x:Name="DeployBillingDeployBorder"
                         Classes.expand="{Binding IsExpand, FallbackValue=false}"
                         Classes.collapse="{Binding IsCollapsed, FallbackValue=false}"
                         Classes.none="{Binding IsNone, FallbackValue=false}">
@@ -296,18 +296,18 @@
                         </Border.Transitions>
                         
                         <Grid>
-                                <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition/>
+                                </Grid.RowDefinitions>
                                 
-                                <Grid Grid.Column="0">
-                                        <Grid.RowDefinitions>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                        </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
                                         
-                                        <Button Grid.Row="0"
+                                        <Button Grid.Column="0"
                                                 Height="34"
                                                 Foreground="{DynamicResource ForegroundMainBrush}"
                                                 Background="{DynamicResource BackgroundThirdLayer}"
@@ -320,22 +320,15 @@
                                                 HorizontalContentAlignment="Center"
                                                 Cursor="Hand"
                                                 Opacity="{Binding IsBillingSelected, Converter={StaticResource ButtonOpacityConverter}}"
-                                                Width="{Binding ElementName=DeployBillingCalculatorBorder, Path=Width, Converter={StaticResource HalfConverter}}"
+                                                Width="{Binding ElementName=DeployBillingDeployBorder, Path=Width, Converter={StaticResource HalfConverter}}"
                                                 CornerRadius="15 0 0 0 "
-                                                Command="{Binding ConfigureCloudInfraWindowCalculatorButton}"/>
-                                </Grid>
-                                
-                                <Grid Grid.Column="1">
-                                        <Grid.RowDefinitions>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                        </Grid.RowDefinitions>
+                                                Command="{Binding ConfigureCloudInfraWindowBillingButton}"/>
                                         
-                                        <Button Grid.Row="0"
+                                        <Button Grid.Column="1"
                                                 Height="34"
                                                 Foreground="{DynamicResource ForegroundMainBrush}"
                                                 Background="{DynamicResource BackgroundThirdLayer}"
-                                                Content="Calculator"
+                                                Content="Deploy List"
                                                 FontFamily="Inter"
                                                 FontSize="15"
                                                 FontWeight="SemiBold"
@@ -344,10 +337,28 @@
                                                 HorizontalContentAlignment="Center"
                                                 Cursor="Hand"
                                                 Opacity="{Binding !IsBillingSelected, Converter={StaticResource ButtonOpacityConverter}}"
-                                                Width="{Binding ElementName=DeployBillingCalculatorBorder, Path=Width, Converter={StaticResource HalfConverter}}"
+                                                Width="{Binding ElementName=DeployBillingDeployBorder, Path=Width, Converter={StaticResource HalfConverter}}"
                                                 CornerRadius="0 15 0 0"
-                                                Command="{Binding ConfigureCloudInfraWindowBillingButton}"/>
+                                                Command="{Binding ConfigureCloudInfraWindowDeployButton}"/>
                                 </Grid>
+                                
+                                <ScrollViewer Grid.Row="1"
+                                              Margin="0 10">
+                                        <ItemsControl ItemsSource="{Binding InfraCanvasCollection}">
+                                                <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Vertical"/>
+                                                        </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                        
+                                                <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                                <elements:ConfigCloudInfraDeployTemplate DataContext="{Binding}" />
+                                                        </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                                        
+                                        </ItemsControl>
+                                </ScrollViewer>
                         </Grid>
                 </Border>
         </Grid>

@@ -20,6 +20,7 @@
         <entry key="CloudSculpt/Views/Elements/CloudConfigInfraContainerEdit.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Elements/CloudConfigInfraKubeEdit.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Elements/CloudConfigInfraVmEdit.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Elements/ConfigCloudInfraDeployTemplate.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Elements/ConfigCloudInfraEditContainer.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Elements/ConfigCloudInfraEditKube.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Elements/ConfigCloudInfraEditVm.axaml" value="CloudSculpt/CloudSculpt.csproj" />

@@ -5,7 +5,7 @@
              xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
              xmlns:behaviors="clr-namespace:CloudSculpt.Behaviors"
              mc:Ignorable="d" d:DesignWidth="148" d:DesignHeight="90"
-             x:Class="CloudSculpt.Elements.ServiceElementCanvasTemplate"
+             x:Class="CloudSculpt.Views.Elements.ServiceElementCanvasTemplate"
              Height="90" Width="148"
              x:DataType="viewModels:ServiceElementViewModel">
     

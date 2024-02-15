@@ -1,7 +1,7 @@
 ﻿using Avalonia.Controls;
 using CloudSculpt.ViewModels;
 
-namespace CloudSculpt.Elements;
+namespace CloudSculpt.Views.Elements;
 
 public partial class ServiceElementTemplate : UserControl
 {

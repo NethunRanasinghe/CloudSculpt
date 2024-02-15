@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
              mc:Ignorable="d" d:DesignWidth="98" d:DesignHeight="50"
-             x:Class="CloudSculpt.Elements.ServiceElementTemplate"
+             x:Class="CloudSculpt.Views.Elements.ServiceElementTemplate"
              Height="50" Width="148"
              x:DataType="viewModels:ServiceElementViewModel">
     

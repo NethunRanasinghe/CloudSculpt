@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace CloudSculpt.Elements;
+namespace CloudSculpt.Views.Elements;
 
 public partial class ServiceElementCanvasTemplate : UserControl
 {
