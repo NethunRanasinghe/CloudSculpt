@@ -59,7 +59,9 @@ public class ConfigCloudInfraEditWindowTerminalStartCommand (ServiceElementViewM
             var imageName = serviceElementViewModel.ImageName;
             serviceElementViewModel.HasStarted = false;
             serviceElementViewModel.ButtonState = false;
-            var builtProgress = await DockerManage.BuildDockerFile(filePath,$"{imageName}:latest");
+            var dockerFileCopyDirs = serviceElementViewModel.DockerFileCopyDirs;
+            
+            var builtProgress = await DockerManage.BuildDockerFile(filePath,$"{imageName}:latest", dockerFileCopyDirs);
             if(string.IsNullOrWhiteSpace(builtProgress)) return;
             
             // Create and Start Container

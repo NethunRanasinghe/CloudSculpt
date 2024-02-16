@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
@@ -42,6 +43,8 @@ public class ServiceElementViewModel : ViewModelBase
     private double _coreCount;
     private string? _tempStorageAmount;
     private double _storageAmount;
+    private List<string> _tempDockerFileCopyDirs;
+    private List<string> _dockerFileCopyDirs;
 
     public static int ElementCounter { get; set; } = 0;
     public static double CanvasWidth { get; set; } = 0;
@@ -268,6 +271,18 @@ public class ServiceElementViewModel : ViewModelBase
         set => SetField(ref _tempRamAmount, value);
     }
     
+    public List<string> DockerFileCopyDirs
+    {
+        get => _dockerFileCopyDirs;
+        set => SetField(ref _dockerFileCopyDirs, value);
+    }
+
+    public List<string> TempDockerFileCopyDirs
+    {
+        get => _tempDockerFileCopyDirs;
+        set => SetField(ref _tempDockerFileCopyDirs, value);
+    }
+    
     public ICommand ServiceElementCommand { get; }
     public ICommand ServiceElementCanvasEditCommand { get; }
     public ICommand ServiceElementCanvasDeleteCommand { get; }
@@ -345,6 +360,10 @@ public class ServiceElementViewModel : ViewModelBase
         CoreCount = 0;
         TempStorageAmount = "0";
         StorageAmount = 0;
+        
+        // Initial Docker COPY file Path
+        TempDockerFileCopyDirs = [];
+        DockerFileCopyDirs = [];
         
         // Commands
         ServiceElementCommand = new ServiceElementAddCommand(this);

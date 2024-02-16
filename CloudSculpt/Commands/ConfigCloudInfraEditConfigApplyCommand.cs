@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CloudSculpt.HelperClasses;
 using CloudSculpt.ViewModels;
 using MsBox.Avalonia;
@@ -90,9 +89,11 @@ public class ConfigCloudInfraEditConfigApplyCommand (ServiceElementViewModel ser
         {
             var tempFilePath = serviceElementViewModel.TempDockerFilePath;
             if(string.IsNullOrWhiteSpace(tempFilePath)) return;
-
             serviceElementViewModel.DockerFilePath = tempFilePath;
             serviceElementViewModel.ButtonState = true;
+
+            if(serviceElementViewModel.TempDockerFileCopyDirs.Count <= 0) return;
+            serviceElementViewModel.DockerFileCopyDirs = serviceElementViewModel.TempDockerFileCopyDirs;
         }
     }
 

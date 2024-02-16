@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using CloudSculpt.Interfaces;
 using CloudSculpt.Services;
 using CloudSculpt.ViewModels;
@@ -21,8 +23,10 @@ public class ConfigCloudInfraEditConfigContainerFileSelectCommand(ServiceElement
         var fileContent = await streamReader.ReadToEndAsync();
         var fileLoc = file.Path; // file:///C:/Users/nethu/Downloads/Test.txt
         var filePath = fileLoc.AbsolutePath; // C:/Users/nethu/Downloads/Test.txt
+        var fileDirPath = Path.GetDirectoryName(filePath); // C:/Users/nethu/Downloads
+        var dockerfileCopyFiles = new List<string>();
 
-        if (!(fileContent.Contains("FROM") && (fileContent.Contains("CMD") || fileContent.Contains("ENTRYPOINT"))))
+        if (!(fileContent.Contains("FROM")|| fileContent.Contains("ENTRYPOINT")))
         {
             var box = MessageBoxManager
                 .GetMessageBoxStandard("C003", "Invalid Dockerfile!",
@@ -32,16 +36,32 @@ public class ConfigCloudInfraEditConfigContainerFileSelectCommand(ServiceElement
             return;
         }
 
+        
         if (fileContent.Contains("COPY"))
         {
-            var box = MessageBoxManager
-                .GetMessageBoxStandard("C004", "COPY command in dockerfile is not supported!",
-                    ButtonEnum.Ok,Icon.Error);
+            if(string.IsNullOrWhiteSpace(fileDirPath)) return;
+            dockerfileCopyFiles = ExtractCopyCommands(fileContent, fileDirPath);
+        }
+        
+        serviceElementViewModel.TempDockerFilePath = filePath;
+        if(dockerfileCopyFiles.Count <= 0) return;
+        serviceElementViewModel.TempDockerFileCopyDirs = dockerfileCopyFiles;
+    }
+    
+    private static List<string> ExtractCopyCommands(string fileContent, string fileDirPath)
+    {
+        var copyCommands = new List<string>();
 
-            await box.ShowAsync();
-            return;
+        using var reader = new StringReader(fileContent);
+        while (reader.ReadLine() is { } line)
+        {
+            if (line.Contains("COPY"))
+            {
+                var dockerFileCopyDir = Path.Join(fileDirPath,line.Split(" ")[1]);
+                copyCommands.Add(dockerFileCopyDir);
+            }
         }
 
-        serviceElementViewModel.TempDockerFilePath = filePath;
+        return copyCommands;
     }
 }

@@ -59,18 +59,17 @@ public static class DockerManage
         await client.Images.DeleteImageAsync(imageName, new ImageDeleteParameters());
     }
     
-    public static async Task<string> BuildDockerFile(string dockerFilePath, string imageTag)
+    public static async Task<string> BuildDockerFile(string dockerFilePath, string imageTag, List<string> dockerFileCopyDirs)
 {
     var outputTarGzPath = $"{dockerFilePath}.tar.gz";
     
-    CreateTarGzFile(dockerFilePath, outputTarGzPath);
-
+    CreateTarGzFile(dockerFilePath, outputTarGzPath, dockerFileCopyDirs);
     if (File.Exists(dockerFilePath))
     {
         var client = new DockerClientConfiguration().CreateClient();
 
         await using var stream = File.OpenRead(outputTarGzPath);
-    
+
         var imageBuildParameters = new ImageBuildParameters
         {
             Dockerfile = "Dockerfile",
@@ -95,19 +94,19 @@ public static class DockerManage
 
             return progressMessages.ToString();
         }
-    
+
         catch (DockerApiException ex)
         {
             Console.WriteLine();
-            
+
             var box = MessageBoxManager
                 .GetMessageBoxStandard("Error (D100)",$"Docker API Exception: {ex.StatusCode}, {ex.Message}",
                     ButtonEnum.Ok, Icon.Error);
 
             await box.ShowAsync();
             return string.Empty;
-        }   
-        
+        }
+
     }
 
     {
@@ -225,31 +224,53 @@ public static class DockerManage
         return dockerStatus;
     }
 
-    private static void CreateTarGzFile(string sourceFilePath, string tarGzFilePath)
+    private static void CreateTarGzFile(string sourceFilePath, string tarGzFilePath, List<string> dockerFileCopyCmdDirs)
     {
         // Delete tar file if exist
         if (File.Exists(tarGzFilePath))
         {
             File.Delete(tarGzFilePath);
         }
-        
+
         Encoding utf8Encoding = new UTF8Encoding(false);
 
         using var fs = new FileStream(tarGzFilePath, FileMode.Create);
         using var gzipStream = new GZipStream(fs, CompressionMode.Compress);
         using var tarStream = new TarOutputStream(gzipStream, utf8Encoding);
-        var fileName = Path.GetFileName(sourceFilePath);
-            
-        var tarEntry = TarEntry.CreateEntryFromFile(sourceFilePath);
-        tarEntry.Name = fileName;
+
+        // Add the source file to the tar.gz file
+        AddFileOrDirectoryToTarGz(tarStream, sourceFilePath, Path.GetDirectoryName(sourceFilePath));
+
+        // Add the files and directories from the dockerFileCopyCmdDirs list to the tar.gz file
+        foreach (var fileOrDirPath in dockerFileCopyCmdDirs)
+        {
+            if (File.Exists(fileOrDirPath) || Directory.Exists(fileOrDirPath))
+            {
+                AddFileOrDirectoryToTarGz(tarStream, fileOrDirPath, Path.GetDirectoryName(fileOrDirPath));
+            }
+        }
+    }
+
+
+
+    private static void AddFileOrDirectoryToTarGz(TarOutputStream tarStream, string fileOrDirPath, string baseDirectoryPath)
+    {
+        var tarEntry = TarEntry.CreateEntryFromFile(fileOrDirPath);
+        // Use a relative path from the base directory as the tar entry name
+        tarEntry.Name = Path.GetRelativePath(baseDirectoryPath, fileOrDirPath);
         tarStream.PutNextEntry(tarEntry);
 
-        using (var fileStream = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read))
+        if (File.Exists(fileOrDirPath))
         {
+            // If it's a file, copy its content to the tar.gz file
+            using var fileStream = new FileStream(fileOrDirPath, FileMode.Open, FileAccess.Read);
             fileStream.CopyTo(tarStream);
         }
+
         tarStream.CloseEntry();
     }
+
+
 
     #endregion
 }
