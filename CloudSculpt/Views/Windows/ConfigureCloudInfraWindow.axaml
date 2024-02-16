@@ -311,23 +311,6 @@
                                                 Height="34"
                                                 Foreground="{DynamicResource ForegroundMainBrush}"
                                                 Background="{DynamicResource BackgroundThirdLayer}"
-                                                Content="Billing"
-                                                FontFamily="Inter"
-                                                FontSize="15"
-                                                FontWeight="SemiBold"
-                                                VerticalAlignment="Top"
-                                                HorizontalAlignment="Left"
-                                                HorizontalContentAlignment="Center"
-                                                Cursor="Hand"
-                                                Opacity="{Binding IsBillingSelected, Converter={StaticResource ButtonOpacityConverter}}"
-                                                Width="{Binding ElementName=DeployBillingDeployBorder, Path=Width, Converter={StaticResource HalfConverter}}"
-                                                CornerRadius="15 0 0 0 "
-                                                Command="{Binding ConfigureCloudInfraWindowBillingButton}"/>
-                                        
-                                        <Button Grid.Column="1"
-                                                Height="34"
-                                                Foreground="{DynamicResource ForegroundMainBrush}"
-                                                Background="{DynamicResource BackgroundThirdLayer}"
                                                 Content="Deploy List"
                                                 FontFamily="Inter"
                                                 FontSize="15"
@@ -338,27 +321,31 @@
                                                 Cursor="Hand"
                                                 Opacity="{Binding !IsBillingSelected, Converter={StaticResource ButtonOpacityConverter}}"
                                                 Width="{Binding ElementName=DeployBillingDeployBorder, Path=Width, Converter={StaticResource HalfConverter}}"
-                                                CornerRadius="0 15 0 0"
+                                                CornerRadius="15 0 0 0"
                                                 Command="{Binding ConfigureCloudInfraWindowDeployButton}"/>
+                                        
+                                        <Button Grid.Column="1"
+                                                Height="34"
+                                                Foreground="{DynamicResource ForegroundMainBrush}"
+                                                Background="{DynamicResource BackgroundThirdLayer}"
+                                                Content="Billing"
+                                                FontFamily="Inter"
+                                                FontSize="15"
+                                                FontWeight="SemiBold"
+                                                VerticalAlignment="Top"
+                                                HorizontalAlignment="Left"
+                                                HorizontalContentAlignment="Center"
+                                                Cursor="Hand"
+                                                Opacity="{Binding IsBillingSelected, Converter={StaticResource ButtonOpacityConverter}}"
+                                                Width="{Binding ElementName=DeployBillingDeployBorder, Path=Width, Converter={StaticResource HalfConverter}}"
+                                                CornerRadius="0 15 0 0 "
+                                                Command="{Binding ConfigureCloudInfraWindowBillingButton}"/>
                                 </Grid>
                                 
-                                <ScrollViewer Grid.Row="1"
-                                              Margin="0 10">
-                                        <ItemsControl ItemsSource="{Binding InfraCanvasCollection}">
-                                                <ItemsControl.ItemsPanel>
-                                                        <ItemsPanelTemplate>
-                                                                <StackPanel Orientation="Vertical"/>
-                                                        </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
-                                                        
-                                                <ItemsControl.ItemTemplate>
-                                                        <DataTemplate>
-                                                                <elements:ConfigCloudInfraDeployTemplate DataContext="{Binding}" />
-                                                        </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                                        
-                                        </ItemsControl>
-                                </ScrollViewer>
+                                <ContentControl Grid.Row="1"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch"
+                                                Content="{Binding  BillingCalView}"/>
                         </Grid>
                 </Border>
         </Grid>

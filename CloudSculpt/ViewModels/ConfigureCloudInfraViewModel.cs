@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Avalonia.Controls;
 using CloudSculpt.Commands;
 using CloudSculpt.Events;
+using CloudSculpt.Views.UserControls;
 
 namespace CloudSculpt.ViewModels;
 
@@ -18,6 +20,7 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     private ObservableCollection<ServiceElementViewModel> _serviceElements;
     private ObservableCollection<ServiceElementViewModel> _infraCanvasCollection;
     private bool _isBillingSelected;
+    private UserControl _billingCalView;
     
     public int SecondColumnDefWidth
     {
@@ -84,12 +87,19 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         set => SetField(ref _isBillingSelected, value);
     }
     
+    public UserControl BillingCalView
+    {
+        get => _billingCalView;
+        set => SetField(ref _billingCalView, value);
+    }
+    
     public ICommand ToggleWidthCommand { get; }
     public ICommand IaaSCommand { get; }
     public ICommand PaaSCommand { get; }
     public ICommand InfraCanvasLayoutUpdatedCommand { get; }
     public ICommand ConfigureCloudInfraWindowBillingButton { get; }
     public ICommand ConfigureCloudInfraWindowDeployButton { get; }
+    public ICommand ConfigCloudInfraDeployListClearList { get; }
 
     public ConfigureCloudInfraViewModel()
     {
@@ -122,9 +132,13 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         InfraCanvasLayoutUpdatedCommand = new InfraCanvasLayoutUpdatedCommand();
         ConfigureCloudInfraWindowBillingButton = new ConfigureCloudInfraWindowBillingButton(this);
         ConfigureCloudInfraWindowDeployButton = new ConfigureCloudInfraWindowDeployListButton(this);
+        ConfigCloudInfraDeployListClearList = new ConfigCloudInfraDeployListClearList(this);
 
         // Initial Billing Selected State
-        IsBillingSelected = true;
+        IsBillingSelected = false;
+        
+        // Initial BillingCallUserControl
+        BillingCalView = new ConfigCloudInfraDeployList();
         
         // Events
         EventAggregator.Instance.Subscribe<AddServiceElementEvent>(OnAddServiceElement);

@@ -34,6 +34,8 @@
         <entry key="CloudSculpt/Views/ProjectSelectionView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/ServiceElementTemplateView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/TemplatedControl1.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/UserControls/ConfigCloudInfraBilling.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/UserControls/ConfigCloudInfraDeployList.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/ConfigCloudInfraEditConfigView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/ConfigCloudInfraEditTerminalView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/ProjectSelectionCloudView.axaml" value="CloudSculpt/CloudSculpt.csproj" />

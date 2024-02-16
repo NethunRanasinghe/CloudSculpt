@@ -1,4 +1,5 @@
 ﻿using CloudSculpt.ViewModels;
+using CloudSculpt.Views.UserControls;
 
 namespace CloudSculpt.Commands;
 
@@ -7,5 +8,6 @@ public class ConfigureCloudInfraWindowBillingButton (ConfigureCloudInfraViewMode
     public override void Execute(object? parameter)
     {
         configureCloudInfraViewModel.IsBillingSelected = true;
+        configureCloudInfraViewModel.BillingCalView = new ConfigCloudInfraBilling();
     }
 }
