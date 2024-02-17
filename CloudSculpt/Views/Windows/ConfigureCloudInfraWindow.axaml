@@ -14,7 +14,8 @@
         CanResize="True"
         Icon="avares://CloudSculpt/Assets/iconv1.png" 
         Title="Configure Cloud Infrastructure"
-        x:DataType="local:ConfigureCloudInfraViewModel">
+        x:DataType="local:ConfigureCloudInfraViewModel"
+        Cursor="{Binding CursorType}">
         
         <!-- Animations -->
         <Window.Styles>

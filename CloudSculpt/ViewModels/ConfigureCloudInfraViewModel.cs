@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Avalonia.Controls;
+using Avalonia.Input;
 using CloudSculpt.Commands;
 using CloudSculpt.Events;
 using CloudSculpt.Views.UserControls;
@@ -21,6 +22,7 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     private ObservableCollection<ServiceElementViewModel> _infraCanvasCollection;
     private bool _isBillingSelected;
     private UserControl _billingCalView;
+    private Cursor _cursorType;
     
     public int SecondColumnDefWidth
     {
@@ -93,6 +95,12 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         set => SetField(ref _billingCalView, value);
     }
     
+    public Cursor CursorType
+    {
+        get => _cursorType;
+        set => SetField(ref _cursorType, value);
+    }
+    
     public ICommand ToggleWidthCommand { get; }
     public ICommand IaaSCommand { get; }
     public ICommand PaaSCommand { get; }
@@ -125,6 +133,9 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         IaaSOpacity = 1;
         PaaSOpacity = 1;
         
+        // Initial Cursor Type
+        CursorType = new Cursor(StandardCursorType.Arrow);
+        
         // Commands
         ToggleWidthCommand = new ToggleDeployWidthCommand(this);
         IaaSCommand = new IaaSCommand(this);
@@ -143,6 +154,7 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         // Events
         EventAggregator.Instance.Subscribe<AddServiceElementEvent>(OnAddServiceElement);
         EventAggregator.Instance.Subscribe<RemoveServiceElementEvent>(OnRemoveServiceElement);
+        EventAggregator.Instance.Subscribe<WaitCursorChangeEvent>(OnApplicationWait);
     }
 
     private void OnRemoveServiceElement(RemoveServiceElementEvent obj)
@@ -166,6 +178,18 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         
         // Increment Element Count
         ServiceElementViewModel.ElementCounter += 1;
+    }
+
+    private void OnApplicationWait(WaitCursorChangeEvent obj)
+    {
+        if (obj.IsWait)
+        {
+            CursorType = new Cursor(StandardCursorType.Wait);
+        }
+        else
+        {
+            CursorType = new Cursor(StandardCursorType.Arrow);
+        }
     }
     
 }

@@ -373,7 +373,7 @@ public class ServiceElementViewModel : ViewModelBase
         ServiceElementCanvasPointerReleasedCommand = new ServiceElementCanvasPointerReleased(this);
         ServiceElementCanvasPointerMovedCommand = new ServiceElementCanvasPointerMoved(this);
         ConfigCloudInfraEditConfigCancelCommand = new ConfigCloudInfraEditConfigCancelCommand();
-        ConfigCloudInfraEditTerminalKeyDownCommand = new ConfigCloudInfraEditTerminalKeyDownCommand();
+        ConfigCloudInfraEditTerminalKeyDownCommand = new ConfigCloudInfraEditWindowTerminalKeyDownCommand();
         ConfigCloudInfraEditWindowTerminalStartCommand = new ConfigCloudInfraEditWindowTerminalStartCommand(this);
         ConfigCloudInfraEditWindowTerminalStopCommand = new ConfigCloudInfraEditWindowTerminalStopCommand(this);
         ConfigCloudInfraEditConfigApplyCommand = new ConfigCloudInfraEditConfigApplyCommand(this);

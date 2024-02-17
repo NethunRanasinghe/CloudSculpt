@@ -1,4 +1,7 @@
-﻿using CloudSculpt.Events;
+﻿using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Input;
+using CloudSculpt.Events;
 using CloudSculpt.HelperClasses;
 using CloudSculpt.ViewModels;
 using MsBox.Avalonia;
@@ -18,7 +21,9 @@ public class ServiceElementCanvasRemoveCommand (ServiceElementViewModel element)
 
         var result = await box.ShowAsync();
 
-        if (result != ButtonResult.Yes) return;
+        if (result == ButtonResult.No) return;
+        
+        EventAggregator.Instance.Publish(new WaitCursorChangeEvent(true));
         
         var elementIndex = element.ElementIndex;
         var containerId = element.ContainerId;
@@ -26,10 +31,10 @@ public class ServiceElementCanvasRemoveCommand (ServiceElementViewModel element)
         // Remove Container
         if (!string.IsNullOrWhiteSpace(containerId))
         {
-            await DockerManage.StopContainer(containerId);
             await DockerManage.RemoveContainer(containerId);
         }
         
         EventAggregator.Instance.Publish(new RemoveServiceElementEvent(elementIndex));
+        EventAggregator.Instance.Publish(new WaitCursorChangeEvent(false));
     }
 }

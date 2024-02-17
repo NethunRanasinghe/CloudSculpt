@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Docker.DotNet;
 using Docker.DotNet.Models;
@@ -28,11 +30,20 @@ public static class DockerManage
      * 10. Verify Docker Status -   x       x
      */
 
+    // Uri :- Dev Only (ssh tunnel to remote docker server)
+    // ssh -fNL localhost:23750:/var/run/docker.sock nethunranasingha@192.168.2.157
+
+    private static readonly Uri? RemoteDockerUri = new("tcp://localhost:23750");
+
+    private static readonly Uri DockerUri = RemoteDockerUri ?? 
+                                            (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) 
+                                                ? new Uri("npipe://./pipe/docker_engine") 
+                                                : new Uri("unix:///var/run/docker.sock"));    
     #region Image Management
 
     public static async Task<IList<ImagesListResponse>> ListImages()
     {
-        var client = new DockerClientConfiguration().CreateClient();
+        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
         IList<ImagesListResponse> images = await client.Images.ListImagesAsync(
             new ImagesListParameters(){});
 
@@ -41,7 +52,7 @@ public static class DockerManage
     
     public static async Task PullImage(string imageName, string imageTag)
     {
-        var client = new DockerClientConfiguration().CreateClient();
+        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
         await client.Images.CreateImageAsync(
             new ImagesCreateParameters
             {
@@ -55,70 +66,71 @@ public static class DockerManage
     
     public static async Task RemoveImage(string imageName)
     {
-        var client = new DockerClientConfiguration().CreateClient();
+        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
         await client.Images.DeleteImageAsync(imageName, new ImageDeleteParameters());
     }
     
     public static async Task<string> BuildDockerFile(string dockerFilePath, string imageTag, List<string> dockerFileCopyDirs)
-{
-    var outputTarGzPath = $"{dockerFilePath}.tar.gz";
-    
-    CreateTarGzFile(dockerFilePath, outputTarGzPath, dockerFileCopyDirs);
-    if (File.Exists(dockerFilePath))
     {
-        var client = new DockerClientConfiguration().CreateClient();
-
-        await using var stream = File.OpenRead(outputTarGzPath);
-
-        var imageBuildParameters = new ImageBuildParameters
+        var outputTarGzPath = $"{dockerFilePath}.tar.gz";
+        
+        CreateTarGzFile(dockerFilePath, outputTarGzPath, dockerFileCopyDirs);
+        if (File.Exists(dockerFilePath))
         {
-            Dockerfile = "Dockerfile",
-            Tags = new List<string> { imageTag },
-        };
+            using var client = new DockerClientConfiguration(DockerUri).CreateClient();
 
-        var progressMessages = new StringBuilder();
-        var progress = new Progress<JSONMessage>(msg =>
-        {
-            progressMessages.AppendLine(msg.Stream);
-        });
+            await using var stream = File.OpenRead(outputTarGzPath);
 
-        try
-        {
-            await client.Images.BuildImageFromDockerfileAsync(
-                contents: stream,
-                parameters: imageBuildParameters,
-                authConfigs: null,
-                headers: null,
-                progress: progress,
-                cancellationToken: default);
+            var imageBuildParameters = new ImageBuildParameters
+            {
+                Dockerfile = "Dockerfile",
+                Tags = new List<string> { imageTag },
+                NetworkMode = "host"
+            };
 
-            return progressMessages.ToString();
+            var progressMessages = new StringBuilder();
+            var progress = new Progress<JSONMessage>(msg =>
+            {
+                progressMessages.AppendLine(msg.Stream);
+            });
+
+            try
+            {
+                await client.Images.BuildImageFromDockerfileAsync(
+                    contents: stream,
+                    parameters: imageBuildParameters,
+                    authConfigs: null,
+                    headers: null,
+                    progress: progress,
+                    cancellationToken: default);
+
+                return progressMessages.ToString();
+            }
+
+            catch (DockerApiException ex)
+            {
+                Console.WriteLine();
+
+                var box = MessageBoxManager
+                    .GetMessageBoxStandard("Error (D100)",$"Docker API Exception: {ex.StatusCode}, {ex.Message}",
+                        ButtonEnum.Ok, Icon.Error);
+
+                await box.ShowAsync();
+                return string.Empty;
+            }
+
         }
-
-        catch (DockerApiException ex)
+        
         {
-            Console.WriteLine();
-
             var box = MessageBoxManager
-                .GetMessageBoxStandard("Error (D100)",$"Docker API Exception: {ex.StatusCode}, {ex.Message}",
+                .GetMessageBoxStandard("Error (D006)",
+                    "tar.gz compress error, Failed to create a tar.gz file !",
                     ButtonEnum.Ok, Icon.Error);
 
             await box.ShowAsync();
             return string.Empty;
         }
-
     }
-
-    {
-        var box = MessageBoxManager
-            .GetMessageBoxStandard("Error (D006)",
-                "tar.gz compress error, Failed to create a tar.gz file !",
-                ButtonEnum.Ok, Icon.Error);
-
-        await box.ShowAsync();
-        return string.Empty;
-    }
-}
 
     #endregion
 
@@ -129,7 +141,7 @@ public static class DockerManage
     
     public static async Task<IList<ContainerListResponse>> ListContainers()
     {
-        var client = new DockerClientConfiguration().CreateClient();
+        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
         IList<ContainerListResponse> containers = await client.Containers.ListContainersAsync(
             new ContainersListParameters(){});
 
@@ -138,7 +150,7 @@ public static class DockerManage
 
     public static async Task<string> CreateContainer(string imageName)
     {
-        var client = new DockerClientConfiguration().CreateClient();
+        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
         var createdContainer = await client.Containers.CreateContainerAsync(new CreateContainerParameters()
         {
             Image = imageName,
@@ -155,7 +167,7 @@ public static class DockerManage
 
     public static async Task<string> CreateContainerWithCommand(string imageName)
     {
-        var client = new DockerClientConfiguration().CreateClient();
+        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
         var createdContainer = await client.Containers.CreateContainerAsync(new CreateContainerParameters()
         {
             Image = imageName,
@@ -173,14 +185,14 @@ public static class DockerManage
 
     public static async Task RemoveContainer(string containerId)
     {
-        var client = new DockerClientConfiguration().CreateClient();
-        await client.Containers.StopContainerAsync(containerId, new ContainerStopParameters());
+        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+        await StopContainer(containerId);
         await client.Containers.RemoveContainerAsync(containerId, new ContainerRemoveParameters());
     }
 
     public static async Task StartContainer(string containerId)
     {
-        var client = new DockerClientConfiguration().CreateClient();
+        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
         await client.Containers.StartContainerAsync(
             containerId,
             new ContainerStartParameters()
@@ -189,11 +201,41 @@ public static class DockerManage
 
     public static async Task StopContainer(string containerId)
     {
-        var client = new DockerClientConfiguration().CreateClient();
+        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
         await client.Containers.StopContainerAsync(
             containerId,
             new ContainerStopParameters()
         );
+    }
+
+    public static async Task<(string stdout, string stderr)> ExecuteCommand(string containerId, IList<string> command)
+    {
+        using var client = new DockerClientConfiguration(RemoteDockerUri)
+            .CreateClient();
+
+        var execParams = new ContainerExecCreateParameters()
+        {
+            AttachStderr = true,
+            AttachStdout = true,
+            Cmd = command,
+        };
+
+        var exec = await client.Exec.ExecCreateContainerAsync(containerId, execParams);
+        var stream = await client.Exec.StartAndAttachContainerExecAsync(exec.ID, false);
+
+        using var stdoutStream = new MemoryStream();
+        using var stderrStream = new MemoryStream();
+
+        await stream.CopyOutputToAsync(
+            null,
+            stdoutStream,
+            stderrStream,
+            CancellationToken.None);
+
+        var stdout = Encoding.UTF8.GetString(stdoutStream.ToArray());
+        var stderr = Encoding.UTF8.GetString(stderrStream.ToArray());
+
+        return (stdout, stderr);
     }
     
     #endregion
