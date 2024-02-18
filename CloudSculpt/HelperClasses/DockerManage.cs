@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -34,6 +35,7 @@ public static class DockerManage
     // ssh -fNL localhost:23750:/var/run/docker.sock nethunranasingha@192.168.2.157
 
     private static readonly Uri? RemoteDockerUri = new("tcp://localhost:23750");
+    //private static readonly Uri? RemoteDockerUri = null;
 
     private static readonly Uri DockerUri = RemoteDockerUri ?? 
                                             (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) 
@@ -41,7 +43,7 @@ public static class DockerManage
                                                 : new Uri("unix:///var/run/docker.sock"));    
     #region Image Management
 
-    public static async Task<IList<ImagesListResponse>> ListImages()
+    private static async Task<IList<ImagesListResponse>> ListImages()
     {
         using var client = new DockerClientConfiguration(DockerUri).CreateClient();
         IList<ImagesListResponse> images = await client.Images.ListImagesAsync(
@@ -240,6 +242,75 @@ public static class DockerManage
     
     #endregion
 
+    #region Networks
+
+    private static async Task CreateIpVlanNetwork()
+    {
+        var networkData = NetworkingHelper.GetNetworkData();
+        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+        var networks = await client.Networks.ListNetworksAsync();
+        var networkExists = networks.Any(n => n.Name == "cloudsculptnetwork");
+        
+        if (!networkExists)
+        {
+            await client.Networks.CreateNetworkAsync(new NetworksCreateParameters
+            {
+                Name = "cloudsculptnetwork",
+                Driver = "ipvlan",
+                IPAM = new IPAM
+                {
+                    Config = new List<IPAMConfig>
+                    {
+                        new()
+                        {
+                            Subnet = $"{networkData.NetworkAddress}/{networkData.Cidr}",
+                            Gateway = networkData.GatewayAddress.ToString(),
+                            IPRange = $"{networkData.NetworkAddress}/{networkData.Cidr}",
+                        }
+                    }
+                },
+                Options = new Dictionary<string, string>
+                {
+                    { "parent", $"{networkData.InterfaceName}" }
+                }
+            });
+        }
+    }
+    
+    /*private static async Task CreateIpVlanNetwork()
+    {
+        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+        var networks = await client.Networks.ListNetworksAsync();
+        var networkExists = networks.Any(n => n.Name == "cloudsculptnetwork");
+
+        if (!networkExists)
+        {
+            await client.Networks.CreateNetworkAsync(new NetworksCreateParameters
+            {
+                Name = "cloudsculptnetwork",
+                Driver = "ipvlan",
+                IPAM = new IPAM
+                {
+                    Config = new List<IPAMConfig>
+                    {
+                        new()
+                        {
+                            Subnet = "192.168.1.0/24",
+                            Gateway = "192.168.1.1",
+                            IPRange = "192.168.1.200/30"
+                        }
+                    }
+                },
+                Options = new Dictionary<string, string>
+                {
+                    { "parent", "eth0" }
+                }
+            });
+        }
+    }*/
+
+    #endregion
+    
     #region Other
 
     public static async Task<string> VerifyDockerStatus()
@@ -249,6 +320,7 @@ public static class DockerManage
         try
         {
             await ListImages();
+            //await CreateIpVlanNetwork();
             dockerStatus = string.Empty;
         }
         catch (Exception ex)
@@ -311,8 +383,5 @@ public static class DockerManage
 
         tarStream.CloseEntry();
     }
-
-
-
     #endregion
 }

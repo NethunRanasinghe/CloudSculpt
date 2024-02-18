@@ -142,8 +142,7 @@
                                            FontWeight="SemiBold"
                                            HorizontalAlignment="Left"
                                            VerticalAlignment="Center"
-                                           ToolTip.Tip="1. These will NOT be reflected in the test environment !
-                                           2. These arbitrary values are only used for cloud deployment configuration !"/>
+                                           ToolTip.Tip="These arbitrary will NOT be reflected in the test environment and are only used for cloud DEPLOYMENT configuration !"/>
                             
                                 <TextBox Grid.Column="1"
                                          Text="{Binding RamAmount, Mode=OneWay}"
@@ -177,8 +176,7 @@
                                            FontWeight="SemiBold"
                                            HorizontalAlignment="Left"
                                            VerticalAlignment="Center"
-                                           ToolTip.Tip="1. These will NOT be reflected in the test environment !
-                                           2. These arbitrary values are only used for cloud deployment configuration !"/>
+                                           ToolTip.Tip="These arbitrary will NOT be reflected in the test environment and are only used for cloud DEPLOYMENT configuration !"/>
                             
                                 <TextBox Grid.Column="1"
                                          Text="{Binding CoreCount, Mode=OneWay}"
@@ -212,8 +210,7 @@
                                            FontWeight="SemiBold"
                                            HorizontalAlignment="Left"
                                            VerticalAlignment="Center"
-                                           ToolTip.Tip="1. These will NOT be reflected in the test environment !
-                                           2. These arbitrary values are only used for cloud deployment configuration !"/>
+                                           ToolTip.Tip="These arbitrary will NOT be reflected in the test environment and are only used for cloud DEPLOYMENT configuration !"/>
                             
                                 <TextBox Grid.Column="1"
                                          Text="{Binding StorageAmount, Mode=OneWay}"
