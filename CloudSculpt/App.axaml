@@ -1,10 +1,11 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="CloudSculpt.App"
-             RequestedThemeVariant="Light">
+             xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+             x:DataType="viewModels:SettingsV2ViewModel"
+             x:Class="CloudSculpt.App" RequestedThemeVariant="Light">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
-            
-             <!--Custom Theme-->
+             
+             <!--Custom Theme and Converter-->
              <Application.Resources>
                  <ResourceDictionary>
                      <ResourceDictionary.ThemeDictionaries>

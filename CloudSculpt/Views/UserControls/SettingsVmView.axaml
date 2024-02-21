@@ -1,0 +1,37 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="362" d:DesignHeight="351"
+             Width="362" Height="351"
+             Background="{DynamicResource BackgroundSecondLayer}"
+             x:Class="CloudSculpt.Views.UserControls.SettingsVmView"
+             CornerRadius="15" x:DataType="viewModels:SettingsV2ViewModel">
+    
+    <Border CornerRadius="15">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height=".3*"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Grid.Row="0" 
+                        Orientation="Vertical">
+            </StackPanel>
+            
+            <Grid Grid.Row="1">
+                <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="Back"
+                        Foreground="{DynamicResource ForegroundMainBrush}"
+                        Background="{DynamicResource BackgroundThirdLayer}"
+                        FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                        Width="200" CornerRadius="8" Cursor="Hand"
+                        Command="{Binding SettingsContentBack}"/>
+            </Grid>
+        </Grid>
+    </Border>
+    
+</UserControl>

@@ -8,12 +8,10 @@
         xmlns:behaviors="clr-namespace:CloudSculpt.Behaviors"
         mc:Ignorable="d" d:DesignWidth="910" d:DesignHeight="512"
         x:Class="CloudSculpt.Views.Windows.ConfigureCloudInfraWindow"
-        MinWidth="910" MinHeight="512"
+        MinWidth="910" MinHeight="512" Title="Configure Cloud Infrastructure"
         Background="{DynamicResource BackgroundFirstLayer}"
-        WindowStartupLocation="CenterScreen"
-        CanResize="True"
+        WindowStartupLocation="CenterScreen" CanResize="True"
         Icon="avares://CloudSculpt/Assets/iconv1.png" 
-        Title="Configure Cloud Infrastructure"
         x:DataType="local:ConfigureCloudInfraViewModel"
         Cursor="{Binding CursorType}">
         

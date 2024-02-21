@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Interactivity;
 using CloudSculpt.HelperClasses;
+using CloudSculpt.Views.Windows;
 
 namespace CloudSculpt.Views.UserControls;
 
@@ -28,7 +29,7 @@ public partial class ProjectSelectionMainView : UserControl
 
     private void MainSettingsButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        SettingsWindow settingsWindow = new();
+        SettingsWindowV2 settingsWindow = new();
         _mainMenuWindow.Hide();
         settingsWindow.Show();
         

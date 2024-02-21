@@ -41,10 +41,16 @@
         <entry key="CloudSculpt/Views/UserControls/ProjectSelectionCloudView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/ProjectSelectionMainView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/ProjectSelectionNetworkView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/UserControls/SettingsDiagnosticsView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/UserControls/SettingsDockerView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/UserControls/SettingsMainView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/UserControls/SettingsUiView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/UserControls/SettingsVmView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Windows/ConfigCloudInfraEditWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Windows/ConfigureCloudInfraWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Windows/MainMenuWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Windows/SettingsWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Windows/SettingsWindowV2.axaml" value="CloudSculpt/CloudSculpt.csproj" />
       </map>
     </option>
   </component>

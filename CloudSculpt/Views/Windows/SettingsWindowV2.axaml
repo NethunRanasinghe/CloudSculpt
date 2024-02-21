@@ -1,0 +1,36 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="402" d:DesignHeight="435"
+        Height="435" Width="402" Title="{Binding SettingsTitle}"
+        x:Class="CloudSculpt.Views.Windows.SettingsWindowV2"
+        Background="{DynamicResource BackgroundFirstLayer}"
+        WindowStartupLocation="CenterScreen" CanResize="False"
+        Icon="avares://CloudSculpt/Assets/iconv1.png"
+        x:DataType="viewModels:SettingsV2ViewModel">
+        
+        <Grid>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <!--Title-->
+                <TextBlock Grid.Row="0"
+                           Text="{Binding SettingsTitle}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           FontFamily="Inter" FontWeight="SemiBold" FontSize="40"
+                           Foreground="{DynamicResource ForegroundTitleBrush}"/>
+                
+                <!--Content-->
+                <Border Grid.Row="1"
+                        CornerRadius="15"
+                        Background="{DynamicResource BackgroundSecondLayer}"
+                        Margin="20 10 20 20">
+                        
+                        <UserControl Content="{Binding CurrentSettingsView}"/>
+                </Border>
+        </Grid>
+</Window>
