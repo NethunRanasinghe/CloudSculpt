@@ -1,9 +1,11 @@
-﻿namespace CloudSculpt.Commands;
+﻿using CloudSculpt.ViewModels;
 
-public class SettingsMainBackCommand : CommandBase
+namespace CloudSculpt.Commands;
+
+public class SettingsMainBackCommand(SettingsV2ViewModel settingsV2ViewModel) : CommandBase
 {
     public override void Execute(object? parameter)
     {
-        throw new System.NotImplementedException();
+        settingsV2ViewModel.NavigationService.NavigateTo("MainMenuWindow");
     }
 }

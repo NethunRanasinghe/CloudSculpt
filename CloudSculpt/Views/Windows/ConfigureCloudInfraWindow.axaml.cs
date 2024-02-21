@@ -12,16 +12,4 @@ public partial class ConfigureCloudInfraWindow : Window
         InitializeComponent();
         DataContext = new ConfigureCloudInfraViewModel();
     }
-
-    #region Navigation
-
-    private void ConfigCloudBackButton_OnClick(object? sender, RoutedEventArgs e)
-    {
-        MainMenuWindow mainMenuWindow = new MainMenuWindow();
-        Hide();
-        mainMenuWindow.CurrentUserControl = new ProjectSelectionCloudView(mainMenuWindow);
-        mainMenuWindow.Show();
-    }
-
-    #endregion
 }

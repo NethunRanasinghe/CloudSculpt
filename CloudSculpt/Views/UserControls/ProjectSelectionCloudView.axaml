@@ -2,11 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
              mc:Ignorable="d" d:DesignWidth="645" d:DesignHeight="544"
              x:Class="CloudSculpt.Views.UserControls.ProjectSelectionCloudView"
-             Width="645"
-             Height="544"
-             Background="{DynamicResource BackgroundFirstLayer}">
+             Width="645" Height="544"
+             Background="{DynamicResource BackgroundFirstLayer}"
+             x:DataType="viewModels:MainMenuViewModel">
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -79,8 +80,7 @@
                         VerticalContentAlignment="Center"
                         Content="Networking"
                         Cursor="Hand"
-                        x:Name="CloudNetworkButton"
-                        Click="CloudNetworkButton_OnClick"/>
+                        Command="{Binding ProjectSelectionCloudViewNetworking}"/>
                 
                 <Button Grid.Row="5" 
                         HorizontalAlignment="Center"
@@ -95,9 +95,8 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Content="Back"
-                        x:Name="CloudBackButton"
                         Cursor="Hand"
-                        Click="CloudBackButton_OnClick"/>
+                        Command="{Binding ProjectSelectionBackToMain}"/>
             </Grid>
             
         </Border>
@@ -134,8 +133,7 @@
                         VerticalContentAlignment="Center"
                         Content="Configure Cloud Infrastructure"
                         Cursor="Hand"
-                        x:Name="CloudConfigCloudButton"
-                        Click="CloudConfigCloudButton_OnClick"/>
+                        Command="{Binding ProjectSelectionCloudViewConfigCloudInfra}"/>
             </Grid>
             
         </Border>

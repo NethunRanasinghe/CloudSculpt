@@ -2,21 +2,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
         mc:Ignorable="d" d:DesignWidth="645" d:DesignHeight="544"
         x:Class="CloudSculpt.Views.Windows.MainMenuWindow"
-        Width="645"
-        Height="544"
-        Background="{DynamicResource BackgroundFirstLayer}"
-        WindowStartupLocation="CenterScreen"
-        CanResize="False"
-        Icon="avares://CloudSculpt/Assets/iconv1.png"
-        Title="Main Menu">
+        Width="645" Height="544" Background="{DynamicResource BackgroundFirstLayer}"
+        WindowStartupLocation="CenterScreen" CanResize="False"
+        Icon="avares://CloudSculpt/Assets/iconv1.png" Title="Main Menu"
+        x:DataType="viewModels:MainMenuViewModel">
     
         <!--
         Width   :: Original - 968 || Current - 645
         Height  :: Original - 816 || Current - 544
         -->
         
-        <ContentControl x:Name="MainMenuWindowContentControl"/>
-        
+        <ContentControl Content="{Binding CurrentUserControl}"/>
 </Window>

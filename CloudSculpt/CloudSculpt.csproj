@@ -21,6 +21,7 @@
         <PackageReference Include="CliWrap" Version="3.6.6" />
         <PackageReference Include="Docker.DotNet" Version="3.125.15" />
         <PackageReference Include="MessageBox.Avalonia" Version="3.1.5.1" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="SharpZipLib" Version="1.4.2" />
     </ItemGroup>
 
@@ -55,6 +56,10 @@
       <AvaloniaResource Include="Assets\delete.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </AvaloniaResource>
+      <None Remove="applicationSettings.json" />
+      <Content Include="applicationSettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 

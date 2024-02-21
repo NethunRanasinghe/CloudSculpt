@@ -2,9 +2,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
              mc:Ignorable="d" d:DesignWidth="645" d:DesignHeight="544"
              x:Class="CloudSculpt.Views.UserControls.ProjectSelectionMainView"
-             Width="645" Height="544">
+             Width="645" Height="544" Background="{DynamicResource BackgroundFirstLayer}"
+             x:DataType="viewModels:MainMenuViewModel">
     
     <!--
         New Project Button      : MainNewProjectButton
@@ -74,7 +76,7 @@
                                 Content="New Project"
                                 x:Name="MainNewProjectButton"
                                 Cursor="Hand"
-                                Click="MainNewProjectButton_OnClick"/>
+                                Command="{Binding ProjectSelectionMainViewNewProj}"/>
                     </Grid>
                 
                     <!--Open Project Button-->
@@ -92,8 +94,7 @@
                                 VerticalContentAlignment="Center"
                                 Content="Open Project"
                                 x:Name="MainOpenProjectButton"
-                                Cursor="Hand"
-                                Click="MainOpenProjectButton_OnClick"/>
+                                Cursor="Hand"/>
                     </Grid>
                 
                     <!--Settings Button-->
@@ -112,7 +113,7 @@
                                 Content="Settings"
                                 x:Name="MainSettingsButton"
                                 Cursor="Hand"
-                                Click="MainSettingsButton_OnClick"/>
+                                Command="{Binding ProjectSelectionMainViewSettings}"/>
                     </Grid>
                 
                     <!--Exit Button-->
@@ -131,7 +132,7 @@
                                 Content="Exit"
                                 x:Name="MainExitButton"
                                 Cursor="Hand"
-                                Click="MainExitButton_OnClick"/>
+                                Command="{Binding ProjectSelectionMainViewExit}"/>
                     </Grid>
                 </Grid>
             </Border>

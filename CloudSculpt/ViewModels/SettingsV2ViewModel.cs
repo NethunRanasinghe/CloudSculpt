@@ -1,7 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Avalonia.Controls;
 using CloudSculpt.Commands;
+using CloudSculpt.HelperClasses;
+using CloudSculpt.Interfaces;
+using CloudSculpt.Services;
 using CloudSculpt.Views.UserControls;
 
 namespace CloudSculpt.ViewModels;
@@ -16,7 +20,11 @@ public class SettingsV2ViewModel : ViewModelBase
     public string SelectedTheme
     {
         get => _selectedTheme;
-        set => SetField(ref _selectedTheme, value);
+        set
+        {
+            SetCurrentTheme(value);
+            SetField(ref _selectedTheme, value);
+        }
     }
 
     public ObservableCollection<string> ThemeTypes
@@ -36,6 +44,8 @@ public class SettingsV2ViewModel : ViewModelBase
         set => SetField(ref _settingsTitle, value);
     }
     
+    public readonly INavigationService NavigationService;
+
     public ICommand SettingsMainVmSettings { get; }
     public ICommand SettingsMainDockerSettings { get; }
     public ICommand SettingsMainUiSettings { get; }
@@ -46,17 +56,25 @@ public class SettingsV2ViewModel : ViewModelBase
     public SettingsV2ViewModel()
     {
         // Initial Values
+        NavigationService = ServiceLocator.Resolve<INavigationService>();
         SettingsTitle = "Settings";
         CurrentSettingsView = new SettingsMainView();
         ThemeTypes = ["Light", "Dark", "Default"];
-        SelectedTheme = "Light";
+
+        var savedTheme = ThemeHelper.GetThemeFromSettings();
+        SelectedTheme = string.IsNullOrWhiteSpace(savedTheme) ? "Default" : savedTheme;
         
         // Commands
         SettingsMainVmSettings = new SettingsMainVmCommand(this);
         SettingsMainDockerSettings = new SettingsMainDockerCommand(this);
         SettingsMainUiSettings = new SettingsMainUiCommand(this);
         SettingsMainDiagnostics = new SettingsMainDiagnosticCommand(this);
-        SettingsMainBack = new SettingsMainBackCommand();
+        SettingsMainBack = new SettingsMainBackCommand(this);
         SettingsContentBack = new SettingsContentBackCommand(this);
+    }
+
+    private static void SetCurrentTheme(string selectedTheme)
+    {
+        ThemeHelper.ChangeCurrentTheme(selectedTheme);
     }
 }

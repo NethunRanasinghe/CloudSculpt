@@ -118,9 +118,7 @@
                                                 HorizontalContentAlignment="Center"
                                                 VerticalContentAlignment="Center"
                                                 Margin="10 0"
-                                                Cursor="Hand"
-                                                x:Name="ConfigCloudBackButton"
-                                                Click="ConfigCloudBackButton_OnClick"/>
+                                                Cursor="Hand"/>
                                         
                                         <Button Grid.Column="1"
                                                    Content="{Binding DeployButtonText}"

@@ -38,7 +38,8 @@
                               HorizontalAlignment="Right"
                               VerticalAlignment="Center"
                               Width="100"
-                              ItemsSource="{Binding ThemeTypes}"/>
+                              ItemsSource="{Binding ThemeTypes}"
+                              SelectedItem="{Binding SelectedTheme}"/>
                 </Grid>
             </StackPanel>
             

@@ -2,11 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
              mc:Ignorable="d" d:DesignWidth="645" d:DesignHeight="544"
              x:Class="CloudSculpt.Views.UserControls.ProjectSelectionNetworkView"
-             Width="645"
-             Height="544"
-             Background="{DynamicResource BackgroundFirstLayer}">
+             Width="645" Height="544"
+             Background="{DynamicResource BackgroundFirstLayer}"
+             x:DataType="viewModels:MainMenuViewModel">
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -50,8 +51,7 @@
                         VerticalContentAlignment="Center"
                         Content="Cloud"
                         Cursor="Hand"
-                        x:Name="NetworkCloudButton"
-                        Click="NetworkCloudButton_OnClick"/>
+                        Command="{Binding ProjectSelectionNetworkingViewCloud}"/>
                 
                 <Button Grid.Row="3" 
                         HorizontalAlignment="Center"
@@ -97,9 +97,8 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Content="Back"
-                        x:Name="NetworkBackButton"
                         Cursor="Hand"
-                        Click="NetworkBackButton_OnClick"/>
+                        Command="{Binding ProjectSelectionBackToMain}"/>
             </Grid>
             
         </Border>
@@ -135,8 +134,7 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Content="Kubernetes Network Simulator"
-                        Cursor="Hand"
-                        x:Name="NetworkKubeNetworkSimButton"/>
+                        Cursor="Hand"/>
             </Grid>
             
         </Border>
