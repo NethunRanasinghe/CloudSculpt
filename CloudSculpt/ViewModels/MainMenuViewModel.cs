@@ -26,12 +26,14 @@ public class MainMenuViewModel : ViewModelBase
     public ICommand ProjectSelectionBackToMain { get; }
     
     public readonly INavigationService NavigationService;
+    public readonly Window CurrentWindow;
 
-    public MainMenuViewModel()
+    public MainMenuViewModel(Window window)
     {
         // Initial Value
         CurrentUserControl = new ProjectSelectionMainView();
         NavigationService = ServiceLocator.Resolve<INavigationService>();
+        CurrentWindow = window;
         
         // Commands
         ProjectSelectionMainViewNewProj = new ProjectSelectionMainViewNewProjCommand(this);

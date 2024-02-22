@@ -6,6 +6,7 @@ public class ProjectSelectionMainViewSettingsCommand (MainMenuViewModel mainMenu
 {
     public override void Execute(object? parameter)
     {
+        mainMenuViewModel.CurrentWindow.Hide();
         mainMenuViewModel.NavigationService.NavigateTo("SettingsWindow");
     }
 }

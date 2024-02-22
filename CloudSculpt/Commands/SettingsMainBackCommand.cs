@@ -6,6 +6,7 @@ public class SettingsMainBackCommand(SettingsV2ViewModel settingsV2ViewModel) : 
 {
     public override void Execute(object? parameter)
     {
+        settingsV2ViewModel.CurrentWindow.Hide();
         settingsV2ViewModel.NavigationService.NavigateTo("MainMenuWindow");
     }
 }

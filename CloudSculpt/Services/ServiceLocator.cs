@@ -5,7 +5,7 @@ namespace CloudSculpt.Services;
 
 public class ServiceLocator
 {
-    private static Dictionary<Type, object> _services = new Dictionary<Type, object>();
+    private static Dictionary<Type, object> _services = new();
 
     public static void Register<T>(T service)
     {

@@ -118,7 +118,8 @@
                                                 HorizontalContentAlignment="Center"
                                                 VerticalContentAlignment="Center"
                                                 Margin="10 0"
-                                                Cursor="Hand"/>
+                                                Cursor="Hand"
+                                                Command="{Binding ConfigCloudInfraWindowBack}"/>
                                         
                                         <Button Grid.Column="1"
                                                    Content="{Binding DeployButtonText}"

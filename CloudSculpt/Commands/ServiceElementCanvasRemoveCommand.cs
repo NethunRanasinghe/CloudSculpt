@@ -1,7 +1,4 @@
-﻿using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Input;
-using CloudSculpt.Events;
+﻿using CloudSculpt.Events;
 using CloudSculpt.HelperClasses;
 using CloudSculpt.ViewModels;
 using MsBox.Avalonia;

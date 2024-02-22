@@ -5,9 +5,9 @@ namespace CloudSculpt.Events;
 
 public class EventAggregator
 {
-    public static EventAggregator Instance { get; } = new EventAggregator();
+    public static EventAggregator Instance { get; } = new();
 
-    private readonly Dictionary<Type, List<Action<object>>> _subscribers = new Dictionary<Type, List<Action<object>>>();
+    private readonly Dictionary<Type, List<Action<object>>> _subscribers = new();
 
     public void Subscribe<TEvent>(Action<TEvent> subscriber)
     {

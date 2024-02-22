@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Avalonia.Controls;
 using CloudSculpt.Commands;
@@ -45,6 +44,7 @@ public class SettingsV2ViewModel : ViewModelBase
     }
     
     public readonly INavigationService NavigationService;
+    public readonly Window CurrentWindow;
 
     public ICommand SettingsMainVmSettings { get; }
     public ICommand SettingsMainDockerSettings { get; }
@@ -53,13 +53,14 @@ public class SettingsV2ViewModel : ViewModelBase
     public ICommand SettingsMainBack { get; }
     public ICommand SettingsContentBack { get; }
     
-    public SettingsV2ViewModel()
+    public SettingsV2ViewModel(Window currentWindow)
     {
         // Initial Values
         NavigationService = ServiceLocator.Resolve<INavigationService>();
         SettingsTitle = "Settings";
         CurrentSettingsView = new SettingsMainView();
         ThemeTypes = ["Light", "Dark", "Default"];
+        CurrentWindow = currentWindow;
 
         var savedTheme = ThemeHelper.GetThemeFromSettings();
         SelectedTheme = string.IsNullOrWhiteSpace(savedTheme) ? "Default" : savedTheme;

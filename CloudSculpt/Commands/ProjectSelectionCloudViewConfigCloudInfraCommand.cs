@@ -6,6 +6,7 @@ public class ProjectSelectionCloudViewConfigCloudInfraCommand(MainMenuViewModel 
 {
     public override void Execute(object? parameter)
     {
+        mainMenuViewModel.CurrentWindow.Hide();
         mainMenuViewModel.NavigationService.NavigateTo("ConfigureCloudInfraWindow");
     }
 }

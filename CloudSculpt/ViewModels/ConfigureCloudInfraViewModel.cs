@@ -4,6 +4,8 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using CloudSculpt.Commands;
 using CloudSculpt.Events;
+using CloudSculpt.Interfaces;
+using CloudSculpt.Services;
 using CloudSculpt.Views.UserControls;
 
 namespace CloudSculpt.ViewModels;
@@ -108,9 +110,18 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     public ICommand ConfigureCloudInfraWindowBillingButton { get; }
     public ICommand ConfigureCloudInfraWindowDeployButton { get; }
     public ICommand ConfigCloudInfraDeployListClearList { get; }
+    public ICommand ConfigCloudInfraWindowBack { get; }
 
-    public ConfigureCloudInfraViewModel()
+    public readonly Window CurrentWindow;
+    
+    public readonly INavigationService NavigationService;
+
+    public ConfigureCloudInfraViewModel(Window window)
     {
+        // Current Window and Navigation Service
+        NavigationService = ServiceLocator.Resolve<INavigationService>();
+        CurrentWindow = window;
+        
         // Initial Second Column Width
         SecondColumnDefWidth = 0;
         DeployButtonText = "Deploy ->";
@@ -144,6 +155,7 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         ConfigureCloudInfraWindowBillingButton = new ConfigureCloudInfraWindowBillingButton(this);
         ConfigureCloudInfraWindowDeployButton = new ConfigureCloudInfraWindowDeployListButton(this);
         ConfigCloudInfraDeployListClearList = new ConfigCloudInfraDeployListClearList(this);
+        ConfigCloudInfraWindowBack = new ConfigCloudInfraWindowBackCommand(this);
 
         // Initial Billing Selected State
         IsBillingSelected = false;

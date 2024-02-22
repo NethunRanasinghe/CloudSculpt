@@ -34,7 +34,7 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new Views.Windows.MainMenuWindow();
+            desktop.MainWindow = new MainMenuWindow();
         }
 
         base.OnFrameworkInitializationCompleted();
