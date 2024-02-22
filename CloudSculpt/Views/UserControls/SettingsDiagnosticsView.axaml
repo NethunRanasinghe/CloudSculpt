@@ -12,15 +12,46 @@
     <Border CornerRadius="15">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition/>
-                <RowDefinition Height=".3*"/>
+                <RowDefinition Height=".4*"/>
             </Grid.RowDefinitions>
             
-            <StackPanel Grid.Row="0" 
-                        Orientation="Vertical">
-            </StackPanel>
+            <Grid Grid.Row="0">
+                <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="Start"
+                        Foreground="{DynamicResource ForegroundMainBrush}"
+                        Background="{DynamicResource BackgroundThirdLayer}"
+                        FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                        Width="200" CornerRadius="8" Cursor="Hand" Margin="0 10 0 0"/>
+            </Grid>
             
-            <Grid Grid.Row="1">
+            <Border Grid.Row="1"
+                    Background="{DynamicResource BackgroundThirdLayer}"
+                    CornerRadius="10"
+                    Margin="10">
+                    
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto">
+                    <TextBlock Foreground="{DynamicResource ForegroundMainBrush}"
+                               FontFamily="Inter" FontWeight="SemiBold"
+                               HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                               FontSize="15" Margin="5"/>
+                </ScrollViewer>
+            </Border>
+            
+            <StackPanel Grid.Row="2">
+                <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="Apply"
+                        Foreground="{DynamicResource ForegroundMainBrush}"
+                        Background="{DynamicResource BackgroundThirdLayer}"
+                        FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                        Width="200" CornerRadius="8" Cursor="Hand" Margin="0 0 0 10"/>
+                
                 <Button HorizontalAlignment="Center" VerticalAlignment="Center"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
@@ -30,7 +61,7 @@
                         FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
                         Width="200" CornerRadius="8" Cursor="Hand"
                         Command="{Binding SettingsContentBack}"/>
-            </Grid>
+            </StackPanel>
         </Grid>
     </Border>
 
