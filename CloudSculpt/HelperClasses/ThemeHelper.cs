@@ -11,9 +11,20 @@ public static class ThemeHelper
     private const string ApplicationSettingsFile = "applicationSettings.json";
     public static string GetThemeFromSettings()
     {
-        var json = File.ReadAllText(ApplicationSettingsFile);
-        var applicationSettings = JsonConvert.DeserializeObject<ApplicationData>(json);
-        return applicationSettings == null ? string.Empty : applicationSettings.Theme;
+        var cachedThemeValue = CacheManage.GetFromCache("Theme");
+        if (string.IsNullOrWhiteSpace(cachedThemeValue))
+        {
+            var json = File.ReadAllText(ApplicationSettingsFile);
+            var applicationSettings = JsonConvert.DeserializeObject<ApplicationData>(json);
+            if (applicationSettings == null)
+            {
+                return string.Empty;
+            }
+            
+            CacheManage.SaveToCache("Theme",applicationSettings.Theme);
+            return applicationSettings.Theme;
+        }
+        return cachedThemeValue;
     }
 
     private static void SetThemeToSettings(string selectedTheme)
