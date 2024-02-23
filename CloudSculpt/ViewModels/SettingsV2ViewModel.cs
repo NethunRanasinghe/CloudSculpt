@@ -69,6 +69,7 @@ public class SettingsV2ViewModel : ViewModelBase
     public ICommand SettingsMainBack { get; }
     public ICommand SettingsContentBack { get; }
     public ICommand SettingsVmConfigNameSelectionChanged { get; }
+    public ICommand SettingsVmApply { get; }
     
     public SettingsV2ViewModel(Window currentWindow)
     {
@@ -79,7 +80,8 @@ public class SettingsV2ViewModel : ViewModelBase
         ThemeTypes = ["Light", "Dark", "Default"];
         CurrentWindow = currentWindow;
         AllVms = DatabaseManage.AllVms;
-        VmIpAddress = string.Empty;
+        
+        VmIpAddress = DatabaseManage.SelectedConfig.vmIp;
         
         var savedTheme = ThemeHelper.GetThemeFromSettings();
         SelectedTheme = string.IsNullOrWhiteSpace(savedTheme) ? "Default" : savedTheme;
@@ -92,6 +94,7 @@ public class SettingsV2ViewModel : ViewModelBase
         SettingsMainBack = new SettingsMainBackCommand(this);
         SettingsContentBack = new SettingsContentBackCommand(this);
         SettingsVmConfigNameSelectionChanged = new SettingsVmConfigNameSelectionChangedCommand(this);
+        SettingsVmApply = new SettingsVmApplyCommand(this);
     }
 
     private static void SetCurrentTheme(string selectedTheme)

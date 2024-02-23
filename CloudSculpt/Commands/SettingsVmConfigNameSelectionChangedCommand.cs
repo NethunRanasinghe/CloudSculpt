@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using CloudSculpt.HelperClasses;
 using CloudSculpt.Models;
 using CloudSculpt.ViewModels;
 
@@ -17,6 +18,7 @@ public class SettingsVmConfigNameSelectionChangedCommand(SettingsV2ViewModel set
         
         if(string.IsNullOrWhiteSpace(selectedConfigName)) return;
         var selectedVmConfig = allVms.Find(data => data.vmName.Equals(selectedConfigName));
+        DatabaseManage.SelectedConfigTemp = selectedConfig;
         
         if(selectedVmConfig is null) return;
         settingsV2ViewModel.VmIpAddress = selectedVmConfig.vmIp;

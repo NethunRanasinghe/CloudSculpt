@@ -89,7 +89,7 @@
                              Foreground="{DynamicResource ForegroundMainBrush}"
                              CaretBrush="{DynamicResource ForegroundMainBrush}"
                              FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
-                             TextWrapping="NoWrap" Text="{Binding VmIpAddress}">
+                             TextWrapping="NoWrap" Text="{Binding VmIpAddress, Mode=TwoWay}">
                         
                         <TextBox.Styles>
                             <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
@@ -109,7 +109,7 @@
                         Content="Apply"
                         Foreground="{DynamicResource ForegroundMainBrush}"
                         Background="{DynamicResource BackgroundThirdLayer}"
-                        FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                        FontFamily="Inter" FontWeight="SemiBold" FontSize="15" Command="{Binding SettingsVmApply}"
                         Width="200" CornerRadius="8" Cursor="Hand" Margin="0 0 0 5"/>
                 
                 <Button HorizontalAlignment="Center" VerticalAlignment="Center"

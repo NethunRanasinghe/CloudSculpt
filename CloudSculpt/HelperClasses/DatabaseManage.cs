@@ -8,6 +8,7 @@ namespace CloudSculpt.HelperClasses;
 public static class DatabaseManage
 {
     public static List<VmData> AllVms { get; private set; } = [];
+    public static VmData SelectedConfigTemp { get; set; } = new ();
     public static VmData SelectedConfig { get; set; } = new ();
 
     #region VM Management
