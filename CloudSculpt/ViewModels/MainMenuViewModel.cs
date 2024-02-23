@@ -24,6 +24,7 @@ public class MainMenuViewModel : ViewModelBase
     public ICommand ProjectSelectionCloudViewNetworking { get; }
     public ICommand ProjectSelectionNetworkingViewCloud { get; }
     public ICommand ProjectSelectionBackToMain { get; }
+    public ICommand MainWindowInitialized { get; }
     
     public readonly INavigationService NavigationService;
     public readonly Window CurrentWindow;
@@ -43,5 +44,6 @@ public class MainMenuViewModel : ViewModelBase
         ProjectSelectionCloudViewNetworking = new ProjectSelectionCloudViewNetworkingCommand(this);
         ProjectSelectionNetworkingViewCloud = new ProjectSelectionNetworkingViewCloudCommand(this);
         ProjectSelectionBackToMain = new ProjectSelectionBackToMainCommand(this);
+        MainWindowInitialized = new MainWindowLoadedCommand();
     }
 }

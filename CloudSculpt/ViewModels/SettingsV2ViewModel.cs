@@ -1,9 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Avalonia.Controls;
 using CloudSculpt.Commands;
 using CloudSculpt.HelperClasses;
 using CloudSculpt.Interfaces;
+using CloudSculpt.Models;
 using CloudSculpt.Services;
 using CloudSculpt.Views.UserControls;
 
@@ -15,6 +17,8 @@ public class SettingsV2ViewModel : ViewModelBase
     private UserControl _currentSettingsView;
     private ObservableCollection<string> _themeTypes;
     private string _selectedTheme;
+    private List<VmData> _allVms;
+    private string _vmIpAddress;
 
     public string SelectedTheme
     {
@@ -43,6 +47,18 @@ public class SettingsV2ViewModel : ViewModelBase
         set => SetField(ref _settingsTitle, value);
     }
     
+    public List<VmData> AllVms
+    {
+        get => _allVms;
+        set => SetField(ref _allVms, value);
+    }
+    
+    public string VmIpAddress
+    {
+        get => _vmIpAddress;
+        set => SetField(ref _vmIpAddress, value);
+    }
+    
     public readonly INavigationService NavigationService;
     public readonly Window CurrentWindow;
 
@@ -52,6 +68,7 @@ public class SettingsV2ViewModel : ViewModelBase
     public ICommand SettingsMainDiagnostics { get; }
     public ICommand SettingsMainBack { get; }
     public ICommand SettingsContentBack { get; }
+    public ICommand SettingsVmConfigNameSelectionChanged { get; }
     
     public SettingsV2ViewModel(Window currentWindow)
     {
@@ -61,7 +78,9 @@ public class SettingsV2ViewModel : ViewModelBase
         CurrentSettingsView = new SettingsMainView();
         ThemeTypes = ["Light", "Dark", "Default"];
         CurrentWindow = currentWindow;
-
+        AllVms = DatabaseManage.AllVms;
+        VmIpAddress = string.Empty;
+        
         var savedTheme = ThemeHelper.GetThemeFromSettings();
         SelectedTheme = string.IsNullOrWhiteSpace(savedTheme) ? "Default" : savedTheme;
         
@@ -72,6 +91,7 @@ public class SettingsV2ViewModel : ViewModelBase
         SettingsMainDiagnostics = new SettingsMainDiagnosticCommand(this);
         SettingsMainBack = new SettingsMainBackCommand(this);
         SettingsContentBack = new SettingsContentBackCommand(this);
+        SettingsVmConfigNameSelectionChanged = new SettingsVmConfigNameSelectionChangedCommand(this);
     }
 
     private static void SetCurrentTheme(string selectedTheme)

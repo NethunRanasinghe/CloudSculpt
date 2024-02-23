@@ -29,11 +29,10 @@ public static class ThemeHelper
 
     private static void SetThemeToSettings(string selectedTheme)
     {
-        var json = File.ReadAllText(ApplicationSettingsFile);
-        var applicationSettings = JsonConvert.DeserializeObject<ApplicationData>(json);
-        
-        if(applicationSettings == null) return;
-        applicationSettings.Theme = selectedTheme;
+        var applicationSettings = new ApplicationData
+        {
+            Theme = selectedTheme
+        };
         var output = JsonConvert.SerializeObject(applicationSettings, Formatting.Indented);
         File.WriteAllText(ApplicationSettingsFile,output);
     }

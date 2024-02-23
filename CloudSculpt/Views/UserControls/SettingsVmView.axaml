@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+             xmlns:behaviors="clr-namespace:CloudSculpt.Behaviors"
              mc:Ignorable="d" d:DesignWidth="362" d:DesignHeight="351"
              Width="362" Height="351"
              Background="{DynamicResource BackgroundSecondLayer}"
@@ -32,8 +33,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 
                 <Grid Grid.Row="0"
@@ -56,13 +55,15 @@
                              Width="200" BorderThickness="1" CornerRadius="8"
                              Background="{DynamicResource BackgroundThirdLayer}"
                              Foreground="{DynamicResource ForegroundMainBrush}"
-                             FontFamily="Inter" FontWeight="SemiBold" FontSize="15">
+                             FontFamily="Inter" FontWeight="SemiBold" FontSize="12"
+                             ItemsSource="{Binding AllVms}"
+                             DisplayMemberBinding="{Binding vmName}">
                         
-                        <ComboBox.Styles>
-                            <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
-                                <Setter Property="Background" Value="{DynamicResource BackgroundThirdLayer}"/>
-                            </Style>
-                        </ComboBox.Styles>
+                        <Interaction.Behaviors>
+                            <EventTriggerBehavior EventName="SelectionChanged">
+                                <behaviors:SelectionChangedCommandBehavior Command="{Binding SettingsVmConfigNameSelectionChanged}"/>
+                            </EventTriggerBehavior>
+                        </Interaction.Behaviors>
                     </ComboBox>
                 </Grid>
                 
@@ -88,7 +89,7 @@
                              Foreground="{DynamicResource ForegroundMainBrush}"
                              CaretBrush="{DynamicResource ForegroundMainBrush}"
                              FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
-                             TextWrapping="NoWrap">
+                             TextWrapping="NoWrap" Text="{Binding VmIpAddress}">
                         
                         <TextBox.Styles>
                             <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
@@ -98,69 +99,7 @@
                     </TextBox>
                 </Grid>
                 
-                <Grid Grid.Row="2"
-                      Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <TextBlock Grid.Column="0"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Text="RAM (MB)"
-                               FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
-                               Foreground="{DynamicResource ForegroundMainBrush}"/>
-                    
-                    <TextBox Grid.Column="1" 
-                             HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                             HorizontalAlignment="Right" VerticalAlignment="Center"
-                             Width="80" BorderThickness="1" CornerRadius="8"
-                             Background="{DynamicResource BackgroundThirdLayer}"
-                             Foreground="{DynamicResource ForegroundMainBrush}"
-                             CaretBrush="{DynamicResource ForegroundMainBrush}"
-                             FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
-                             TextWrapping="NoWrap">
-                        
-                        <TextBox.Styles>
-                            <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
-                                <Setter Property="Background" Value="{DynamicResource BackgroundThirdLayer}"/>
-                            </Style>
-                        </TextBox.Styles>
-                    </TextBox>
-                </Grid>
                 
-                <Grid Grid.Row="3"
-                      Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <TextBlock Grid.Column="0"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Text="Core Count"
-                               FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
-                               Foreground="{DynamicResource ForegroundMainBrush}"/>
-                    
-                    <TextBox Grid.Column="1" 
-                             HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                             HorizontalAlignment="Right" VerticalAlignment="Center"
-                             Width="80" BorderThickness="1" CornerRadius="8"
-                             Background="{DynamicResource BackgroundThirdLayer}"
-                             Foreground="{DynamicResource ForegroundMainBrush}"
-                             CaretBrush="{DynamicResource ForegroundMainBrush}"
-                             FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
-                             TextWrapping="NoWrap">
-                        
-                        <TextBox.Styles>
-                            <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
-                                <Setter Property="Background" Value="{DynamicResource BackgroundThirdLayer}"/>
-                            </Style>
-                        </TextBox.Styles>
-                    </TextBox>
-                </Grid>
             </Grid>
             
             <StackPanel Grid.Row="2">
@@ -177,6 +116,15 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Content="Save Config"
+                        Foreground="{DynamicResource ForegroundMainBrush}"
+                        Background="{DynamicResource BackgroundThirdLayer}"
+                        FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                        Width="200" CornerRadius="8" Cursor="Hand" Margin="0 0 0 5"/>
+                
+                <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="Remove Config"
                         Foreground="{DynamicResource ForegroundMainBrush}"
                         Background="{DynamicResource BackgroundThirdLayer}"
                         FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
