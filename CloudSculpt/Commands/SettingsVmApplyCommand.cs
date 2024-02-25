@@ -43,7 +43,7 @@ public class SettingsVmApplyCommand(SettingsV2ViewModel settingsV2ViewModel) : C
             .GetMessageBoxStandard("Warning", $"Are you sure you want to set '{selectedConfig.vmIp}' as your docker connection host IP ?",
                 ButtonEnum.YesNo);
 
-        var result = await box.ShowAsPopupAsync(settingsV2ViewModel.CurrentWindow);
+        var result = await box.ShowAsync();
         if (result == ButtonResult.No) return;
         DatabaseManage.SelectedConfig = selectedConfig;
     }

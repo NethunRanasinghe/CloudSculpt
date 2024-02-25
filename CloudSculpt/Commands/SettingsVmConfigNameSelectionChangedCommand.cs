@@ -9,11 +9,18 @@ public class SettingsVmConfigNameSelectionChangedCommand(SettingsV2ViewModel set
 {
     public override void Execute(object? parameter)
     {
-        if(parameter is not ComboBox comboBox) return;
+        if(parameter is not AutoCompleteBox autoCompleteBox) return;
         var allVms = settingsV2ViewModel.AllVms;
-        
-        if(comboBox.SelectedValue is null) return;
-        var selectedConfig = (VmData)comboBox.SelectedValue;
+        var selectedItem = autoCompleteBox.SelectedItem;
+        if(selectedItem is null) return;
+        var selectedConfig = new VmData();
+        foreach (var vm in allVms)
+        {
+            if (vm.vmName.Equals(selectedItem))
+            {
+                selectedConfig = vm;
+            }
+        }
         var selectedConfigName = selectedConfig.vmName;
         
         if(string.IsNullOrWhiteSpace(selectedConfigName)) return;

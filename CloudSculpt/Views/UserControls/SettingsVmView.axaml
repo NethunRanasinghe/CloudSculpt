@@ -49,22 +49,23 @@
                                FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
                                Foreground="{DynamicResource ForegroundMainBrush}"/>
                     
-                    <ComboBox Grid.Column="1" 
-                             HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    <AutoCompleteBox Grid.Column="1" 
                              HorizontalAlignment="Right" VerticalAlignment="Center"
                              Width="200" BorderThickness="1" CornerRadius="8"
                              Background="{DynamicResource BackgroundThirdLayer}"
                              Foreground="{DynamicResource ForegroundMainBrush}"
                              FontFamily="Inter" FontWeight="SemiBold" FontSize="12"
-                             ItemsSource="{Binding AllVms}"
-                             DisplayMemberBinding="{Binding vmName}">
+                             IsTextCompletionEnabled="True" FilterMode="StartsWithOrdinalCaseSensitive"
+                             Text="{Binding VmConfigName, Mode=TwoWay}"
+                             ItemsSource="{Binding VmNames}">
                         
                         <Interaction.Behaviors>
                             <EventTriggerBehavior EventName="SelectionChanged">
                                 <behaviors:SelectionChangedCommandBehavior Command="{Binding SettingsVmConfigNameSelectionChanged}"/>
                             </EventTriggerBehavior>
                         </Interaction.Behaviors>
-                    </ComboBox>
+                        
+                    </AutoCompleteBox>
                 </Grid>
                 
                 <Grid Grid.Row="1"
@@ -109,8 +110,9 @@
                         Content="Apply"
                         Foreground="{DynamicResource ForegroundMainBrush}"
                         Background="{DynamicResource BackgroundThirdLayer}"
-                        FontFamily="Inter" FontWeight="SemiBold" FontSize="15" Command="{Binding SettingsVmApply}"
-                        Width="200" CornerRadius="8" Cursor="Hand" Margin="0 0 0 5"/>
+                        FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                        Width="200" CornerRadius="8" Cursor="Hand" Margin="0 0 0 5"
+                        Command="{Binding SettingsVmApply}"/>
                 
                 <Button HorizontalAlignment="Center" VerticalAlignment="Center"
                         HorizontalContentAlignment="Center"
@@ -119,7 +121,8 @@
                         Foreground="{DynamicResource ForegroundMainBrush}"
                         Background="{DynamicResource BackgroundThirdLayer}"
                         FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
-                        Width="200" CornerRadius="8" Cursor="Hand" Margin="0 0 0 5"/>
+                        Width="200" CornerRadius="8" Cursor="Hand" Margin="0 0 0 5"
+                        Command="{Binding SettingsVmSave}"/>
                 
                 <Button HorizontalAlignment="Center" VerticalAlignment="Center"
                         HorizontalContentAlignment="Center"
@@ -128,7 +131,8 @@
                         Foreground="{DynamicResource ForegroundMainBrush}"
                         Background="{DynamicResource BackgroundThirdLayer}"
                         FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
-                        Width="200" CornerRadius="8" Cursor="Hand" Margin="0 0 0 5"/>
+                        Width="200" CornerRadius="8" Cursor="Hand" Margin="0 0 0 5"
+                        Command="{Binding SettingsVmRemove}"/>
                 
                 <Button HorizontalAlignment="Center" VerticalAlignment="Center"
                         HorizontalContentAlignment="Center"

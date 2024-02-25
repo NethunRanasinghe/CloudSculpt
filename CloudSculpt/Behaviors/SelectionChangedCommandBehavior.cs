@@ -19,8 +19,8 @@ public class SelectionChangedCommandBehavior : AvaloniaObject, IAction
     public object Execute(object? sender, object? parameter)
     {
         
-        if (parameter is not SelectionChangedEventArgs|| sender is not ComboBox c ||Command == null) return false;
-        Command.Execute(c);
+        if (parameter is not SelectionChangedEventArgs ||Command == null) return false;
+        Command.Execute(sender);
         return true;
     }
 }
