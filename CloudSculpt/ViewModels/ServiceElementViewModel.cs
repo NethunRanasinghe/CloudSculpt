@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using Avalonia.Controls;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using CloudSculpt.Commands;
 using CloudSculpt.HelperClasses;
+using CloudSculpt.Interfaces;
+using CloudSculpt.Services;
 
 namespace CloudSculpt.ViewModels;
 
@@ -55,6 +58,8 @@ public class ServiceElementViewModel : ViewModelBase
     private const string DefaultOs = "linux";
     public const string DefaultDistro = "ubuntu";
     public const string DefaultTag = "22.04";
+    
+    public readonly INavigationService NavigationService;
 
     public string Text
     {
@@ -303,6 +308,9 @@ public class ServiceElementViewModel : ViewModelBase
 
     public ServiceElementViewModel()
     {
+        // Navigation Service
+        NavigationService = ServiceLocator.Resolve<INavigationService>();
+        
         // Text
         Text = "Default";
         ConfigType = "Default";

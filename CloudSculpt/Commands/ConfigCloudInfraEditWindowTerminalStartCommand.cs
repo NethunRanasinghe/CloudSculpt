@@ -1,5 +1,8 @@
 ﻿using CloudSculpt.HelperClasses;
 using CloudSculpt.ViewModels;
+using CloudSculpt.Views.UserControls;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 
 namespace CloudSculpt.Commands;
 
@@ -7,6 +10,17 @@ public class ConfigCloudInfraEditWindowTerminalStartCommand (ServiceElementViewM
 {
     public override async void Execute(object? parameter)
     {
+        var selectedConfig = DatabaseManage.SelectedConfig;
+        if (string.IsNullOrWhiteSpace(selectedConfig.vmIp))
+        {
+            var box = MessageBoxManager
+                .GetMessageBoxStandard("Error", "You haven't selected or configured a VM !. Please configure it in settings to continue...",
+                    ButtonEnum.Ok,Icon.Warning);
+
+            await box.ShowAsync();
+            return;
+        }
+        
         var dockerStatus = await DockerManage.VerifyDockerStatus();
         if (!string.IsNullOrWhiteSpace(dockerStatus)) return;
         

@@ -1,4 +1,5 @@
 ﻿using CloudSculpt.HelperClasses;
+using CloudSculpt.Models;
 using CloudSculpt.ViewModels;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
@@ -14,9 +15,11 @@ public class SettingsVmRemoveCommand(SettingsV2ViewModel settingsV2ViewModel) : 
         var allVmData = DatabaseManage.AllVms;
         var ipAddress = settingsV2ViewModel.VmIpAddress;
         var isExist = false;
+        var existingConfig = new VmData();
         foreach (var vm in allVmData)
         {
             if (!vm.vmIp.Equals(ipAddress)) continue;
+            existingConfig = vm;
             isExist = true;
         }
         
@@ -28,8 +31,8 @@ public class SettingsVmRemoveCommand(SettingsV2ViewModel settingsV2ViewModel) : 
                     ButtonEnum.YesNo,Icon.Warning);
 
             var result = await box.ShowAsync();
-            if (result == ButtonResult.No) return;
-            var rows = await DatabaseManage.RemoveVmData(settingsV2ViewModel.VmIpAddress);
+            if (result != ButtonResult.Yes) return;
+            var rows = await DatabaseManage.RemoveVmData(existingConfig.id);
             if(rows <= 0) return;
             
             settingsV2ViewModel.VmIpAddress = string.Empty;

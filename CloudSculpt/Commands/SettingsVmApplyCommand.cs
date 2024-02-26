@@ -44,7 +44,7 @@ public class SettingsVmApplyCommand(SettingsV2ViewModel settingsV2ViewModel) : C
                 ButtonEnum.YesNo);
 
         var result = await box.ShowAsync();
-        if (result == ButtonResult.No) return;
+        if (result != ButtonResult.Yes) return;
         DatabaseManage.SelectedConfig = selectedConfig;
     }
 }

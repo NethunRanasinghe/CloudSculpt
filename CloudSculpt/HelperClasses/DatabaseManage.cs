@@ -20,14 +20,16 @@ public static class DatabaseManage
         var vmData = await SqliteDataAccess.GetData<VmData>(query,param);
         AllVms = vmData;
     }
-    public static async Task UpdateVmData(string columnName, string condition)
+    public static async Task<int> UpdateVmData(string nameValue, string ipValue ,int condition)
     {
-        const string query = "UPDATE vmDataTable SET @column WHERE @condition";
+        const string query = "UPDATE vmDataTable SET vmName = @nameValue, vmIp = @ipValue WHERE id = @condition";
         var param = new DynamicParameters();
-        param.Add("@column",columnName);
+        param.Add("@nameValue",nameValue);
+        param.Add("@ipValue",ipValue);
         param.Add("@condition",condition);
 
         var rows = await SqliteDataAccess.InsertOrUpdateData(query, param);
+        return rows;
     }
     public static async Task<int> InsertVmData(string vmNameValue, string vmIpValue)
     {
@@ -39,9 +41,9 @@ public static class DatabaseManage
         var rows = await SqliteDataAccess.InsertOrUpdateData(query, param);
         return rows;
     }
-    public static async Task<int> RemoveVmData(string condition)
+    public static async Task<int> RemoveVmData(int condition)
     {
-        const string query = "DELETE FROM vmDataTable WHERE vmIp = @condition";
+        const string query = "DELETE FROM vmDataTable WHERE id = @condition";
         var param = new DynamicParameters();
         param.Add("@condition",condition);
 
