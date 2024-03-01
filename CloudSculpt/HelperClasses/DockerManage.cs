@@ -12,6 +12,7 @@ using Docker.DotNet.Models;
 using ICSharpCode.SharpZipLib.Tar;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
+using Renci.SshNet;
 
 namespace CloudSculpt.HelperClasses;
 
@@ -34,18 +35,19 @@ public static class DockerManage
     // Uri :- Dev Only (ssh tunnel to remote docker server)
     // ssh -fNL localhost:23750:/var/run/docker.sock nethunranasingha@192.168.2.157
 
-    private static readonly Uri? RemoteDockerUri = new("tcp://localhost:23750");
-    //private static readonly Uri? RemoteDockerUri = null;
+    //private static readonly Uri? RemoteDockerUri = new("tcp://localhost:23750");
+    private static Uri? _remoteDockerUri = null;
 
-    private static readonly Uri DockerUri = RemoteDockerUri ?? 
-                                            (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) 
-                                                ? new Uri("npipe://./pipe/docker_engine") 
-                                                : new Uri("unix:///var/run/docker.sock"));    
+    private static Uri _dockerUri = _remoteDockerUri ?? 
+                                   (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) 
+                                       ? new Uri("npipe://./pipe/docker_engine") 
+                                       : new Uri("unix:///var/run/docker.sock"));
+    
     #region Image Management
 
     private static async Task<IList<ImagesListResponse>> ListImages()
     {
-        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+        using var client = new DockerClientConfiguration(_dockerUri).CreateClient();
         IList<ImagesListResponse> images = await client.Images.ListImagesAsync(
             new ImagesListParameters(){});
 
@@ -54,7 +56,7 @@ public static class DockerManage
     
     public static async Task PullImage(string imageName, string imageTag)
     {
-        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+        using var client = new DockerClientConfiguration(_dockerUri).CreateClient();
         await client.Images.CreateImageAsync(
             new ImagesCreateParameters
             {
@@ -68,7 +70,7 @@ public static class DockerManage
     
     public static async Task RemoveImage(string imageName)
     {
-        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+        using var client = new DockerClientConfiguration(_dockerUri).CreateClient();
         await client.Images.DeleteImageAsync(imageName, new ImageDeleteParameters());
     }
     
@@ -79,7 +81,7 @@ public static class DockerManage
         CreateTarGzFile(dockerFilePath, outputTarGzPath, dockerFileCopyDirs);
         if (File.Exists(dockerFilePath))
         {
-            using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+            using var client = new DockerClientConfiguration(_dockerUri).CreateClient();
 
             await using var stream = File.OpenRead(outputTarGzPath);
 
@@ -143,7 +145,7 @@ public static class DockerManage
     
     public static async Task<IList<ContainerListResponse>> ListContainers()
     {
-        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+        using var client = new DockerClientConfiguration(_dockerUri).CreateClient();
         IList<ContainerListResponse> containers = await client.Containers.ListContainersAsync(
             new ContainersListParameters(){});
 
@@ -152,7 +154,7 @@ public static class DockerManage
 
     public static async Task<string> CreateContainer(string imageName)
     {
-        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+        using var client = new DockerClientConfiguration(_dockerUri).CreateClient();
         var createdContainer = await client.Containers.CreateContainerAsync(new CreateContainerParameters()
         {
             Image = imageName,
@@ -169,7 +171,7 @@ public static class DockerManage
 
     public static async Task<string> CreateContainerWithCommand(string imageName)
     {
-        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+        using var client = new DockerClientConfiguration(_dockerUri).CreateClient();
         var createdContainer = await client.Containers.CreateContainerAsync(new CreateContainerParameters()
         {
             Image = imageName,
@@ -187,14 +189,14 @@ public static class DockerManage
 
     public static async Task RemoveContainer(string containerId)
     {
-        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+        using var client = new DockerClientConfiguration(_dockerUri).CreateClient();
         await StopContainer(containerId);
         await client.Containers.RemoveContainerAsync(containerId, new ContainerRemoveParameters());
     }
 
     public static async Task StartContainer(string containerId)
     {
-        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+        using var client = new DockerClientConfiguration(_dockerUri).CreateClient();
         await client.Containers.StartContainerAsync(
             containerId,
             new ContainerStartParameters()
@@ -203,7 +205,7 @@ public static class DockerManage
 
     public static async Task StopContainer(string containerId)
     {
-        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+        using var client = new DockerClientConfiguration(_dockerUri).CreateClient();
         await client.Containers.StopContainerAsync(
             containerId,
             new ContainerStopParameters()
@@ -212,7 +214,7 @@ public static class DockerManage
 
     public static async Task<(string stdout, string stderr)> ExecuteCommand(string containerId, IList<string> command)
     {
-        using var client = new DockerClientConfiguration(RemoteDockerUri)
+        using var client = new DockerClientConfiguration(_remoteDockerUri)
             .CreateClient();
 
         var execParams = new ContainerExecCreateParameters()
@@ -247,7 +249,7 @@ public static class DockerManage
     private static async Task CreateIpVlanNetwork()
     {
         var networkData = NetworkingHelper.GetNetworkData();
-        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
+        using var client = new DockerClientConfiguration(_dockerUri).CreateClient();
         var networks = await client.Networks.ListNetworksAsync();
         var networkExists = networks.Any(n => n.Name == "cloudsculptnetwork");
         
@@ -365,8 +367,6 @@ public static class DockerManage
         }
     }
 
-
-
     private static void AddFileOrDirectoryToTarGz(TarOutputStream tarStream, string fileOrDirPath, string baseDirectoryPath)
     {
         var tarEntry = TarEntry.CreateEntryFromFile(fileOrDirPath);
@@ -382,6 +382,14 @@ public static class DockerManage
         }
 
         tarStream.CloseEntry();
+    }
+
+    public static void SetRemoteDockerUri(string dockerUrl)
+    {
+        if(string.IsNullOrWhiteSpace(dockerUrl)) return;
+        var dockerUri = new Uri($"http://{dockerUrl}:2375");
+        _remoteDockerUri = dockerUri;
+        _dockerUri = _remoteDockerUri;
     }
     #endregion
 }

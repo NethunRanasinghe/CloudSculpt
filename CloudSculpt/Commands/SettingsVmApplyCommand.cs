@@ -46,5 +46,6 @@ public class SettingsVmApplyCommand(SettingsV2ViewModel settingsV2ViewModel) : C
         var result = await box.ShowAsync();
         if (result != ButtonResult.Yes) return;
         DatabaseManage.SelectedConfig = selectedConfig;
+        DockerManage.SetRemoteDockerUri(selectedConfig.vmIp);
     }
 }

@@ -29,3 +29,7 @@ C001    - Trying To Edit Container Running  (ConfigCloudInfraEditConfigApply)
 C002    - Trying To Edit Container Stopped  (ConfigCloudInfraEditConfigApply)
 C003    - Invalid Dockerfile                (ConfigCloudInfraEditConfigContainerFileSelectCommand)
 C004    - COPY in dockerfile not supported  (ConfigCloudInfraEditConfigContainerFileSelectCommand)
+
+4. General Exceptions
+
+G001    - No Selected Config                (Settings)

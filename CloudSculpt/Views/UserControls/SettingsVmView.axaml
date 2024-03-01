@@ -51,7 +51,7 @@
                     
                     <AutoCompleteBox Grid.Column="1" 
                              HorizontalAlignment="Right" VerticalAlignment="Center"
-                             Width="200" BorderThickness="1" CornerRadius="8"
+                             Width="200" BorderThickness="1" CornerRadius="10"
                              Background="{DynamicResource BackgroundThirdLayer}"
                              Foreground="{DynamicResource ForegroundMainBrush}"
                              FontFamily="Inter" FontWeight="SemiBold" FontSize="12"
@@ -99,41 +99,79 @@
                         </TextBox.Styles>
                     </TextBox>
                 </Grid>
-                
-                
             </Grid>
             
             <StackPanel Grid.Row="2">
-                <Button HorizontalAlignment="Center" VerticalAlignment="Center"
-                        HorizontalContentAlignment="Center"
-                        VerticalContentAlignment="Center"
-                        Content="Apply"
-                        Foreground="{DynamicResource ForegroundMainBrush}"
-                        Background="{DynamicResource BackgroundThirdLayer}"
-                        FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
-                        Width="200" CornerRadius="8" Cursor="Hand" Margin="0 0 0 5"
-                        Command="{Binding SettingsVmApply}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
                 
-                <Button HorizontalAlignment="Center" VerticalAlignment="Center"
-                        HorizontalContentAlignment="Center"
-                        VerticalContentAlignment="Center"
-                        Content="Save Config"
-                        Foreground="{DynamicResource ForegroundMainBrush}"
-                        Background="{DynamicResource BackgroundThirdLayer}"
-                        FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
-                        Width="200" CornerRadius="8" Cursor="Hand" Margin="0 0 0 5"
-                        Command="{Binding SettingsVmSave}"/>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        
+                        <Button Grid.Row="0" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="Apply"
+                                Foreground="{DynamicResource ForegroundMainBrush}"
+                                Background="{DynamicResource BackgroundThirdLayer}"
+                                FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                                CornerRadius="8" Cursor="Hand" Margin="5 0 5 5"
+                                Command="{Binding SettingsVmApply}"/>
+                        
+                        <Button Grid.Row="1" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="Save Config"
+                                Foreground="{DynamicResource ForegroundMainBrush}"
+                                Background="{DynamicResource BackgroundThirdLayer}"
+                                FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                                CornerRadius="8" Cursor="Hand" Margin="5 0 5 5"
+                                Command="{Binding SettingsVmSave}"/>
+                    </Grid>
+                    
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        
+                        <Button Grid.Row="0" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="Test Connection"
+                                Foreground="{DynamicResource ForegroundMainBrush}"
+                                Background="{DynamicResource BackgroundThirdLayer}"
+                                FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                                CornerRadius="8" Cursor="Hand" Margin="5 0 5 5"
+                                Command="{Binding SettingsVmTestConnection}"/>
+                        
+                        <Button Grid.Row="1" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="Remove Config"
+                                Foreground="{DynamicResource ForegroundMainBrush}"
+                                Background="{DynamicResource BackgroundThirdLayer}"
+                                FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                                CornerRadius="8" Cursor="Hand" Margin="5 0 5 5"
+                                Command="{Binding SettingsVmRemove}"/>
+                    </Grid>
+                </Grid>
                 
-                <Button HorizontalAlignment="Center" VerticalAlignment="Center"
-                        HorizontalContentAlignment="Center"
-                        VerticalContentAlignment="Center"
-                        Content="Remove Config"
-                        Foreground="{DynamicResource ForegroundMainBrush}"
-                        Background="{DynamicResource BackgroundThirdLayer}"
-                        FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
-                        Width="200" CornerRadius="8" Cursor="Hand" Margin="0 0 0 5"
-                        Command="{Binding SettingsVmRemove}"/>
-                
+                    
                 <Button HorizontalAlignment="Center" VerticalAlignment="Center"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"

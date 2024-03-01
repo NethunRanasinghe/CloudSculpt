@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -97,6 +96,7 @@ public class SettingsV2ViewModel : ViewModelBase
     public ICommand SettingsContentBack { get; }
     public ICommand SettingsVmConfigNameSelectionChanged { get; }
     public ICommand SettingsVmApply { get; }
+    public ICommand SettingsVmTestConnection { get; }
     public ICommand SettingsVmRemove { get; }
     public ICommand SettingsVmSave { get; }
     
@@ -126,6 +126,7 @@ public class SettingsV2ViewModel : ViewModelBase
         SettingsVmApply = new SettingsVmApplyCommand(this);
         SettingsVmRemove = new SettingsVmRemoveCommand(this);
         SettingsVmSave = new SettingsVmSaveCommand(this);
+        SettingsVmTestConnection = new SettingsVmTestConnectionCommand();
     }
 
     private static void SetCurrentTheme(string selectedTheme)
