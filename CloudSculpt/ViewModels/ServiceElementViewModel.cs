@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
-using Avalonia.Controls;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using CloudSculpt.Commands;
@@ -48,7 +47,8 @@ public class ServiceElementViewModel : ViewModelBase
     private double _storageAmount;
     private List<string> _tempDockerFileCopyDirs;
     private List<string> _dockerFileCopyDirs;
-
+    private bool _isEditOpen;
+    
     public static int ElementCounter { get; set; } = 0;
     public static double CanvasWidth { get; set; } = 0;
     public static double CanvasHeight { get; set; } = 0;
@@ -288,6 +288,12 @@ public class ServiceElementViewModel : ViewModelBase
         set => SetField(ref _tempDockerFileCopyDirs, value);
     }
     
+    public bool IsEditOpen
+    {
+        get => _isEditOpen;
+        set => SetField(ref _isEditOpen, value);
+    }
+    
     public ICommand ServiceElementCommand { get; }
     public ICommand ServiceElementCanvasEditCommand { get; }
     public ICommand ServiceElementCanvasDeleteCommand { get; }
@@ -373,6 +379,9 @@ public class ServiceElementViewModel : ViewModelBase
         TempDockerFileCopyDirs = [];
         DockerFileCopyDirs = [];
         
+        // Initial Edit Open Status
+        IsEditOpen = false;
+        
         // Commands
         ServiceElementCommand = new ServiceElementAddCommand(this);
         ServiceElementCanvasDeleteCommand = new ServiceElementCanvasRemoveCommand(this);
@@ -380,7 +389,7 @@ public class ServiceElementViewModel : ViewModelBase
         ServiceElementCanvasPointerPressedCommand = new ServiceElementCanvasPointerPressed(this);
         ServiceElementCanvasPointerReleasedCommand = new ServiceElementCanvasPointerReleased(this);
         ServiceElementCanvasPointerMovedCommand = new ServiceElementCanvasPointerMoved(this);
-        ConfigCloudInfraEditConfigCancelCommand = new ConfigCloudInfraEditConfigCancelCommand();
+        ConfigCloudInfraEditConfigCancelCommand = new ConfigCloudInfraEditConfigCancelCommand(this);
         ConfigCloudInfraEditTerminalKeyDownCommand = new ConfigCloudInfraEditWindowTerminalKeyDownCommand();
         ConfigCloudInfraEditWindowTerminalStartCommand = new ConfigCloudInfraEditWindowTerminalStartCommand(this);
         ConfigCloudInfraEditWindowTerminalStopCommand = new ConfigCloudInfraEditWindowTerminalStopCommand(this);

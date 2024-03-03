@@ -7,6 +7,13 @@ public class ConfigCloudInfraWindowBackCommand(ConfigureCloudInfraViewModel conf
 {
     public override void Execute(object? parameter)
     {
+        // Check if there's elements in the _infraCanvasCollection
+        var canvasCollection = configureCloudInfraViewModel.InfraCanvasCollection;
+        if (canvasCollection.Count > 0)
+        {
+            ConfigureCloudInfraViewModel.InfraCanvasCollectionStatic = canvasCollection;
+        }
+        
         configureCloudInfraViewModel.CurrentWindow.Hide();
         configureCloudInfraViewModel.NavigationService.NavigateAndChangeUserControl("MainMenuWindow", new ProjectSelectionCloudView());
     }

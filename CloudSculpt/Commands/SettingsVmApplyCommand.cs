@@ -47,5 +47,6 @@ public class SettingsVmApplyCommand(SettingsV2ViewModel settingsV2ViewModel) : C
         if (result != ButtonResult.Yes) return;
         DatabaseManage.SelectedConfig = selectedConfig;
         DockerManage.SetRemoteDockerUri(selectedConfig.vmIp);
+        settingsV2ViewModel.IsApplied = true;
     }
 }

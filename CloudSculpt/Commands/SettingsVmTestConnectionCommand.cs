@@ -16,7 +16,7 @@ public class SettingsVmTestConnectionCommand : CommandBase
             if (!string.IsNullOrWhiteSpace(result)) return;
             var box = MessageBoxManager
                 .GetMessageBoxStandard("Success",
-                    $"Docker Connection Successful !, IP :- {selectedIp}",
+                    $"Docker Connection Successful !\nIP :- {selectedIp}",
                     ButtonEnum.Ok, Icon.Success);
 
             await box.ShowAsync();

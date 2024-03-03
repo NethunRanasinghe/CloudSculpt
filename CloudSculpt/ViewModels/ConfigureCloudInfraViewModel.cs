@@ -113,8 +113,8 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     public ICommand ConfigCloudInfraWindowBack { get; }
 
     public readonly Window CurrentWindow;
-    
     public readonly INavigationService NavigationService;
+    public static ObservableCollection<ServiceElementViewModel> InfraCanvasCollectionStatic { get; set; } = [];
 
     public ConfigureCloudInfraViewModel(Window window)
     {
@@ -138,7 +138,15 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         ServiceElements = [];
         
         // Infra collection
-        InfraCanvasCollection = [];
+        if (InfraCanvasCollectionStatic.Count > 0)
+        {
+            InfraCanvasCollection = InfraCanvasCollectionStatic;
+        }
+        else
+        {
+            InfraCanvasCollection = [];
+            InfraCanvasCollectionStatic = [];
+        }
         
         // Button Opacity
         IaaSOpacity = 1;

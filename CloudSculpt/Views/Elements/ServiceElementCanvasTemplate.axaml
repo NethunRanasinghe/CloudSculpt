@@ -46,7 +46,7 @@
                                     VerticalAlignment="Top"
                                     Background="{DynamicResource BackgroundThirdLayer}"
                                     CornerRadius="10"
-                                    Cursor="Hand"
+                                    Cursor="Hand" IsEnabled="{Binding !IsEditOpen}"
                                     Command="{Binding ServiceElementCanvasEditCommand}">
                                 
                                 <Image Source="avares://CloudSculpt/Assets/edit.png"
@@ -59,7 +59,7 @@
                                     VerticalAlignment="Top"
                                     Background="{DynamicResource BackgroundThirdLayer}"
                                     CornerRadius="10"
-                                    Cursor="Hand"
+                                    Cursor="Hand" IsEnabled="{Binding !IsEditOpen}"
                                     Command="{Binding ServiceElementCanvasDeleteCommand}">
                                 
                                 <Image Source="avares://CloudSculpt/Assets/delete.png"

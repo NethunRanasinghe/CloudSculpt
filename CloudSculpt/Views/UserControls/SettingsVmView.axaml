@@ -150,7 +150,7 @@
                                 VerticalAlignment="Center"
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
-                                Content="Test Connection"
+                                Content="Test Connection" IsEnabled="{Binding IsApplied}"
                                 Foreground="{DynamicResource ForegroundMainBrush}"
                                 Background="{DynamicResource BackgroundThirdLayer}"
                                 FontFamily="Inter" FontWeight="SemiBold" FontSize="15"

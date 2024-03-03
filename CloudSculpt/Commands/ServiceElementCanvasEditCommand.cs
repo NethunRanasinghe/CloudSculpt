@@ -22,7 +22,8 @@ public class ServiceElementCanvasEditCommand (ServiceElementViewModel serviceEle
         
         configCloudInfraEditWindow.WindowStartupLocation = WindowStartupLocation.Manual;
         configCloudInfraEditWindow.Position = new PixelPoint(startupPointLeft, startupPointTop);
-            
+
+        serviceElementViewModel.IsEditOpen = true;
         EventAggregator.Instance.Publish(new ConfigInfraEditEvent(configCloudInfraEditWindow,serviceElementViewModel));
     }
 }

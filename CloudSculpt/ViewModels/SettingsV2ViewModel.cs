@@ -22,6 +22,7 @@ public class SettingsV2ViewModel : ViewModelBase
     private string _vmIpAddress;
     private string _vmConfigName;
     private List<string> _vmNames;
+    private bool _isApplied;
 
     public string SelectedTheme
     {
@@ -85,6 +86,12 @@ public class SettingsV2ViewModel : ViewModelBase
         }
     }
     
+    public bool IsApplied
+    {
+        get => _isApplied;
+        set => SetField(ref _isApplied, value);
+    }
+    
     public readonly INavigationService NavigationService;
     public readonly Window CurrentWindow;
 
@@ -111,6 +118,7 @@ public class SettingsV2ViewModel : ViewModelBase
         AllVms = DatabaseManage.AllVms;
         VmIpAddress = DatabaseManage.SelectedConfig.vmIp;
         VmConfigName = string.Empty;
+        IsApplied = false;
         
         var savedTheme = ThemeHelper.GetThemeFromSettings();
         SelectedTheme = string.IsNullOrWhiteSpace(savedTheme) ? "Default" : savedTheme;
