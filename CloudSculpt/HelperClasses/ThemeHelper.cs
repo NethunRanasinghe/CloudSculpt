@@ -36,5 +36,6 @@ public static class ThemeHelper
         }
         
         await SetThemeToSettings(selectedTheme);
+        await DatabaseManage.GetApplicationData();
     }
 }
