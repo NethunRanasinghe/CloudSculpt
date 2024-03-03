@@ -1,43 +1,24 @@
-﻿using System.IO;
+﻿using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Styling;
-using CloudSculpt.Models;
-using Newtonsoft.Json;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 
 namespace CloudSculpt.HelperClasses;
 
 public static class ThemeHelper
 {
-    private const string ApplicationSettingsFile = "applicationSettings.json";
-    public static string GetThemeFromSettings()
+    private static async Task SetThemeToSettings(string selectedTheme)
     {
-        var cachedThemeValue = CacheManage.GetFromCache("Theme");
-        if (string.IsNullOrWhiteSpace(cachedThemeValue))
-        {
-            var json = File.ReadAllText(ApplicationSettingsFile);
-            var applicationSettings = JsonConvert.DeserializeObject<ApplicationData>(json);
-            if (applicationSettings == null)
-            {
-                return string.Empty;
-            }
-            
-            CacheManage.SaveToCache("Theme",applicationSettings.Theme);
-            return applicationSettings.Theme;
-        }
-        return cachedThemeValue;
+        var rows = await DatabaseManage.SetApplicationTheme(selectedTheme);
+        if(rows > 0) return;
+        var box = MessageBoxManager
+            .GetMessageBoxStandard("Error (D001)", "Cannot update Theme !",ButtonEnum.Ok,Icon.Error);
+
+        await box.ShowAsync();
     }
 
-    private static void SetThemeToSettings(string selectedTheme)
-    {
-        var applicationSettings = new ApplicationData
-        {
-            Theme = selectedTheme
-        };
-        var output = JsonConvert.SerializeObject(applicationSettings, Formatting.Indented);
-        File.WriteAllText(ApplicationSettingsFile,output);
-    }
-
-    public static void ChangeCurrentTheme(string selectedTheme)
+    public static async Task ChangeCurrentTheme(string selectedTheme)
     {
         if (selectedTheme.Equals("Light"))
         {
@@ -54,6 +35,6 @@ public static class ThemeHelper
             if (Application.Current != null) Application.Current.RequestedThemeVariant = ThemeVariant.Default;
         }
         
-        SetThemeToSettings(selectedTheme);
+        await SetThemeToSettings(selectedTheme);
     }
 }

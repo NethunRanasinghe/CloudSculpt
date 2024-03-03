@@ -24,14 +24,15 @@ public partial class App : Application
         
         // Store navigationService
         ServiceLocator.Register<INavigationService>(navigationService);
-        
-        // Set Theme
-        var savedTheme = ThemeHelper.GetThemeFromSettings();
-        ThemeHelper.ChangeCurrentTheme(string.IsNullOrWhiteSpace(savedTheme) ? "Default" : savedTheme);
     }
 
-    public override void OnFrameworkInitializationCompleted()
+    public override async void OnFrameworkInitializationCompleted()
     {
+        // Set Theme
+        await DatabaseManage.GetApplicationData();
+        var savedTheme = DatabaseManage.ApplicationDataContent.Theme;
+        await ThemeHelper.ChangeCurrentTheme(string.IsNullOrWhiteSpace(savedTheme) ? "Default" : savedTheme);
+        
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             desktop.MainWindow = new MainMenuWindow();

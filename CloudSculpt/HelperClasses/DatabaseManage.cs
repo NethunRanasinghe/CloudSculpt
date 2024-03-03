@@ -8,6 +8,7 @@ namespace CloudSculpt.HelperClasses;
 public static class DatabaseManage
 {
     public static List<VmData> AllVms { get; private set; } = [];
+    public static ApplicationData ApplicationDataContent { get; set; } = new ();
     public static VmData SelectedConfigTemp { get; set; } = new ();
     public static VmData SelectedConfig { get; set; } = new ();
 
@@ -50,5 +51,38 @@ public static class DatabaseManage
         var rows = await SqliteDataAccess.DeleteData(query, param);
         return rows;
     }
+    #endregion
+
+    #region Application Management
+
+    public static async Task GetApplicationData()
+    {
+        const string query = "SELECT * FROM applicationDataTable";
+        var param = new DynamicParameters();
+
+        var applicationData = await SqliteDataAccess.GetData<ApplicationData>(query, param);
+        ApplicationDataContent = applicationData[0];
+
+        if (string.IsNullOrWhiteSpace(ApplicationDataContent.Theme))
+        {
+            var appData = new ApplicationData()
+            {
+                Theme = "Default"
+            };
+
+            ApplicationDataContent = appData;
+        }
+    }
+
+    public static async Task<int> SetApplicationTheme(string theme)
+    {
+        const string query = "UPDATE applicationDataTable SET Theme = @themeState";
+        var param = new DynamicParameters();
+        param.Add("themeState", theme);
+
+        var rows = await SqliteDataAccess.InsertOrUpdateData(query, param);
+        return rows;
+    }
+
     #endregion
 }

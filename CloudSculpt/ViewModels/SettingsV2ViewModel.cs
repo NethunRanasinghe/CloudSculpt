@@ -21,7 +21,6 @@ public class SettingsV2ViewModel : ViewModelBase
     private List<VmData> _allVms;
     private string _vmIpAddress;
     private string _vmConfigName;
-    private List<string> _vmNames;
     private bool _isApplied;
 
     public string SelectedTheme
@@ -120,7 +119,7 @@ public class SettingsV2ViewModel : ViewModelBase
         VmConfigName = string.Empty;
         IsApplied = false;
         
-        var savedTheme = ThemeHelper.GetThemeFromSettings();
+        var savedTheme = DatabaseManage.ApplicationDataContent.Theme;
         SelectedTheme = string.IsNullOrWhiteSpace(savedTheme) ? "Default" : savedTheme;
         
         // Commands
@@ -137,8 +136,8 @@ public class SettingsV2ViewModel : ViewModelBase
         SettingsVmTestConnection = new SettingsVmTestConnectionCommand();
     }
 
-    private static void SetCurrentTheme(string selectedTheme)
+    private static async void SetCurrentTheme(string selectedTheme)
     {
-        ThemeHelper.ChangeCurrentTheme(selectedTheme);
+        await ThemeHelper.ChangeCurrentTheme(selectedTheme);
     }
 }

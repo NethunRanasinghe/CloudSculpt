@@ -33,3 +33,7 @@ C004    - COPY in dockerfile not supported  (ConfigCloudInfraEditConfigContainer
 4. General Exceptions
 
 G001    - No Selected Config                (Settings)
+
+5. Database Related
+
+D001    - Cannot Update theme               (ThemeHelper)
