@@ -1,0 +1,216 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="345" d:DesignHeight="514"
+             MinWidth="345" MinHeight="514" Width="345" Height="514"
+             Background="{DynamicResource BackgroundFirstLayer}"
+             x:Class="CloudSculpt.Views.UserControls.KubeEnvironmentConfigHomeDefaultMain">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <!--Title-->
+        <TextBlock Grid.Row="0"
+                   Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                   FontFamily="Inter" FontWeight="SemiBold" FontSize="20"
+                   Text="Kubernetes Environment Config"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        
+        <!--Content-->
+        <Border Grid.Row="1" Background="{DynamicResource BackgroundSecondLayer}"
+                BorderThickness="1" CornerRadius="20" Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <!--Type-->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0"
+                               FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                               Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                               HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Text="Type" Margin="10 0 0 0"/>
+                    
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Button Grid.Column="0" 
+                                Background="{DynamicResource BackgroundThirdLayer}" Foreground="{DynamicResource ForegroundMainBrush}"
+                                HorizontalAlignment="Right" VerticalAlignment="Center"
+                                FontFamily="Inter" FontWeight="SemiBold" FontSize="13"
+                                CornerRadius="10" Width="80" HorizontalContentAlignment="Center"
+                                Content="Default" Cursor="Hand"/>
+                        
+                        <TextBlock Grid.Column="1"
+                                   Text="?" Margin="10 0" Cursor="Help"
+                                   FontFamily="Inter" FontWeight="SemiBold" FontSize="16"
+                                   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    </Grid>
+                </Grid>
+                
+                <!--Separator-->
+                <Separator Grid.Row="1" 
+                           Background="{DynamicResource ForegroundSecondaryBrush}"/>
+                
+                <!--Title - Pods and Service Config-->
+                <TextBlock Grid.Row="2"
+                           Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                           FontFamily="Inter" FontWeight="SemiBold" FontSize="20"
+                           Text="Pods and Service Config"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                
+                <!--Pods and Services-->
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0"
+                               FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                               Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                               HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Text="Pods" Margin="10 0 0 0"/>
+                    
+                    <TextBox Grid.Column="1"
+                             CornerRadius="10" Width="100" Height="30"
+                             HorizontalAlignment="Right" VerticalAlignment="Center"
+                             FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                             Margin="0 0 10 0"/>
+                </Grid>
+                
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0"
+                               FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                               Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                               HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Text="Services" Margin="10 0 0 0"/>
+                    
+                    <TextBox Grid.Column="1"
+                             CornerRadius="10" Width="100" Height="30"
+                             HorizontalAlignment="Right" VerticalAlignment="Center"
+                             FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                             Margin="0 0 10 0"/>
+                </Grid>
+                
+                <!--Separator-->
+                <Separator Grid.Row="5" 
+                           Background="{DynamicResource ForegroundSecondaryBrush}"/>
+                
+                <!--Title - Namespace Config-->
+                <TextBlock Grid.Row="6"
+                           Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                           FontFamily="Inter" FontWeight="SemiBold" FontSize="20"
+                           Text="Namespace Config"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                
+                <!--Pods-->
+                <Grid Grid.Row="7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0"
+                               FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                               Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                               HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Text="Pods" Margin="10 0 0 0"/>
+                    
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Button Grid.Column="0" 
+                                Background="{DynamicResource BackgroundThirdLayer}" Foreground="{DynamicResource ForegroundMainBrush}"
+                                HorizontalAlignment="Right" VerticalAlignment="Center"
+                                FontFamily="Inter" FontWeight="SemiBold" FontSize="13"
+                                CornerRadius="10" Width="80" HorizontalContentAlignment="Center"
+                                Content="Default" Cursor="Hand"/>
+                        
+                        <TextBlock Grid.Column="1"
+                                   Text="?" Margin="10 0" Cursor="Hand"
+                                   FontFamily="Inter" FontWeight="SemiBold" FontSize="16"
+                                   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    </Grid>
+                </Grid>
+                
+                <!--Group By-->
+                <Grid Grid.Row="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0"
+                               FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                               Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                               HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Text="Group By" Margin="10 0 0 0"/>
+                    
+                    <TextBox Grid.Column="1"
+                             CornerRadius="10" Width="100" Height="30"
+                             HorizontalAlignment="Right" VerticalAlignment="Center"
+                             FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                             Margin="0 0 10 0"/>
+                </Grid>
+                
+                <!--Start and Deploy Buttons-->
+                <Grid Grid.Row="9">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button Grid.Column="0"
+                            Background="{DynamicResource BackgroundThirdLayer}" 
+                            Foreground="{DynamicResource ForegroundMainBrush}"
+                            HorizontalAlignment="Left" VerticalAlignment="Center"
+                            FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                            CornerRadius="10" Width="100" Height="35" 
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                            Content="Start" Cursor="Hand" Margin="10 0 0 10"/>
+                    
+                    <Button Grid.Column="1"
+                            Background="{DynamicResource BackgroundThirdLayer}" 
+                            Foreground="{DynamicResource ForegroundMainBrush}"
+                            HorizontalAlignment="Right" VerticalAlignment="Center"
+                            FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                            CornerRadius="10" Width="100" Height="35" 
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                            Content="Deploy" Cursor="Hand" Margin="0 0 10 10"/>
+                </Grid>
+                
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
