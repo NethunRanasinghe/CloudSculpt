@@ -38,6 +38,7 @@
         <entry key="CloudSculpt/Views/UserControls/ConfigCloudInfraDeployList.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/ConfigCloudInfraEditConfigView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/ConfigCloudInfraEditTerminalView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/UserControls/KubeEnvironmentConfigHomeCustomMain.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/KubeEnvironmentConfigHomeDefaultMain.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/ProjectSelectionCloudView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/ProjectSelectionMainView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
@@ -50,6 +51,8 @@
         <entry key="CloudSculpt/Views/Windows/ConfigCloudInfraEditWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Windows/ConfigureCloudInfraWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Windows/InputBox.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Windows/KubeNetworkConfigHomeCustomWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/Windows/KubeNetworkConfigHomeDefaultWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Windows/KubernetesNetworkConfigHomeDefault.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Windows/MainMenuWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/Windows/SettingsWindow.axaml" value="CloudSculpt/CloudSculpt.csproj" />

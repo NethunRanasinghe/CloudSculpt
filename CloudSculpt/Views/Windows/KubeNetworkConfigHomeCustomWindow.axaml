@@ -1,0 +1,32 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="345" d:DesignHeight="329"
+        MinWidth="345" MinHeight="329" Width="345" Height="329"
+        Background="{DynamicResource BackgroundFirstLayer}"
+        WindowStartupLocation="CenterScreen" CanResize="False"
+        x:Class="CloudSculpt.Views.Windows.KubeNetworkConfigHomeCustomWindow"
+        Title="Kubernetes Environment Config"
+        x:DataType="viewModels:KubernetesEnvironmentConfigViewModel">
+        
+        <Grid>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <!--Title-->
+                <TextBlock Grid.Row="0"
+                           Foreground="{DynamicResource ForegroundSecondaryBrush}"
+                           Text="Kubernetes Environment Config" Margin="0 10 0 0"
+                           FontFamily="Inter" FontWeight="SemiBold" FontSize="20"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                
+                <!--Content-->
+                <UserControl Grid.Row="1"
+                             Margin="10"
+                             Content="{Binding CurrentCustomUserControl}"/>
+        </Grid>
+</Window>

@@ -2,27 +2,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="345" d:DesignHeight="514"
-             MinWidth="345" MinHeight="514" Width="345" Height="514"
-             Background="{DynamicResource BackgroundFirstLayer}"
+             mc:Ignorable="d" d:DesignWidth="316" d:DesignHeight="450"
+             MinWidth="316" MinHeight="450" Width="316" Height="450"
+             Background="{DynamicResource BackgroundSecondLayer}"
+             CornerRadius="20"
              x:Class="CloudSculpt.Views.UserControls.KubeEnvironmentConfigHomeDefaultMain">
     
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        
-        <!--Title-->
-        <TextBlock Grid.Row="0"
-                   Foreground="{DynamicResource ForegroundSecondaryBrush}"
-                   FontFamily="Inter" FontWeight="SemiBold" FontSize="20"
-                   Text="Kubernetes Environment Config"
-                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        
-        <!--Content-->
-        <Border Grid.Row="1" Background="{DynamicResource BackgroundSecondLayer}"
-                BorderThickness="1" CornerRadius="20" Margin="10">
+    <!--Content-->
+    <Border Background="{DynamicResource BackgroundSecondLayer}"
+            BorderThickness="1" CornerRadius="20" Margin="10">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -212,5 +200,4 @@
                 
             </Grid>
         </Border>
-    </Grid>
 </UserControl>
