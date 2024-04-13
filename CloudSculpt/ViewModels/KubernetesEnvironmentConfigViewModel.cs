@@ -1,4 +1,8 @@
-﻿using Avalonia.Controls;
+﻿using System.Windows.Input;
+using Avalonia.Controls;
+using CloudSculpt.Commands;
+using CloudSculpt.Interfaces;
+using CloudSculpt.Services;
 using CloudSculpt.Views.UserControls;
 
 namespace CloudSculpt.ViewModels;
@@ -20,12 +24,19 @@ public class KubernetesEnvironmentConfigViewModel : ViewModelBase
         set => SetField(ref _currentCustomUserControl, value);
     }
     
+    public ICommand KubernetesEnvironmentConfigGoBack { get; }
+    
     public readonly Window CurrentWindow;
+    public readonly INavigationService NavigationService;
     public KubernetesEnvironmentConfigViewModel(Window window)
     {
         // Initial Values
         CurrentWindow = window;
+        NavigationService = ServiceLocator.Resolve<INavigationService>();
         CurrentDefaultUserControl = new KubeEnvironmentConfigHomeDefaultMain();
         CurrentCustomUserControl = new KubeEnvironmentConfigHomeCustomMain();
+        
+        // Commands
+        KubernetesEnvironmentConfigGoBack = new KubeEnvironmentConfigToNetworkProjectCommand(this);
     }
 }

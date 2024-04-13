@@ -21,6 +21,7 @@ public partial class App : Application
         navigationService.RegisterWindow("SettingsWindow", typeof(SettingsWindowV2));
         navigationService.RegisterWindow("ConfigureCloudInfraWindow", typeof(ConfigureCloudInfraWindow));
         navigationService.RegisterWindow("ConfigCloudInfraEditWindow", typeof(ConfigCloudInfraEditWindow));
+        navigationService.RegisterWindow("KubeNetworkConfigHomeDefaultWindow", typeof(KubeNetworkConfigHomeDefaultWindow));
         
         // Store navigationService
         ServiceLocator.Register<INavigationService>(navigationService);

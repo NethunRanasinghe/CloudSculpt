@@ -25,6 +25,7 @@ public class MainMenuViewModel : ViewModelBase
     public ICommand ProjectSelectionNetworkingViewCloud { get; }
     public ICommand ProjectSelectionBackToMain { get; }
     public ICommand MainWindowInitialized { get; }
+    public ICommand ProjectSelectionKubeNetworkConfigDefault { get; }
     
     public readonly INavigationService NavigationService;
     public readonly Window CurrentWindow;
@@ -43,7 +44,8 @@ public class MainMenuViewModel : ViewModelBase
         ProjectSelectionCloudViewConfigCloudInfra = new ProjectSelectionCloudViewConfigCloudInfraCommand(this);
         ProjectSelectionCloudViewNetworking = new ProjectSelectionCloudViewNetworkingCommand(this);
         ProjectSelectionNetworkingViewCloud = new ProjectSelectionNetworkingViewCloudCommand(this);
-        ProjectSelectionBackToMain = new ProjectSelectionBackToMainCommand(this);
+        ProjectSelectionBackToMain = new ProjectSelectionBackToMainCommand(this);        
+        ProjectSelectionKubeNetworkConfigDefault = new ProjectSelectionKubeNetworkConfigDefaultCommand(this);
         MainWindowInitialized = new MainWindowLoadedCommand();
     }
 }

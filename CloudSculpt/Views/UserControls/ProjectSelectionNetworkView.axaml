@@ -134,6 +134,7 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Content="Kubernetes Network Simulator"
+                        Command="{Binding ProjectSelectionKubeNetworkConfigDefault}"
                         Cursor="Hand"/>
             </Grid>
             
