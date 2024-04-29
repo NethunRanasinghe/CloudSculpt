@@ -25,6 +25,8 @@ public class KubernetesEnvironmentConfigViewModel : ViewModelBase
     }
     
     public ICommand KubernetesEnvironmentConfigGoBack { get; }
+    public ICommand KubernetesEnvironmentConfigCustom { get; }
+    public ICommand KubernetesEnvironmentConfigDefault { get; }
     
     public readonly Window CurrentWindow;
     public readonly INavigationService NavigationService;
@@ -38,5 +40,7 @@ public class KubernetesEnvironmentConfigViewModel : ViewModelBase
         
         // Commands
         KubernetesEnvironmentConfigGoBack = new KubeEnvironmentConfigToNetworkProjectCommand(this);
+        KubernetesEnvironmentConfigCustom = new KubeEnvironmentConfigCustomCommands(this);
+        KubernetesEnvironmentConfigDefault = new KubernetesEnvironmentConfigDefaultCommand(this);
     }
 }

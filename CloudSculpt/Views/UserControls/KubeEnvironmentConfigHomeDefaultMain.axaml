@@ -51,7 +51,8 @@
                                 HorizontalAlignment="Right" VerticalAlignment="Center"
                                 FontFamily="Inter" FontWeight="SemiBold" FontSize="13"
                                 CornerRadius="10" Width="80" HorizontalContentAlignment="Center"
-                                Content="Default" Cursor="Hand"/>
+                                Content="Default" Cursor="Hand"
+                                Command="{Binding KubernetesEnvironmentConfigCustom}"/>
                         
                         <TextBlock Grid.Column="1"
                                    Text="?" Margin="10 0" Cursor="Help"

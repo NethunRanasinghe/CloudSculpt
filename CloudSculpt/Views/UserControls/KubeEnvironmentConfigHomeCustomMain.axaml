@@ -2,11 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
              mc:Ignorable="d" d:DesignWidth="316" d:DesignHeight="260"
              MinWidth="316" MinHeight="260" Width="316" Height="260"
              x:Class="CloudSculpt.Views.UserControls.KubeEnvironmentConfigHomeCustomMain"
              Background="{DynamicResource BackgroundSecondLayer}"
-             CornerRadius="20">
+             CornerRadius="20" x:DataType="viewModels:KubernetesEnvironmentConfigViewModel">
     
     <Grid>
         <Grid.RowDefinitions>
@@ -50,7 +51,7 @@
                         HorizontalAlignment="Right" VerticalAlignment="Center"
                         FontFamily="Inter" FontWeight="SemiBold" FontSize="13"
                         CornerRadius="10" Width="80" HorizontalContentAlignment="Center"
-                        Content="Custom" Cursor="Hand"/>
+                        Content="Custom" Cursor="Hand" Command="{Binding KubernetesEnvironmentConfigDefault}"/>
                         
                 <TextBlock Grid.Column="1"
                            Text="?" Margin="10 0" Cursor="Help"
@@ -115,7 +116,8 @@
                     FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
                     CornerRadius="10" Width="80" Height="35" 
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    Content="Back" Cursor="Hand" Margin="10  0 0 0"/>
+                    Content="Back" Cursor="Hand" Margin="10  0 0 0"
+                    Command="{Binding KubernetesEnvironmentConfigGoBack}"/>
             
             <Button Grid.Column="1"
                     Background="{DynamicResource BackgroundThirdLayer}" 
