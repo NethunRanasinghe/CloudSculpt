@@ -40,6 +40,8 @@
         <entry key="CloudSculpt/Views/UserControls/ConfigCloudInfraEditTerminalView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/KubeEnvironmentConfigHomeCustomMain.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/KubeEnvironmentConfigHomeDefaultMain.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/UserControls/KubeEnvironmentConfigNamespaceCustom.axaml" value="CloudSculpt/CloudSculpt.csproj" />
+        <entry key="CloudSculpt/Views/UserControls/KubeEnvironmentConfigNamespaceDefault.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/ProjectSelectionCloudView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/ProjectSelectionMainView.axaml" value="CloudSculpt/CloudSculpt.csproj" />
         <entry key="CloudSculpt/Views/UserControls/ProjectSelectionNetworkView.axaml" value="CloudSculpt/CloudSculpt.csproj" />

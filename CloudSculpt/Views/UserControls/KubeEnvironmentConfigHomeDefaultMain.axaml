@@ -146,7 +146,8 @@
                                 HorizontalAlignment="Right" VerticalAlignment="Center"
                                 FontFamily="Inter" FontWeight="SemiBold" FontSize="13"
                                 CornerRadius="10" Width="80" HorizontalContentAlignment="Center"
-                                Content="Default" Cursor="Hand"/>
+                                Content="{Binding CurrentNamespaceButtonText, FallbackValue='Default'}" Cursor="Hand"
+                                Command="{Binding KubernetesEnvironmentConfigNamespaceChange}"/>
                         
                         <TextBlock Grid.Column="1"
                                    Text="?" Margin="10 0" Cursor="Help"
@@ -155,25 +156,8 @@
                     </Grid>
                 </Grid>
                 
-                <!--Group By-->
-                <Grid Grid.Row="8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <TextBlock Grid.Column="0"
-                               FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
-                               Foreground="{DynamicResource ForegroundMainBrush}"
-                               HorizontalAlignment="Left" VerticalAlignment="Center"
-                               Text="Group By" Margin="10 0 0 0"/>
-                    
-                    <TextBox Grid.Column="1"
-                             CornerRadius="10" Width="100" Height="30"
-                             HorizontalAlignment="Right" VerticalAlignment="Center"
-                             FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
-                             Margin="0 0 10 0"/>
-                </Grid>
+                <!--Group By and Namespace Config-->
+                <UserControl Grid.Row="8" Content="{Binding CurrentNamespacePodControl}"/>
                 
                 <!--Start and Deploy Buttons-->
                 <Grid Grid.Row="9">

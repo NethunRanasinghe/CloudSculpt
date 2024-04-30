@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="293" d:DesignHeight="40"
+             Width="293" Height="40" Background="{DynamicResource BackgroundSecondLayer}"
+             x:Class="CloudSculpt.Views.UserControls.KubeEnvironmentConfigNamespaceCustom"
+             x:DataType="viewModels:KubernetesEnvironmentConfigViewModel">
+    
+    <!--Namespace Config-->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+                    
+        <TextBlock Grid.Column="0"
+                   FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                   Foreground="{DynamicResource ForegroundMainBrush}"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                   Text="Namespaces" Margin="10 0 0 0"/>
+                    
+        <Button Grid.Column="1" 
+                Background="{DynamicResource BackgroundThirdLayer}" 
+                Foreground="{DynamicResource ForegroundMainBrush}"
+                HorizontalAlignment="Right" VerticalAlignment="Center"
+                FontFamily="Inter" FontWeight="SemiBold" FontSize="13" Margin="0 0 10 0"
+                CornerRadius="10" Width="100" HorizontalContentAlignment="Center"
+                Content="Customize" Cursor="Hand"/>
+    </Grid>
+</UserControl>
