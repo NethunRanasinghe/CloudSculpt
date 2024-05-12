@@ -7,7 +7,7 @@
         xmlns:converters="clr-namespace:CloudSculpt.Converters"
         mc:Ignorable="d" d:DesignWidth="512" d:DesignHeight="512"
         MinWidth="512" MinHeight="512"
-        Width="512" Height="512"
+        Width="512" Height="512" MaxWidth="512" MaxHeight="512"
         Background="{DynamicResource BackgroundFirstLayer}"
         x:Class="CloudSculpt.Views.Windows.ConfigCloudInfraEditWindow"
         ExtendClientAreaToDecorationsHint="True"

@@ -1,0 +1,15 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+networking:
+  apiServerAddress: 192.168.124.106
+  apiServerPort: 9090
+  serviceSubnet: 192.168.124.106/24
+
+# 1 Control plane node and 1 Worker
+
+nodes:
+  # One control plane node config
+  - role: control-plane
+  
+  # One worker
+  - role: worker

@@ -1,0 +1,59 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="512" d:DesignHeight="300"
+             MinWidth="512" MinHeight="300" Width="512" Height="300"
+             Background="{DynamicResource BackgroundFirstLayer}"
+             x:Class="CloudSculpt.Views.UserControls.KubeNetworkNamespaceCustomize"
+             x:DataType="viewModels:KubernetesEnvironmentConfigViewModel">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!--Add Namespace-->
+        <Button Grid.Row="0"
+                Background="{DynamicResource BackgroundThirdLayer}"
+                Foreground="{DynamicResource ForegroundMainBrush}"
+                Content="+ Add Namespace"
+                HorizontalAlignment="Left" VerticalAlignment="Center"
+                FontFamily="Inter" FontWeight="SemiBold"
+                CornerRadius="10" Margin="10" Cursor="Hand"/>
+        
+        <Border Grid.Row="1"
+                Background="{DynamicResource BackgroundSecondLayer}"
+                CornerRadius="10" Margin="10">
+            
+            <ItemsControl/>
+        </Border>
+        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <!--Reset & Done Buttons-->
+            <Button Grid.Column="0"
+                    Background="{DynamicResource BackgroundThirdLayer}"
+                    Foreground="{DynamicResource ForegroundMainBrush}"
+                    Content="Reset" Width="100" HorizontalContentAlignment="Center"
+                    HorizontalAlignment="Left" VerticalAlignment="Center"
+                    FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                    CornerRadius="10" Margin="10 0 0 10" Cursor="Hand"/>
+            
+            <Button Grid.Column="1"
+                    Background="{DynamicResource BackgroundThirdLayer}"
+                    Foreground="{DynamicResource ForegroundMainBrush}"
+                    Content="Done" Width="100" HorizontalContentAlignment="Center"
+                    HorizontalAlignment="Right" VerticalAlignment="Center"
+                    FontFamily="Inter" FontWeight="SemiBold" FontSize="15"
+                    CornerRadius="10" Margin="0 0 10 10" Cursor="Hand"/>
+        </Grid>
+    </Grid>
+</UserControl>

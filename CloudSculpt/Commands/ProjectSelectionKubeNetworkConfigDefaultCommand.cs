@@ -7,6 +7,7 @@ public class ProjectSelectionKubeNetworkConfigDefaultCommand (MainMenuViewModel 
     public override void Execute(object? parameter)
     {
         mainMenuViewModel.CurrentWindow.Hide();
-        mainMenuViewModel.NavigationService.NavigateTo("KubeNetworkConfigHomeDefaultWindow");
+        //mainMenuViewModel.NavigationService.NavigateTo("KubeNetworkConfigHomeDefaultWindow");
+        mainMenuViewModel.NavigationService.NavigateTo("kubeNetworkSimulatorWindow");
     }
 }

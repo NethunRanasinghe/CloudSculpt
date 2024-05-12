@@ -23,6 +23,7 @@ public partial class App : Application
         navigationService.RegisterWindow("ConfigCloudInfraEditWindow", typeof(ConfigCloudInfraEditWindow));
         navigationService.RegisterWindow("KubeNetworkConfigHomeDefaultWindow", typeof(KubeNetworkConfigHomeDefaultWindow));
         navigationService.RegisterWindow("KubeNetworkConfigHomeCustomWindow", typeof(KubeNetworkConfigHomeCustomWindow));
+        navigationService.RegisterWindow("kubeNetworkSimulatorWindow", typeof(KubeNetworkSimulatorWindow));
         
         // Store navigationService
         ServiceLocator.Register<INavigationService>(navigationService);

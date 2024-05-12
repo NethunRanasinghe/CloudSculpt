@@ -1,0 +1,18 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="512" d:DesignHeight="300"
+        MinWidth="512" MinHeight="300" Width="512" Height="300"
+        x:Class="CloudSculpt.Views.Windows.KubeNetworkNamespaceCustomizeWindow"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        SystemDecorations="BorderOnly"
+        Background="{DynamicResource BackgroundFirstLayer}"
+        x:DataType="viewModels:KubernetesEnvironmentConfigViewModel">
+        
+        <UserControl Content="{Binding CurrentNamespaceCustomConfig}"/>
+        
+</Window>

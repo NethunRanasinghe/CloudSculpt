@@ -12,7 +12,6 @@ using Docker.DotNet.Models;
 using ICSharpCode.SharpZipLib.Tar;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
-using Renci.SshNet;
 
 namespace CloudSculpt.HelperClasses;
 
@@ -278,38 +277,6 @@ public static class DockerManage
             });
         }
     }
-    
-    /*private static async Task CreateIpVlanNetwork()
-    {
-        using var client = new DockerClientConfiguration(DockerUri).CreateClient();
-        var networks = await client.Networks.ListNetworksAsync();
-        var networkExists = networks.Any(n => n.Name == "cloudsculptnetwork");
-
-        if (!networkExists)
-        {
-            await client.Networks.CreateNetworkAsync(new NetworksCreateParameters
-            {
-                Name = "cloudsculptnetwork",
-                Driver = "ipvlan",
-                IPAM = new IPAM
-                {
-                    Config = new List<IPAMConfig>
-                    {
-                        new()
-                        {
-                            Subnet = "192.168.1.0/24",
-                            Gateway = "192.168.1.1",
-                            IPRange = "192.168.1.200/30"
-                        }
-                    }
-                },
-                Options = new Dictionary<string, string>
-                {
-                    { "parent", "eth0" }
-                }
-            });
-        }
-    }*/
 
     #endregion
     

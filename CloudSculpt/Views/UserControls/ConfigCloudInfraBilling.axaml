@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
              mc:Ignorable="d" d:DesignWidth="364" d:DesignHeight="458"
+             Width="364" Height="458"
              x:Class="CloudSculpt.Views.UserControls.ConfigCloudInfraBilling"
              Background="{DynamicResource BackgroundSecondLayer}"
              x:DataType="viewModels:ConfigureCloudInfraViewModel">

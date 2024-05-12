@@ -21,6 +21,7 @@
         <PackageReference Include="CliWrap" Version="3.6.6" />
         <PackageReference Include="Dapper" Version="2.1.28" />
         <PackageReference Include="Docker.DotNet" Version="3.125.15" />
+        <PackageReference Include="KubernetesClient" Version="13.0.37" />
         <PackageReference Include="MessageBox.Avalonia" Version="3.1.5.1" />
         <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -66,6 +67,30 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <None Remove="cloudsculpt" />
+      <None Remove="Assets\kubePlayBtn.png" />
+      <AvaloniaResource Include="Assets\kubePlayBtn.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </AvaloniaResource>
+      <None Remove="Assets\KubeStopBtn.png" />
+      <AvaloniaResource Include="Assets\KubeStopBtn.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </AvaloniaResource>
+      <None Remove="Assets\kubeExportBtn.png" />
+      <AvaloniaResource Include="Assets\kubeExportBtn.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </AvaloniaResource>
+      <None Remove="Assets\kubeBackBtn.png" />
+      <AvaloniaResource Include="Assets\kubeBackBtn.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </AvaloniaResource>
+      <None Remove="Assets\kubeBackBtnV2.png" />
+      <AvaloniaResource Include="Assets\kubeBackBtnV2.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </AvaloniaResource>
+      <None Remove="Configs\kubeconfig" />
+      <Content Include="Configs\kubeconfig">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 

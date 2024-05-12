@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="470" d:DesignHeight="25"
+             Width="470" Height="25" Background="{DynamicResource BackgroundThirdLayer}"
+             x:Class="CloudSculpt.Views.Elements.KubeNetworkNamespaceCustomEntryTemplate"
+             x:DataType="viewModels:KubernetesEnvironmentConfigViewModel">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+                        
+        <Label Grid.Column="0"
+               Content="{Binding NamespaceCustomEntryNamespaceName, FallbackValue='Default Namespace'}"
+               HorizontalAlignment="Left" VerticalAlignment="Center"
+               FontFamily="Inter"
+               FontWeight="SemiBold"/>
+                        
+        <ComboBox Grid.Column="1"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                  FontFamily="Inter"
+                  FontWeight="SemiBold">
+            
+            <!--Pod List and their availability-->
+            <ComboBoxItem>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label Grid.Column="0"
+                           Content="Pod - 1"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           FontFamily="Inter"/>
+                    
+                    <CheckBox Grid.Column="1"
+                              HorizontalAlignment="Right"
+                              VerticalAlignment="Center"/>
+                </Grid>    
+            </ComboBoxItem>
+        </ComboBox>
+        
+    </Grid>
+</UserControl>
