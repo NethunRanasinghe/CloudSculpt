@@ -91,6 +91,10 @@
       <Content Include="Configs\kubeconfig">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <None Remove="Assets\pod.png" />
+      <AvaloniaResource Include="Assets\pod.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </AvaloniaResource>
     </ItemGroup>
 
 

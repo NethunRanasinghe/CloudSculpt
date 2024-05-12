@@ -17,6 +17,22 @@ public class KubernetesEnvironmentConfigViewModel : ViewModelBase
     private string _currentNamespaceButtonText;
     private string _namespaceCustomEntryNamespaceName;
     private ObservableCollection<KubernetesEnvironmentConfigViewModel> _allNamespacePodDetailEntries;
+    private double _podOpacity;
+    private double _connectionOpacity;
+    private ObservableCollection<ServiceElementViewModel> _serviceElements;
+    private ObservableCollection<ServiceElementViewModel> _networkCanvasCollection;
+
+    public double ConnectionOpacity
+    {
+        get => _connectionOpacity;
+        set => SetField(ref _connectionOpacity, value);
+    }
+
+    public double PodOpacity
+    {
+        get => _podOpacity;
+        set => SetField(ref _podOpacity, value);
+    }
 
     public ObservableCollection<KubernetesEnvironmentConfigViewModel> AllNamespacePodDetailEntries
     {
@@ -59,14 +75,29 @@ public class KubernetesEnvironmentConfigViewModel : ViewModelBase
         set => SetField(ref _currentNamespacePodControl, value);
     }
     
+    public ObservableCollection<ServiceElementViewModel> ServiceElements
+    {
+        get => _serviceElements;
+        set => SetField(ref _serviceElements, value);
+    }
+    
+    public ObservableCollection<ServiceElementViewModel> NetworkCanvasCollection
+    {
+        get => _networkCanvasCollection;
+        set => SetField(ref _networkCanvasCollection, value);
+    }
+    
     public ICommand KubernetesEnvironmentConfigGoBack { get; }
     public ICommand KubernetesEnvironmentConfigCustom { get; }
     public ICommand KubernetesEnvironmentConfigDefault { get; }
     public ICommand KubernetesEnvironmentConfigNamespaceChange { get; }
     public ICommand KubernetesSimulatorGoBack { get; }
+    public ICommand KubernetesSimulatorPodsCommand { get; }
     
     public readonly Window CurrentWindow;
     public readonly INavigationService NavigationService;
+    
+    public static ObservableCollection<ServiceElementViewModel> NetworkCanvasCollectionStatic { get; set; } = [];
     
     public KubernetesEnvironmentConfigViewModel(Window window)
     {
@@ -79,6 +110,22 @@ public class KubernetesEnvironmentConfigViewModel : ViewModelBase
         CurrentNamespaceButtonText = "Default";
         NamespaceCustomEntryNamespaceName = "Default Namespace";
         CurrentNamespaceCustomConfig = new KubeNetworkNamespaceCustomize();
+        PodOpacity = 1;
+        ConnectionOpacity = 1;
+        
+        // Service Elements
+        ServiceElements = [];
+        
+        // Infra collection
+        if (NetworkCanvasCollectionStatic.Count > 0)
+        {
+            NetworkCanvasCollection = NetworkCanvasCollectionStatic;
+        }
+        else
+        {
+            NetworkCanvasCollection = [];
+            NetworkCanvasCollectionStatic = [];
+        }
         
         // Commands
         KubernetesEnvironmentConfigGoBack = new KubeEnvironmentConfigToNetworkProjectCommand(this);
@@ -86,5 +133,6 @@ public class KubernetesEnvironmentConfigViewModel : ViewModelBase
         KubernetesEnvironmentConfigDefault = new KubernetesEnvironmentConfigDefaultCommand(this);
         KubernetesEnvironmentConfigNamespaceChange = new KubernetesEnvironmentConfigNamespaceCustomCommand(this);
         KubernetesSimulatorGoBack = new KubernetesSimulatorGoBackCommand(this);
+        KubernetesSimulatorPodsCommand = new PodsCommand(this);
     }
 }

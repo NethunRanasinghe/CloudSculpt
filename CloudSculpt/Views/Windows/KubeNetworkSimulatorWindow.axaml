@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:CloudSculpt.ViewModels"
+        xmlns:elements="clr-namespace:CloudSculpt.Views.Elements"
         mc:Ignorable="d" d:DesignWidth="910" d:DesignHeight="512"
         Width="910" Height="512"
         x:Class="CloudSculpt.Views.Windows.KubeNetworkSimulatorWindow"
@@ -139,6 +140,7 @@
                                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                                 Content="Pods" FontFamily="Inter" FontWeight="SemiBold"
                                                 CornerRadius="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                                Command="{Binding KubernetesSimulatorPodsCommand}"
                                                 Margin="10 0 0 0" Cursor="Hand"/>
                                         
                                         <!--Services-->
@@ -159,6 +161,22 @@
                         Margin="10 0 10 10"
                         CornerRadius="10">
                         
+                        <ItemsControl ItemsSource="{Binding ServiceElements}">
+                                                
+                                <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"
+                                                            FlowDirection="LeftToRight"/>
+                                        </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                                
+                                <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                                <elements:ServiceElementTemplate DataContext="{Binding}" />
+                                        </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                                
+                        </ItemsControl>
                         
                 </Border>
         </Grid>
