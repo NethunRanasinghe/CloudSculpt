@@ -336,8 +336,8 @@
                                                 Cursor="Hand"
                                                 Opacity="{Binding IsBillingSelected, Converter={StaticResource ButtonOpacityConverter}}"
                                                 Width="{Binding ElementName=DeployBillingDeployBorder, Path=Width, Converter={StaticResource HalfConverter}}"
-                                                CornerRadius="0 15 0 0 "
-                                                Command="{Binding ConfigureCloudInfraWindowBillingButton}"/>
+                                                CornerRadius="0 15 0 0 "/> 
+                                        <!--Command="{Binding ConfigureCloudInfraWindowBillingButton}"-->
                                 </Grid>
                                 
                                 <ContentControl Grid.Row="1"

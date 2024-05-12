@@ -63,7 +63,8 @@
                     HorizontalContentAlignment="Center"
                     Margin="10 0"
                     CornerRadius="8"
-                    Cursor="Hand"/>
+                    Cursor="Hand"
+                    Command="{Binding }"/>
         </Grid>
     </Grid>
 </UserControl>

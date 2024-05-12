@@ -111,6 +111,7 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
     public ICommand ConfigureCloudInfraWindowDeployButton { get; }
     public ICommand ConfigCloudInfraDeployListClearList { get; }
     public ICommand ConfigCloudInfraWindowBack { get; }
+    public ICommand DeployTerraformConfig { get; }
 
     public readonly Window CurrentWindow;
     public readonly INavigationService NavigationService;
@@ -164,6 +165,7 @@ public class ConfigureCloudInfraViewModel : ViewModelBase
         ConfigureCloudInfraWindowDeployButton = new ConfigureCloudInfraWindowDeployListButton(this);
         ConfigCloudInfraDeployListClearList = new ConfigCloudInfraDeployListClearList(this);
         ConfigCloudInfraWindowBack = new ConfigCloudInfraWindowBackCommand(this);
+        DeployTerraformConfig = new DeployTerraformConfigCommand(this);
 
         // Initial Billing Selected State
         IsBillingSelected = false;
